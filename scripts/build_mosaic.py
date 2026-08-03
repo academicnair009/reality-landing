@@ -29,11 +29,12 @@ COLS, ROWS = 28, 18  # 2016 x 1296 canvas, 504 visible tiles
 UNIQUE = 160       # distinct thumbnails to download (repetition is jittered)
 CACHE = pathlib.Path("/tmp/rialiti_mosaic_tiles")
 
-# Five designated landing cells (col, row) kept almost-black: the five beat
+# Seven designated landing cells (col, row) kept almost-black: the seven beat
 # photographs fly in and occupy them as the story scrolls. Chosen inside the
 # region that stays on screen under object-fit: cover from 360px-wide phones
-# to ultrawide monitors. MUST match HERO_CELLS in index.html.
-HERO_CELLS = {(12, 4), (16, 6), (13, 8), (15, 10), (12, 12)}
+# to ultrawide monitors (cols 10-17, rows ~4-12). MUST match HERO_CELLS in
+# index.html.
+HERO_CELLS = {(12, 4), (16, 6), (13, 8), (15, 10), (12, 12), (10, 7), (17, 9)}
 
 def fetch_tile(seed: int) -> Image.Image:
     CACHE.mkdir(exist_ok=True)

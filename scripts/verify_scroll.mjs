@@ -5,9 +5,9 @@
  * code) plus the HERO_CELLS / mosaic constants, then walks scrollY through
  * the full document in BOTH directions on several viewports and asserts:
  *
- *   1. no scroll position during beats 1-5 shows the page without a
+ *   1. no scroll position during beats 1-7 shows the page without a
  *      substantial photograph (the wipe/flight always keeps one on screen);
- *   2. through the dark beats and closing, either a photo or the mosaic
+ *   2. through the final flight and closing, either a photo or the mosaic
  *      layer is meaningfully visible (never bare black mid-story);
  *   3. at each beat's pin midpoint: exactly that beat's photo is fullscreen
  *      at opacity 1, all earlier photos sit landed on their cells, all later
@@ -20,6 +20,13 @@
  *      the letter exists — the swap is a pure crossfade, never a pop;
  *   7. all channels are continuous (no jumps between adjacent scroll steps);
  *   8. the reverse sweep reproduces the forward sweep bit-for-bit.
+ *
+ * The last configuration is a DYNAMIC-VIEWPORT device case: mobile Chrome
+ * with the URL bar collapsed, where window.innerHeight (844, what the JS
+ * measures as m.vh) exceeds the 100svh stage/section basis (780, what CSS
+ * lays out). The model must stay photo-covered and land exactly under that
+ * mismatch; page-top endpoint checks are skipped there (at y=0 the bar is
+ * always expanded on a real device, so that state cannot occur).
  *
  * Run: node scripts/verify_scroll.mjs
  */
@@ -47,7 +54,7 @@ function fail(msg) {
   if (failures <= 30) console.error("FAIL: " + msg);
 }
 
-function metricsFor(vw, vh) {
+function metricsFor(vw, vh, stageH = vh) {
   const sc = Math.max(vw / MW, vh / MH);
   const dx = (vw - MW * sc) / 2, dy = (vh - MH * sc) / 2;
   return {
@@ -59,7 +66,7 @@ function metricsFor(vw, vh) {
     flyW: Array(7).fill(vw * 0.45),
     flyH: Array(7).fill(vw * 0.5),
     endScale: 0.12,
-    stageH: Array(7).fill(vh),
+    stageH: Array(7).fill(stageH),
   };
 }
 
@@ -73,12 +80,16 @@ function viewportCoverage(box, m) {
   return (w * h) / (m.vw * m.vh);
 }
 
-for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
-  console.log(`\n=== viewport ${vw}x${vh} ===`);
-  const m = metricsFor(vw, vh);
-  const secH = [1.75, 1.75, 1.75, 1.75, 1.75, 1.5, 1.5].map(f => f * vh);
+/* [vw, innerHeight, svh] — svh differs from innerHeight only in the
+   dynamic-viewport (URL bar collapsed) device configuration. */
+for (const [vw, vh, svhArg] of [[390, 844], [360, 740], [1440, 900], [390, 844, 780]]) {
+  const svh = svhArg ?? vh;
+  const dyn = svh !== vh;
+  console.log(`\n=== viewport ${vw}x${vh}${dyn ? ` (dynamic: stages ${svh}svh)` : ""} ===`);
+  const m = metricsFor(vw, vh, svh);
+  const secH = [1.75, 1.75, 1.75, 1.75, 1.75, 1.5, 1.5].map(f => f * svh);
   const off = [];
-  let acc = vh; // opening section
+  let acc = svh; // opening section (100svh)
   for (const h of secH) { off.push(acc); acc += h; }
   const offClosing = acc;
   const yMax = offClosing; // closing is 100vh and ends the document
@@ -102,30 +113,30 @@ for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
   }
 
   const pinLen = i => secH[i] - m.stageH[i];
-  const photoZoneEnd = off[4] + pinLen(4); // end of beat-5's pin
+  const photoZoneEnd = off[6] + pinLen(6); // end of beat-7's pin
 
   for (let k = 0; k < ys.length; k++) {
     const y = ys[k], f = fwd[k];
 
-    /* ---- 1: a substantial photo at every step of beats 1-5 ---- */
+    /* ---- 1: a substantial photo at every step of beats 1-7 ---- */
     if (y >= off[0] && y <= photoZoneEnd) {
       let cov = 0;
-      for (let i = 0; i < 5; i++)
+      for (let i = 0; i < 7; i++)
         if (f.photos[i].op >= 0.5) cov = Math.max(cov, viewportCoverage(photoBox(f.photos[i], m), m));
-      if (cov < 0.25) fail(`y=${y}: max photo coverage ${cov.toFixed(3)} < 0.25 during beats 1-5`);
+      if (cov < 0.25) fail(`y=${y}: max photo coverage ${cov.toFixed(3)} < 0.25 during beats 1-7`);
     }
 
-    /* ---- 2: dark zone / closing — photo or mosaic visible ---- */
+    /* ---- 2: final flight / closing — photo or mosaic visible ---- */
     if (y > photoZoneEnd && y <= yMax) {
       let cov = 0;
-      for (let i = 0; i < 5; i++)
+      for (let i = 0; i < 7; i++)
         if (f.photos[i].op >= 0.4) cov = Math.max(cov, viewportCoverage(photoBox(f.photos[i], m), m));
       if (cov < 0.10 && f.mosaic < 0.15)
         fail(`y=${y}: bare black — photo cov ${cov.toFixed(3)}, mosaic ${f.mosaic.toFixed(3)}`);
     }
 
     /* ---- 5: rising photo's visible edge tracks its section top ---- */
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       const top = off[i] - y;
       if (top > 0.5 && top < vh - 0.5) {
         const edge = photoBox(f.photos[i], m).y;
@@ -145,7 +156,7 @@ for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
     if (k > 0) {
       const g = fwd[k - 1];
       if (Math.abs(f.mosaic - g.mosaic) > 0.05) fail(`y=${y}: mosaic jump`);
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 7; i++) {
         const a = f.photos[i], b = g.photos[i];
         /* opacity is binary while parked/entering; only meaningful once the
            photo actually covers screen area (geometry is continuous) */
@@ -173,12 +184,12 @@ for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
   for (let i = 0; i < 7; i++) {
     const y = off[i] + 0.5 * pinLen(i);
     const f = frameAt(y);
-    if (i < 5) {
+    {
       const ph = f.photos[i];
       if (ph.op !== 1 || ph.x !== 0 || ph.y !== 0 || ph.sx !== 1 || ph.sy !== 1)
         fail(`beat ${i + 1} mid-pin: own photo not fullscreen/opaque`);
     }
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 7; j++) {
       if (j < i) {
         const box = photoBox(f.photos[j], m), c = m.cells[j];
         if (Math.abs(box.x - c.x) > 0.5 || Math.abs(box.y - c.y) > 0.5 ||
@@ -199,7 +210,7 @@ for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
   }
 
   /* ---- 4: exact landings, then permanence to document end ---- */
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 7; i++) {
     for (const y of [off[i] + pinLen(i) + m.stageH[i], yMax]) {
       const f = frameAt(y);
       const box = photoBox(f.photos[i], m), c = m.cells[i];
@@ -209,11 +220,14 @@ for (const [vw, vh] of [[390, 844], [360, 740], [1440, 900]]) {
     }
   }
 
-  /* ---- endpoints ---- */
+  /* ---- endpoints (page-top checks skipped for the dynamic config —
+          at y=0 a real device always has the URL bar expanded) ---- */
   const f0 = frameAt(0), fEnd = frameAt(yMax);
-  if (f0.mosaic !== 0) fail(`y=0: mosaic ${f0.mosaic} != 0`);
-  if (f0.photos.some(p => p.op !== 0)) fail("y=0: a photo is visible over the opening");
-  if (f0.slot.some(s => s.op !== 0)) fail("y=0: a rail letter is visible at the top");
+  if (!dyn) {
+    if (f0.mosaic !== 0) fail(`y=0: mosaic ${f0.mosaic} != 0`);
+    if (f0.photos.some(p => p.op !== 0)) fail("y=0: a photo is visible over the opening");
+    if (f0.slot.some(s => s.op !== 0)) fail("y=0: a rail letter is visible at the top");
+  }
   if (Math.abs(fEnd.mosaic - 0.62) > 1e-9) fail(`yMax: mosaic ${fEnd.mosaic} != 0.62`);
   if (fEnd.tileOp !== 1) fail(`yMax: tileOp ${fEnd.tileOp} != 1`);
   if (fEnd.slot.some(s => s.op !== 1)) fail("yMax: rail letters incomplete");

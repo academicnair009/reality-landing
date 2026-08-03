@@ -164,6 +164,8 @@
   }
   #beat-2 img.photo,
   .photo-wrap img[src*="earthrise"] { object-position: 62% 60%; } /* keep Earth + horizon framed on phones */
+  #beat-6 img.photo,
+  .photo-wrap img[src*="beat6-proof"] { object-position: 58% 50%; } /* keep both held prints inside portrait crops */
 
   /* ---------- fixed background layers (JS-created, scroll-driven) ----------
      Stacking, bottom → top: canvas (body bg) → #mosaic-layer (z:-2) →
@@ -229,16 +231,17 @@
   }
   .anim .copy { opacity: 0; will-change: transform, opacity; }
 
-  .beat--dark .stage { background: var(--bg); }
-  .beat--dark .copy {
-    margin-bottom: 0;
-    align-self: center;
-    font-size: clamp(1.7rem, 6vw, 3rem);
+  /* ---- ?debug=1 on-device readout (created by JS only when enabled) ---- */
+  #debug-hud {
+    position: fixed; left: 8px; bottom: 8px; z-index: 99;
+    font: 10px/1.5 ui-monospace, Menlo, monospace;
+    color: #7CFC9A;
+    background: rgba(0,0,0,.72);
+    padding: 6px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    white-space: pre;
   }
-  /* Under .anim the dark beats stay translucent so the accumulating mosaic
-     holds faintly behind the typography, waiting for the finale. */
-  .anim .beat--dark .stage { background: transparent; }
-  .stage .scrim--flat { background: rgba(5,5,5,.55); }
 
   /* ---------- closing ---------- */
   .closing {
@@ -387,17 +390,21 @@
     </div>
   </section>
 
-  <section class="beat beat--dark short" id="beat-6">
+  <section class="beat short" id="beat-6">
     <div class="stage">
-      <div class="scrim scrim--flat"></div>
+      <img class="photo" src="assets/beat6-proof.jpg" decoding="async"
+           alt="East Boston, 1973: Matthew Vieira holds up two small faded prints of his children, photographed decades earlier in the park where he stands — the park itself is now gone.">
+      <div class="scrim"></div>
       <span class="beat-letter" aria-hidden="true">T</span>
       <h2 class="copy">Real moments deserve proof.</h2>
     </div>
   </section>
 
-  <section class="beat beat--dark short" id="beat-7">
+  <section class="beat short" id="beat-7">
     <div class="stage">
-      <div class="scrim scrim--flat"></div>
+      <img class="photo" src="assets/beat7-bluemarble.jpg" decoding="async"
+           alt="The Blue Marble: the whole Earth — ocean, Africa, Antarctica under swirling cloud — photographed by the crew of Apollo 17 on 7 December 1972.">
+      <div class="scrim"></div>
       <span class="beat-letter" aria-hidden="true">I</span>
     </div>
   </section>
@@ -440,8 +447,8 @@
   /* ---- mosaic grid geometry — MUST match scripts/build_mosaic.py ---- */
   var MOSAIC_W = 2016, MOSAIC_H = 1296, MOSAIC_TILE = 72;
   /* (col,row) landing cell for each hero photo. build_mosaic.py bakes these
-     five cells dark so each photograph flies in and fills its empty slot. */
-  var HERO_CELLS = [[12, 4], [16, 6], [13, 8], [15, 10], [12, 12]];
+     seven cells dark so each photograph flies in and fills its empty slot. */
+  var HERO_CELLS = [[12, 4], [16, 6], [13, 8], [15, 10], [12, 12], [10, 7], [17, 9]];
 
   var LETTERS = ["R", "I", "A", "L", "I", "T", "I"];
   var beats = LETTERS.map(function (_, i) {
@@ -468,7 +475,7 @@
   var photoLayer = document.createElement("div");
   photoLayer.id = "photo-layer";
   var wraps = [], imgs = [];
-  for (var bi = 0; bi < 5; bi++) {
+  for (var bi = 0; bi < 7; bi++) {
     var photo = beats[bi].querySelector("img.photo");
     var wrap = document.createElement("div");
     wrap.className = "photo-wrap";
@@ -489,6 +496,15 @@
     document.body.appendChild(el);
     return el;
   });
+
+  /* ---- ?debug=1 — on-device ground-truth HUD (zero cost when absent) ---- */
+  var dbg = null;
+  if (/[?&]debug=1\b/.test(location.search)) {
+    dbg = document.createElement("pre");
+    dbg.id = "debug-hud";
+    dbg.setAttribute("aria-hidden", "true");
+    document.body.appendChild(dbg);
+  }
 
   /* ---- style writer that skips unchanged values ---- */
   function st(el, prop, val) {
@@ -557,18 +573,21 @@
     var cp = clamp01((m.vh - ctop) / m.vh); // closing entry progress
 
     /* mosaic layer: absent above the story, very faint during beats,
-       breathes up during each transition, holds under the dark beats,
-       full for the finale. max() of pure ramps keeps it scrub-exact. */
+       breathes up during each hand-off, full for the finale. Every beat
+       now carries a photograph, so there is no imageless "hold" — the
+       waiting opacity is the 0.06 baseline plus the transition breaths;
+       beat 7's flight coincides exactly with the closing's entry, so the
+       cp ramp carries the mosaic to full as the last photo lands.
+       max() of pure ramps keeps it scrub-exact. */
     var en0 = clamp01((m.vh - tops[0]) / m.vh);
     var Mraw = 0.06;
-    for (i = 0; i < 4; i++) Mraw = Math.max(Mraw, lerp(0.06, 0.30, Math.sin(Math.PI * e[i])));
-    Mraw = Math.max(Mraw, lerp(0.06, 0.32, smooth(e[4], 0, 1)));
+    for (i = 0; i < 6; i++) Mraw = Math.max(Mraw, lerp(0.06, 0.30, Math.sin(Math.PI * e[i])));
     var M = Mraw * smooth(en0, 0, 1); // gate: fully absent above the story
     M = Math.max(M, 0.62 * smooth(cp, 0.05, 0.8));
     var tileOp = Math.min(1, M * 2.2); // landed heroes read a touch brighter
 
     var photos = [];
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 7; i++) {
       var cell = m.cells[i], ph;
       if (e[i] <= 0) {
         /* entering (slides up from below as a viewport card) or holding
@@ -599,8 +618,8 @@
     var scrimOp = [], copy = [], fly = [], slot = [];
     for (i = 0; i < 7; i++) {
       /* the outgoing scrim lifts as its photo departs, unveiling the
-         mosaic beneath; dark-beat scrims (5,6) hold constant via CSS */
-      scrimOp.push(i < 5 ? 1 - smooth(e[i], 0.15, 0.85) : 1);
+         mosaic beneath */
+      scrimOp.push(1 - smooth(e[i], 0.15, 0.85));
       var cin = smooth(p[i], 0.1, 0.3);
       copy.push({ op: cin * (1 - smooth(p[i], 0.72, 0.9)), ty: 24 * (1 - cin) });
       /* rail slot fades in exactly as the flown letter fades out — the two
@@ -628,9 +647,17 @@
 
   function apply(f) {
     st(mosaicLayer, "opacity", f.mosaic.toFixed(3));
+    st(mosaicLayer, "visibility", f.mosaic <= 0 ? "hidden" : "visible");
     var i;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 7; i++) {
       var ph = f.photos[i], w = wraps[i];
+      /* COMPOSITOR DISCIPLINE (founder's low-RAM Android is the gate):
+         a parked wrapper at opacity 0 still holds a viewport-sized GPU
+         texture once it carries a 3D transform — with 7 heroes that
+         exhausted texture memory and blanked later beats on device.
+         visibility:hidden drops the raster entirely, so only the rising
+         photo and (mid-flight) the outgoing one are ever live layers. */
+      st(w, "visibility", ph.op <= 0 ? "hidden" : "visible");
       st(w, "transform", "translate3d(" + ph.x.toFixed(2) + "px," + ph.y.toFixed(2) +
                          "px,0) scale(" + ph.sx.toFixed(4) + "," + ph.sy.toFixed(4) + ")");
       st(w, "opacity", ph.op.toFixed(3));
@@ -642,7 +669,7 @@
       }
     }
     for (i = 0; i < 7; i++) {
-      if (i < 5) st(scrims[i], "opacity", f.scrimOp[i].toFixed(3));
+      st(scrims[i], "opacity", f.scrimOp[i].toFixed(3));
       if (copies[i]) {
         st(copies[i], "opacity", f.copy[i].op.toFixed(3));
         st(copies[i], "transform", "translateY(" + f.copy[i].ty.toFixed(2) + "px)");
@@ -661,6 +688,21 @@
     }
     if (closingEls[2]) st(closingEls[2], "opacity", cl.block.toFixed(3));
     if (closingEls[3]) st(closingEls[3], "opacity", cl.footer.toFixed(3));
+
+    /* debug HUD: wrapper↔image pairing, per-photo phase, live viewport */
+    if (dbg) {
+      var s = "ih " + window.innerHeight + "  m.vh " + m.vh +
+              "  y " + Math.round(window.scrollY) +
+              "  mosaic " + f.mosaic.toFixed(2) + "\n";
+      for (i = 0; i < 7; i++) {
+        var q = f.photos[i];
+        var phase = f.e[i] >= 1 ? "landed" : f.e[i] > 0 ? "flying" :
+                    q.op <= 0 ? "parked" : f.p[i] > 0 ? "pinned" : "rising";
+        s += (i + 1) + " " + imgs[i].src.split("/").pop().split(".")[0] +
+             " op" + q.op.toFixed(2) + " " + phase + "\n";
+      }
+      if (dbg.__t !== s) { dbg.__t = s; dbg.textContent = s; }
+    }
   }
 
   function update() {

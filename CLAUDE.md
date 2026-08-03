@@ -33,10 +33,14 @@ copy (do not rewrite without founder sign-off):
 4. **L** — worn family portrait (LOC, 1936) — "Some are all that's left of someone."
 5. **I** — THE TURN, a real photo deliberately distorted — "And soon — some
    will never have happened at all."
-6. **T** — "Real moments deserve proof."
-7. **I** — name completes → mission line "To Protect What's Human" directly
-   below the lockup → faded photo mosaic beneath → "Keep what's real, real."
-   → signup.
+6. **T** — hands holding old printed photos (1973 DOCUMERICA, Matthew
+   Vieira) — "Real moments deserve proof."
+7. **I** — the Blue Marble (NASA AS17-148-22727), name completes → mission
+   line "To Protect What's Human" directly below the lockup → faded photo
+   mosaic beneath → "Keep what's real, real." → signup.
+
+ALL SEVEN beats carry a photograph and all seven join the mosaic (founder
+overruled the earlier typographic-only beats 6-7, 2026-08-03).
 
 Mechanism notes: letter flight is a rAF loop interpolating fixed-position
 letter clones toward measured rail-slot rects (no GSAP, no libraries).
@@ -47,14 +51,28 @@ Transition system ("join the mosaic", 2026-08-03): a fixed, very-faint
 mosaic layer sits behind the whole story; when a beat completes, its photo
 shrinks and flies into a designated darkened mosaic cell (becoming a small
 tile) while the next photo slides up from below; the mosaic accumulates all
-five heroes and brightens to full at the closing. HARD RULE — scrub
+seven heroes and brightens to full at the closing (beat 7's flight
+coincides exactly with the closing's entry). HARD RULE — scrub
 symmetry: every animated value on the page is a pure function of scroll
 position, computed in the `PURE SCROLL MODEL` block of `index.html`. No
 one-shot triggers, no observers, no latched state. That block is extracted
 and executed headlessly by `node scripts/verify_scroll.mjs`, which walks
 the full document in both directions and asserts photo visibility,
-exact tile landings, and reversibility — run it after ANY animation change
-and keep its markers intact.
+exact tile landings, and reversibility — including a dynamic-viewport
+configuration (mobile URL-bar collapse: innerHeight > 100svh stages) —
+run it after ANY animation change and keep its markers intact.
+
+COMPOSITOR RULE (the founder's low-RAM Android is the acceptance device,
+and it has failed twice): a wrapper carrying a translate3d transform holds
+a viewport-sized GPU texture even at opacity 0. Every `.photo-wrap` must be
+`visibility: hidden` while parked (`apply()` does this from `ph.op`); at
+most the rising photo plus the outgoing in-flight one may be live layers,
+and `will-change` (`.live`) is toggled only while actually moving. After
+any animation change, ask the founder to re-test on the phone.
+
+Debug: append `?debug=1` for a fixed on-page HUD (innerHeight, scrollY,
+mosaic opacity, and each wrapper's image + opacity + phase). Zero cost when
+the param is absent. Ask the founder to screenshot it for device reports.
 
 ## Copy stance — mechanism-free, poetic (founder decision, 2026-08-03)
 
@@ -83,11 +101,13 @@ team photos, press mentions — none exist. Honesty is a product value.
 - The mosaic is ONE pre-baked JPEG (no thousands of DOM nodes/requests),
   regenerated with: `python3 scripts/build_mosaic.py assets/mosaic.jpg`
   (needs Pillow — e.g. /Users/ashishnair/claude_ws/reality/.venv/bin/python —
-  and network; tiles cached in /tmp/rialiti_mosaic_tiles). It bakes five
+  and network; tiles cached in /tmp/rialiti_mosaic_tiles). It bakes seven
   darkened landing cells for the hero photos: `HERO_CELLS` in
-  build_mosaic.py and in index.html MUST stay identical.
-- Keep heroes ≤ ~250KB (≤1600px wide, JPEG q~75); total first-load ≤ ~2.5MB;
-  below-the-fold images lazy-loaded.
+  build_mosaic.py and in index.html MUST stay identical (safe cell region
+  under object-fit: cover from 360px phones to 32:9 monitors: cols 10-17,
+  rows ~4-12).
+- Keep heroes ≤ ~150KB (≤1600px wide, JPEG q~62-75); total first-load
+  ≤ ~1.2MB (currently ~1.12MB with 7 heroes + mosaic).
 
 ## Signup
 

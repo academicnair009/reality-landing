@@ -59,12 +59,41 @@ All images are self-hosted in `assets/`; nothing is hotlinked at runtime.
   `scripts/make_turn_image.py`. The page's alt text discloses the alteration.
 - **License of the derivative:** CC BY 2.0, credit FDWR (same as source).
 
+### 6. `beat6-proof.jpg` — "T · Real moments deserve proof."
+- **Title/Author:** *Matthew Vieira stands in the very place where, some
+  thirty-five years ago, he took these pictures of his children. At that time
+  the area was Wood Island Park… since then the site has become part of Logan
+  Airport* — East Boston, June 1973, by **Michael Philip Manheim** for the
+  U.S. EPA's **DOCUMERICA** project. National Archives (NARA) local ID
+  412-DA-5964, naId 548451.
+- **License:** Public domain (U.S. federal government work; NARA lists use
+  and access as "Unrestricted").
+- **Source (NARA catalog page):** https://catalog.archives.gov/id/548451
+- **License verified at:** NARA catalog API record for naId 548451
+  (`useRestriction: Unrestricted`), and the license-reviewed Commons mirror
+  https://commons.wikimedia.org/wiki/File:MATTHEW_VIEIRA_STANDS_IN_THE_VERY_PLACE_WHERE,_SOME_THIRTY-FIVE_YEARS_AGO,_HE_TOOK_THESE_PICTURES_OF_HIS_CHILDREN._AT..._-_NARA_-_548451.jpg
+  (verified 2026-08-03)
+- **File downloaded:** https://upload.wikimedia.org/wikipedia/commons/5/55/MATTHEW_VIEIRA_STANDS_IN_THE_VERY_PLACE_WHERE%2C_SOME_THIRTY-FIVE_YEARS_AGO%2C_HE_TOOK_THESE_PICTURES_OF_HIS_CHILDREN._AT..._-_NARA_-_548451.jpg (3000×2027 original)
+- **Modifications:** resized to 1600px, re-encoded (JPEG q70).
+
+### 7. `beat7-bluemarble.jpg` — "I · the name completes"
+- **Title/Author:** *The Blue Marble*, photograph **AS17-148-22727**, taken by
+  the crew of Apollo 17 traveling toward the Moon, 7 December 1972. Courtesy
+  **NASA**. (A different photograph and composition from image 2's
+  *Earthrise*: the full sunlit Earth, no lunar horizon.)
+- **License:** Public domain (NASA imagery; not copyrighted).
+- **Source (NASA original):** https://images.nasa.gov/details/as17-148-22727
+- **File downloaded:** https://images-assets.nasa.gov/image/as17-148-22727/as17-148-22727~large.jpg
+- **Modifications:** resized to 1400px, re-encoded (JPEG q62).
+
 ## Mosaic
 
-### 6. `mosaic.jpg` — closing section background
+### 8. `mosaic.jpg` — closing section background
 - **What it is:** a single pre-baked composite of **160 unique real-photograph
   thumbnails** tiled into a 28×18 grid (504 cells; tiles repeat with random
-  brightness/saturation jitter), built by `scripts/build_mosaic.py`.
+  brightness/saturation jitter), built by `scripts/build_mosaic.py`. Seven
+  cells are baked near-black — the seven hero photographs above fly in and
+  occupy them as the story scrolls.
 - **Source:** https://picsum.photos (Lorem Picsum free image service).
 - **Modifications:** gently desaturated and composited (dimming happens in
   CSS); served as one JPEG so the page never makes hundreds of image requests.

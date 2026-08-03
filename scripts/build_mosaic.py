@@ -54,13 +54,14 @@ def main(out_path: str) -> None:
     for row in range(ROWS):
         for col in range(COLS):
             t = random.choice(tiles).copy()
-            t = ImageEnhance.Brightness(t).enhance(random.uniform(0.75, 1.1))
-            t = ImageEnhance.Color(t).enhance(random.uniform(0.35, 0.7))
+            t = ImageEnhance.Brightness(t).enhance(random.uniform(0.95, 1.3))
+            t = ImageEnhance.Color(t).enhance(random.uniform(0.5, 0.85))
             canvas.paste(t, (col * TILE, row * TILE))
 
-    # Global treatment: dim + desaturate so type stays readable above it.
-    canvas = ImageEnhance.Brightness(canvas).enhance(0.85)
-    canvas = ImageEnhance.Color(canvas).enhance(0.8)
+    # Global treatment: gentle desaturate only — the CSS veil provides the
+    # dimming, so individual moments stay legible as visible memories.
+    canvas = ImageEnhance.Brightness(canvas).enhance(1.05)
+    canvas = ImageEnhance.Color(canvas).enhance(0.9)
     canvas.save(out_path, "JPEG", quality=62, optimize=True, progressive=True)
     kb = pathlib.Path(out_path).stat().st_size // 1024
     print(f"wrote {out_path} ({canvas.size[0]}x{canvas.size[1]}, {kb} KB, {len(tiles)} unique tiles)")

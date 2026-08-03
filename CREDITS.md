@@ -26,11 +26,19 @@ All images are self-hosted in `assets/`; nothing is hotlinked at runtime.
 - **Modifications:** resized, re-encoded (JPEG q75).
 
 ### 3. `beat3-embrace.jpg` — "A · Some we promise to keep."
-- **Title/Author:** untitled couple portrait by **Katie Tegtmeyer** (Flickr)
-- **License:** CC BY 2.0 — https://creativecommons.org/licenses/by/2.0/
-- **License verified at:** https://www.flickr.com/photos/katietegtmeyer/6173768529/ (verified 2026-08-03)
-- **File downloaded:** https://live.staticflickr.com/6180/6173768529_12e055564b_b.jpg
-- **Modifications:** re-encoded (JPEG q75).
+- **Title/Author:** *Wedding couple hug on cliff* by **Brian Hartley**
+  (Unsplash, @mrbrianhartley), 2017. Real photograph (iPhone, VSCO-processed).
+- **License:** CC0 1.0 — published on Unsplash under its pre-June-2017 CC0
+  license; hosted and license-reviewed on Wikimedia Commons.
+  https://creativecommons.org/publicdomain/zero/1.0/
+- **License verified at:**
+  https://commons.wikimedia.org/wiki/File:Wedding_couple_hug_on_cliff_(Unsplash).jpg
+  (verified 2026-08-03), with the original Unsplash page and CC0 license text
+  archived at
+  https://web.archive.org/web/20170623211851/https%3A//unsplash.com/photos/vF_Tf9x1sLY
+  and https://web.archive.org/web/20170403233634/https://unsplash.com/license
+- **File downloaded:** https://upload.wikimedia.org/wikipedia/commons/a/a6/Wedding_couple_hug_on_cliff_%28Unsplash%29.jpg (3000×1687 original)
+- **Modifications:** resized to 1600px, re-encoded (JPEG q75).
 
 ### 4. `beat4-portrait.jpg` — "L · Some are all that’s left of someone."
 - **Title/Author:** *Family portrait in home of Fred Rowe, farmer near
@@ -58,8 +66,8 @@ All images are self-hosted in `assets/`; nothing is hotlinked at runtime.
   thumbnails** tiled into a 28×18 grid (504 cells; tiles repeat with random
   brightness/saturation jitter), built by `scripts/build_mosaic.py`.
 - **Source:** https://picsum.photos (Lorem Picsum free image service).
-- **Modifications:** desaturated, dimmed, composited; served as one JPEG so the
-  page never makes hundreds of image requests.
+- **Modifications:** gently desaturated and composited (dimming happens in
+  CSS); served as one JPEG so the page never makes hundreds of image requests.
 
 ## Fonts
 

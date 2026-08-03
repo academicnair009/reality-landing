@@ -63,16 +63,10 @@
     line-height: 1;
     letter-spacing: 0;
   }
-  /* letters visible by default (no-JS / reduced-motion complete page) */
-  .anim .rail .slot { opacity: 0; transform: scale(1); }
-  .anim .rail .slot.locked {
-    opacity: 1;
-    animation: settle .45s cubic-bezier(.2,.9,.3,1.4);
-  }
-  @keyframes settle {
-    0% { transform: scale(1.25); }
-    100% { transform: scale(1); }
-  }
+  /* letters visible by default (no-JS / reduced-motion complete page).
+     Under .anim, slot opacity/scale are written per-frame from scroll —
+     no one-shot animations, so scrolling up retraces exactly. */
+  .anim .rail .slot { opacity: 0; }
 
   /* ---------- flying letters (JS-created, fixed) ---------- */
   .fly {
@@ -167,9 +161,43 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    will-change: transform, opacity;
   }
-  #beat-2 img.photo { object-position: 62% 60%; } /* keep Earth + horizon framed on phones */
+  #beat-2 img.photo,
+  .photo-wrap img[src*="earthrise"] { object-position: 62% 60%; } /* keep Earth + horizon framed on phones */
+
+  /* ---------- fixed background layers (JS-created, scroll-driven) ----------
+     Stacking, bottom → top: canvas (body bg) → #mosaic-layer (z:-2) →
+     #photo-layer wrappers (z:-1; DOM order = beat order, so an incoming
+     photo naturally paints above already-landed tiles) → in-flow stages
+     with scrims/copy → flying letters (z:9) → rail (z:10). */
+  #mosaic-layer {
+    position: fixed; inset: 0; z-index: -2;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #mosaic-layer img { width: 100%; height: 100%; object-fit: cover; }
+  #photo-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+  /* Each hero photo lives in a viewport-sized wrapper. The flight to a
+     square mosaic cell is a non-uniform wrapper scale; the inner image is
+     counter-scaled so its NET transform stays uniform — the photograph is
+     never distorted, the crop window simply narrows from the viewport to
+     the square centre of what you just watched. Fullscreen framing is
+     therefore identical to plain object-fit: cover. */
+  .photo-wrap {
+    position: fixed; top: 0; left: 0;
+    transform-origin: 0 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .photo-wrap img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform-origin: 50% 50%;
+  }
+  /* promoted only while actually moving (entry slide / Ken-Burns / flight) */
+  .photo-wrap.live { will-change: transform, opacity; }
+  .photo-wrap.live img { will-change: transform; }
 
   .stage .scrim {
     position: absolute; inset: 0;
@@ -207,6 +235,10 @@
     align-self: center;
     font-size: clamp(1.7rem, 6vw, 3rem);
   }
+  /* Under .anim the dark beats stay translucent so the accumulating mosaic
+     holds faintly behind the typography, waiting for the finale. */
+  .anim .beat--dark .stage { background: transparent; }
+  .stage .scrim--flat { background: rgba(5,5,5,.55); }
 
   /* ---------- closing ---------- */
   .closing {
@@ -230,10 +262,12 @@
   }
   .closing > * { position: relative; z-index: 2; }
 
-  .anim .closing .mosaic,
-  .anim .closing .reveal { opacity: 0; transition: opacity 1.4s ease; }
-  .anim .closing.visible .mosaic { opacity: .52; }
-  .anim .closing.visible .reveal { opacity: 1; }
+  /* Under .anim the fixed #mosaic-layer plays the mosaic's role, so the
+     closing's own copy is hidden; it stays for the no-JS / reduced-motion
+     static page. The reveal is scrubbed from scroll position (no observer
+     latch) so scrolling back up plays it in reverse. */
+  .anim .closing .mosaic { display: none; }
+  .anim .closing [data-cl] { opacity: 0; }
 
   .mission {
     font-size: clamp(.72rem, 2.4vw, .95rem);
@@ -355,6 +389,7 @@
 
   <section class="beat beat--dark short" id="beat-6">
     <div class="stage">
+      <div class="scrim scrim--flat"></div>
       <span class="beat-letter" aria-hidden="true">T</span>
       <h2 class="copy">Real moments deserve proof.</h2>
     </div>
@@ -362,6 +397,7 @@
 
   <section class="beat beat--dark short" id="beat-7">
     <div class="stage">
+      <div class="scrim scrim--flat"></div>
       <span class="beat-letter" aria-hidden="true">I</span>
     </div>
   </section>
@@ -369,16 +405,16 @@
   <section class="closing" id="closing">
     <img class="mosaic" src="assets/mosaic.jpg" loading="lazy" decoding="async" alt="" aria-hidden="true">
     <div class="veil"></div>
-    <p class="mission">To protect what’s human</p>
-    <h2 class="headline reveal">Keep what’s real, real.</h2>
-    <div class="reveal">
+    <p class="mission" data-cl>To protect what’s human</p>
+    <h2 class="headline" data-cl>Keep what’s real, real.</h2>
+    <div data-cl>
       <a class="cta" id="signup" href="mailto:academicnair.009@gmail.com?subject=RIALITI%20early%20access">Get early access</a>
       <p class="quiet">
         <span>Every photograph on this page is real.</span>
         <span>Verification will always be free.</span>
       </p>
     </div>
-    <footer class="reveal">
+    <footer data-cl>
       © 2026 RIALITI &nbsp;·&nbsp; rialiti.io &nbsp;·&nbsp; <a href="CREDITS.md">photograph credits</a>
     </footer>
   </section>
@@ -401,12 +437,48 @@
 
   document.documentElement.classList.add("anim");
 
+  /* ---- mosaic grid geometry — MUST match scripts/build_mosaic.py ---- */
+  var MOSAIC_W = 2016, MOSAIC_H = 1296, MOSAIC_TILE = 72;
+  /* (col,row) landing cell for each hero photo. build_mosaic.py bakes these
+     five cells dark so each photograph flies in and fills its empty slot. */
+  var HERO_CELLS = [[12, 4], [16, 6], [13, 8], [15, 10], [12, 12]];
+
   var LETTERS = ["R", "I", "A", "L", "I", "T", "I"];
   var beats = LETTERS.map(function (_, i) {
     return document.getElementById("beat-" + (i + 1));
   });
+  var stages = beats.map(function (b) { return b.querySelector(".stage"); });
+  var scrims = beats.map(function (b) { return b.querySelector(".scrim"); });
+  var copies = beats.map(function (b) { return b.querySelector(".copy"); });
   var slots = Array.prototype.slice.call(document.querySelectorAll(".rail .slot"));
-  var vw = 0, vh = 0;
+  var closing = document.getElementById("closing");
+  var closingEls = Array.prototype.slice.call(closing.querySelectorAll("[data-cl]"));
+  // closingEls order: mission, headline, cta block, footer
+
+  /* ---- fixed background layers, painted behind all in-flow content ---- */
+  var mosaicLayer = document.createElement("div");
+  mosaicLayer.id = "mosaic-layer";
+  mosaicLayer.setAttribute("aria-hidden", "true");
+  var mosaicImg = document.createElement("img");
+  mosaicImg.src = "assets/mosaic.jpg";
+  mosaicImg.alt = "";
+  mosaicImg.decoding = "async";
+  mosaicLayer.appendChild(mosaicImg);
+
+  var photoLayer = document.createElement("div");
+  photoLayer.id = "photo-layer";
+  var wraps = [], imgs = [];
+  for (var bi = 0; bi < 5; bi++) {
+    var photo = beats[bi].querySelector("img.photo");
+    var wrap = document.createElement("div");
+    wrap.className = "photo-wrap";
+    wrap.appendChild(photo); // move the real node — no duplicate decode
+    photoLayer.appendChild(wrap);
+    wraps.push(wrap);
+    imgs.push(photo);
+  }
+  document.body.insertBefore(mosaicLayer, document.body.firstChild);
+  document.body.insertBefore(photoLayer, mosaicLayer.nextSibling);
 
   /* One fixed "flying" letter per beat. */
   var flies = LETTERS.map(function (ch) {
@@ -418,69 +490,189 @@
     return el;
   });
 
-  /* Cached geometry: slot rects + natural size of each fly at scale 1. */
-  var slotRects = [], flyW = [], flyH = [], endScale = 1;
+  /* ---- style writer that skips unchanged values ---- */
+  function st(el, prop, val) {
+    var c = el.__st || (el.__st = {});
+    if (c[prop] !== val) { c[prop] = val; el.style[prop] = val; }
+  }
+
+  /* ---- metrics: measured once (and on resize), read every frame ---- */
+  var m = { vw: 0, vh: 0, cells: [], slots: [],
+            flyW: [], flyH: [], endScale: 1, stageH: [] };
+
   function measure() {
-    vw = window.innerWidth; vh = window.innerHeight;
-    slotRects = slots.map(function (s) {
+    m.vw = window.innerWidth;
+    m.vh = window.innerHeight;
+    var i;
+    for (i = 0; i < wraps.length; i++) {
+      wraps[i].style.width = m.vw + "px";
+      wraps[i].style.height = m.vh + "px";
+    }
+    /* on-screen rect of each landing cell, replicating object-fit: cover */
+    var sc = Math.max(m.vw / MOSAIC_W, m.vh / MOSAIC_H);
+    var dx = (m.vw - MOSAIC_W * sc) / 2, dy = (m.vh - MOSAIC_H * sc) / 2;
+    m.cells = HERO_CELLS.map(function (cr) {
+      return { x: dx + cr[0] * MOSAIC_TILE * sc,
+               y: dy + cr[1] * MOSAIC_TILE * sc,
+               s: MOSAIC_TILE * sc };
+    });
+    slots.forEach(function (s) { st(s, "transform", "none"); });
+    m.slots = slots.map(function (s) {
       var r = s.getBoundingClientRect(); // rail is fixed → viewport coords
       return { left: r.left, top: r.top };
     });
-    flies.forEach(function (f, i) {
-      f.style.transform = "none";
-      flyW[i] = f.offsetWidth; flyH[i] = f.offsetHeight;
+    flies.forEach(function (f, j) {
+      st(f, "transform", "none");
+      m.flyW[j] = f.offsetWidth;
+      m.flyH[j] = f.offsetHeight;
     });
     var slotFont = parseFloat(getComputedStyle(slots[0]).fontSize);
     var bigFont = parseFloat(getComputedStyle(flies[0]).fontSize);
-    endScale = slotFont / bigFont;
+    m.endScale = slotFont / bigFont;
+    m.stageH = stages.map(function (s) { return s.offsetHeight; });
   }
 
+/* ==== PURE SCROLL MODEL — every animated value on the page is computed
+   here as a pure function of section positions. No latched state, no
+   one-shot triggers: scrolling up retraces the exact same states.
+   This block is extracted and executed headlessly by
+   scripts/verify_scroll.mjs — keep it self-contained. ==== */
   function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function clampR(x, a, b) { return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
   function smooth(p, a, b) { var t = clamp01((p - a) / (b - a)); return t * t * (3 - 2 * t); }
   function easeInOut(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
 
-  function update() {
-    for (var i = 0; i < beats.length; i++) {
-      var sec = beats[i];
-      var rect = sec.getBoundingClientRect();
-      var denom = rect.height - vh;
-      var p = denom > 0 ? clamp01(-rect.top / denom) : (rect.top <= 0 ? 1 : 0);
-      var fly = flies[i];
-      var slot = slots[i];
-      var img = sec.querySelector("img.photo");
-      var copy = sec.querySelector(".copy");
+  /* tops[i]/secH[i]: viewport-relative top and height of the 7 beat
+     sections; ctop: closing section top; m: measured metrics. */
+  function computeFrame(tops, secH, ctop, m) {
+    var i, p = [], e = [];
+    for (i = 0; i < 7; i++) {
+      /* pin progress: 0→1 while the stage is stuck; exit progress: 0→1
+         while the finished stage travels off and the next one rises. */
+      var pin = Math.max(1, secH[i] - m.stageH[i]);
+      p.push(clamp01(-tops[i] / pin));
+      e.push(clamp01((-tops[i] - pin) / m.stageH[i]));
+    }
+    var cp = clamp01((m.vh - ctop) / m.vh); // closing entry progress
 
-      var locked = p >= 0.92;
-      slot.classList.toggle("locked", locked);
+    /* mosaic layer: absent above the story, very faint during beats,
+       breathes up during each transition, holds under the dark beats,
+       full for the finale. max() of pure ramps keeps it scrub-exact. */
+    var en0 = clamp01((m.vh - tops[0]) / m.vh);
+    var Mraw = 0.06;
+    for (i = 0; i < 4; i++) Mraw = Math.max(Mraw, lerp(0.06, 0.30, Math.sin(Math.PI * e[i])));
+    Mraw = Math.max(Mraw, lerp(0.06, 0.32, smooth(e[4], 0, 1)));
+    var M = Mraw * smooth(en0, 0, 1); // gate: fully absent above the story
+    M = Math.max(M, 0.62 * smooth(cp, 0.05, 0.8));
+    var tileOp = Math.min(1, M * 2.2); // landed heroes read a touch brighter
 
-      /* photo: fade in while the stage ENTERS the viewport (not after it
-         pins), so the incoming image crossfades over the outgoing one and
-         no scroll position shows bare background between beats. */
-      if (img) {
-        var entry = vh > 0 ? clamp01((vh - rect.top) / vh) : 1;
-        var vis = smooth(entry, 0.02, 0.3) * (1 - smooth(p, 0.9, 1) * 0.35);
-        img.style.opacity = vis;
-        img.style.transform = "scale(" + (1.07 - 0.07 * smooth(p, 0, 0.6)) + ")";
-      }
-      /* copy: in early, out before the letter flies home */
-      if (copy) {
-        var cin = smooth(p, 0.1, 0.3), cout = 1 - smooth(p, 0.72, 0.9);
-        copy.style.opacity = cin * cout;
-        copy.style.transform = "translateY(" + (24 * (1 - cin)) + "px)";
-      }
-      /* letter: appear big, hold, fly to its slot */
-      if (locked || p <= 0) {
-        fly.style.opacity = 0;
+    var photos = [];
+    for (i = 0; i < 5; i++) {
+      var cell = m.cells[i], ph;
+      if (e[i] <= 0) {
+        /* entering (slides up from below as a viewport card) or holding
+           fullscreen while its beat is pinned */
+        var shift = clampR(tops[i], 0, m.vh);
+        ph = { x: 0, y: shift, sx: 1, sy: 1,
+               op: shift >= m.vh ? 0 : 1, sat: 1 };
       } else {
-        var t = easeInOut(smooth(p, 0.5, 0.9));
-        var s = 1 + (endScale - 1) * t;
-        var x0 = (vw - flyW[i]) / 2, y0 = vh * 0.38 - flyH[i] / 2;
-        var x = x0 + (slotRects[i].left - x0) * t;
-        var y = y0 + (slotRects[i].top - y0) * t;
-        fly.style.opacity = smooth(p, 0.04, 0.16);
-        fly.style.transform = "translate3d(" + x + "px," + y + "px,0) scale(" + s + ")";
+        /* the flight: fullscreen → its darkened mosaic cell. The wrapper
+           scales non-uniformly toward the square cell; kx/ky below keep
+           the image's net transform uniform (never distorted). */
+        var t = easeInOut(e[i]);
+        ph = { x: lerp(0, cell.x, t),
+               y: lerp(0, cell.y, t),
+               sx: lerp(1, cell.s / m.vw, t),
+               sy: lerp(1, cell.s / m.vh, t),
+               op: lerp(1, tileOp, Math.pow(t, 1.35)),
+               sat: lerp(1, 0.8, smooth(t, 0.45, 1)) };
+      }
+      var u = Math.max(ph.sx, ph.sy);
+      var kb = 1.05 - 0.05 * smooth(p[i], 0, 0.6); // subtle settle while pinned
+      ph.kx = (u / ph.sx) * kb;
+      ph.ky = (u / ph.sy) * kb;
+      ph.live = tops[i] < m.vh && e[i] < 1;        // promote only while moving
+      photos.push(ph);
+    }
+
+    var scrimOp = [], copy = [], fly = [], slot = [];
+    for (i = 0; i < 7; i++) {
+      /* the outgoing scrim lifts as its photo departs, unveiling the
+         mosaic beneath; dark-beat scrims (5,6) hold constant via CSS */
+      scrimOp.push(i < 5 ? 1 - smooth(e[i], 0.15, 0.85) : 1);
+      var cin = smooth(p[i], 0.1, 0.3);
+      copy.push({ op: cin * (1 - smooth(p[i], 0.72, 0.9)), ty: 24 * (1 - cin) });
+      /* rail slot fades in exactly as the flown letter fades out — the two
+         glyphs overlap at identical position/size, so the swap is a pure
+         crossfade and reverses cleanly */
+      var so = smooth(p[i], 0.90, 0.95);
+      slot.push({ op: so, sc: 1.22 - 0.22 * smooth(p[i], 0.90, 0.99) });
+      var tf = easeInOut(smooth(p[i], 0.5, 0.9));
+      var x0 = (m.vw - m.flyW[i]) / 2, y0 = m.vh * 0.38 - m.flyH[i] / 2;
+      fly.push({ op: smooth(p[i], 0.04, 0.16) * (1 - so),
+                 x: x0 + (m.slots[i].left - x0) * tf,
+                 y: y0 + (m.slots[i].top - y0) * tf,
+                 s: 1 + (m.endScale - 1) * tf });
+    }
+
+    var hcl = smooth(cp, 0.35, 0.6);
+    return { p: p, e: e, cp: cp, mosaic: M, tileOp: tileOp, photos: photos,
+             scrimOp: scrimOp, copy: copy, fly: fly, slot: slot,
+             closing: { mission: smooth(cp, 0.2, 0.45),
+                        headline: hcl, headlineTy: 20 * (1 - hcl),
+                        block: smooth(cp, 0.5, 0.75),
+                        footer: smooth(cp, 0.55, 0.85) } };
+  }
+/* ==== END PURE SCROLL MODEL ==== */
+
+  function apply(f) {
+    st(mosaicLayer, "opacity", f.mosaic.toFixed(3));
+    var i;
+    for (i = 0; i < 5; i++) {
+      var ph = f.photos[i], w = wraps[i];
+      st(w, "transform", "translate3d(" + ph.x.toFixed(2) + "px," + ph.y.toFixed(2) +
+                         "px,0) scale(" + ph.sx.toFixed(4) + "," + ph.sy.toFixed(4) + ")");
+      st(w, "opacity", ph.op.toFixed(3));
+      st(w, "filter", ph.sat > 0.999 ? "none" : "saturate(" + ph.sat.toFixed(3) + ")");
+      st(imgs[i], "transform", "scale(" + ph.kx.toFixed(4) + "," + ph.ky.toFixed(4) + ")");
+      if (w.__live !== ph.live) {
+        w.__live = ph.live;
+        w.classList.toggle("live", ph.live);
       }
     }
+    for (i = 0; i < 7; i++) {
+      if (i < 5) st(scrims[i], "opacity", f.scrimOp[i].toFixed(3));
+      if (copies[i]) {
+        st(copies[i], "opacity", f.copy[i].op.toFixed(3));
+        st(copies[i], "transform", "translateY(" + f.copy[i].ty.toFixed(2) + "px)");
+      }
+      st(slots[i], "opacity", f.slot[i].op.toFixed(3));
+      st(slots[i], "transform", "scale(" + f.slot[i].sc.toFixed(4) + ")");
+      st(flies[i], "opacity", f.fly[i].op.toFixed(3));
+      st(flies[i], "transform", "translate3d(" + f.fly[i].x.toFixed(2) + "px," +
+                                f.fly[i].y.toFixed(2) + "px,0) scale(" + f.fly[i].s.toFixed(4) + ")");
+    }
+    var cl = f.closing;
+    if (closingEls[0]) st(closingEls[0], "opacity", cl.mission.toFixed(3));
+    if (closingEls[1]) {
+      st(closingEls[1], "opacity", cl.headline.toFixed(3));
+      st(closingEls[1], "transform", "translateY(" + cl.headlineTy.toFixed(2) + "px)");
+    }
+    if (closingEls[2]) st(closingEls[2], "opacity", cl.block.toFixed(3));
+    if (closingEls[3]) st(closingEls[3], "opacity", cl.footer.toFixed(3));
+  }
+
+  function update() {
+    /* all reads first (one rect per section), then writes — no thrash */
+    var tops = [], secH = [], i;
+    for (i = 0; i < 7; i++) {
+      var r = beats[i].getBoundingClientRect();
+      tops.push(r.top);
+      secH.push(r.height);
+    }
+    var ctop = closing.getBoundingClientRect().top;
+    apply(computeFrame(tops, secH, ctop, m));
   }
 
   var ticking = false;
@@ -490,14 +682,6 @@
       requestAnimationFrame(function () { ticking = false; update(); });
     }
   }
-
-  /* closing reveal */
-  var closing = document.getElementById("closing");
-  new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) closing.classList.add("visible");
-    });
-  }, { threshold: 0.25 }).observe(closing);
 
   function remeasure() { measure(); update(); }
   window.addEventListener("scroll", onScroll, { passive: true });

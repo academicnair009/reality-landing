@@ -43,6 +43,19 @@ letter clones toward measured rail-slot rects (no GSAP, no libraries).
 Without JS or with `prefers-reduced-motion`, the page renders as a complete
 static story (all letters, images, copy visible) — preserve that invariant.
 
+Transition system ("join the mosaic", 2026-08-03): a fixed, very-faint
+mosaic layer sits behind the whole story; when a beat completes, its photo
+shrinks and flies into a designated darkened mosaic cell (becoming a small
+tile) while the next photo slides up from below; the mosaic accumulates all
+five heroes and brightens to full at the closing. HARD RULE — scrub
+symmetry: every animated value on the page is a pure function of scroll
+position, computed in the `PURE SCROLL MODEL` block of `index.html`. No
+one-shot triggers, no observers, no latched state. That block is extracted
+and executed headlessly by `node scripts/verify_scroll.mjs`, which walks
+the full document in both directions and asserts photo visibility,
+exact tile landings, and reversibility — run it after ANY animation change
+and keep its markers intact.
+
 ## Copy stance — mechanism-free, poetic (founder decision, 2026-08-03)
 
 The scrollytelling page must NOT explain "how" and must NOT mention: AI,
@@ -70,7 +83,9 @@ team photos, press mentions — none exist. Honesty is a product value.
 - The mosaic is ONE pre-baked JPEG (no thousands of DOM nodes/requests),
   regenerated with: `python3 scripts/build_mosaic.py assets/mosaic.jpg`
   (needs Pillow — e.g. /Users/ashishnair/claude_ws/reality/.venv/bin/python —
-  and network; tiles cached in /tmp/rialiti_mosaic_tiles).
+  and network; tiles cached in /tmp/rialiti_mosaic_tiles). It bakes five
+  darkened landing cells for the hero photos: `HERO_CELLS` in
+  build_mosaic.py and in index.html MUST stay identical.
 - Keep heroes ≤ ~250KB (≤1600px wide, JPEG q~75); total first-load ≤ ~2.5MB;
   below-the-fold images lazy-loaded.
 

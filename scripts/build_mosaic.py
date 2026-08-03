@@ -29,6 +29,12 @@ COLS, ROWS = 28, 18  # 2016 x 1296 canvas, 504 visible tiles
 UNIQUE = 160       # distinct thumbnails to download (repetition is jittered)
 CACHE = pathlib.Path("/tmp/rialiti_mosaic_tiles")
 
+# Five designated landing cells (col, row) kept almost-black: the five beat
+# photographs fly in and occupy them as the story scrolls. Chosen inside the
+# region that stays on screen under object-fit: cover from 360px-wide phones
+# to ultrawide monitors. MUST match HERO_CELLS in index.html.
+HERO_CELLS = {(12, 4), (16, 6), (13, 8), (15, 10), (12, 12)}
+
 def fetch_tile(seed: int) -> Image.Image:
     CACHE.mkdir(exist_ok=True)
     p = CACHE / f"{seed}.jpg"
@@ -54,8 +60,14 @@ def main(out_path: str) -> None:
     for row in range(ROWS):
         for col in range(COLS):
             t = random.choice(tiles).copy()
-            t = ImageEnhance.Brightness(t).enhance(random.uniform(0.95, 1.3))
-            t = ImageEnhance.Color(t).enhance(random.uniform(0.5, 0.85))
+            if (col, row) in HERO_CELLS:
+                # near-black slot with a whisper of texture, waiting for its
+                # hero photograph to land during the scroll story
+                t = ImageEnhance.Brightness(t).enhance(0.16)
+                t = ImageEnhance.Color(t).enhance(0.3)
+            else:
+                t = ImageEnhance.Brightness(t).enhance(random.uniform(0.95, 1.3))
+                t = ImageEnhance.Color(t).enhance(random.uniform(0.5, 0.85))
             canvas.paste(t, (col * TILE, row * TILE))
 
     # Global treatment: gentle desaturate only — the CSS veil provides the

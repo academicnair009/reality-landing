@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reality — Don't detect fakes. Prove what's real.</title>
+<meta name="description" content="Reality witnesses authenticity at the moment of capture with phone secure hardware, then carries that proof to every viewer — surviving re-encodes, messengers, and re-uploads.">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #12161b;
+    --ink: #e8ecf1;
+    --muted: #9aa7b4;
+    --line: #232a32;
+    --accent: #4da3ff;
+    --accent-ink: #0b0d10;
+    --tier1: #4da3ff;
+    --tier0: #8b97a3;
+    --warn: #e0b34c;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfcfd;
+      --panel: #ffffff;
+      --ink: #16202a;
+      --muted: #5b6a78;
+      --line: #e3e8ee;
+      --accent: #1769d1;
+      --accent-ink: #ffffff;
+      --tier1: #1769d1;
+      --tier0: #5b6a78;
+      --warn: #9a7016;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 0;
+  }
+  .brand { font-weight: 700; font-size: 20px; letter-spacing: .02em; color: var(--ink); }
+  .brand a { color: inherit; }
+  nav.top a { color: var(--muted); margin-left: 22px; font-size: 15px; }
+  nav.top a:hover { color: var(--ink); text-decoration: none; }
+
+  .hero { padding: 72px 0 56px; }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1.12; letter-spacing: -0.02em; font-weight: 800;
+    max-width: 17ch;
+  }
+  .hero h1 .flip { color: var(--accent); }
+  .hero p.lede {
+    margin-top: 22px; max-width: 58ch; font-size: 19px; color: var(--muted);
+  }
+  .cta-row { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-block; padding: 13px 22px; border-radius: 10px;
+    font-weight: 650; font-size: 16px; border: 1px solid transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { filter: brightness(1.08); text-decoration: none; }
+  .btn.ghost { border-color: var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--muted); text-decoration: none; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 26px; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .kicker {
+    color: var(--accent); font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px;
+  }
+  p.sub { color: var(--muted); max-width: 62ch; }
+
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+  @media (max-width: 760px) { .grid3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px;
+  }
+  .card .step { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .08em; }
+  .card h3 { margin: 8px 0 8px; font-size: 19px; }
+  .card p { color: var(--muted); font-size: 15.5px; }
+
+  .tiers { margin-top: 30px; display: grid; gap: 12px; }
+  .tier {
+    display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px 20px; align-items: baseline;
+  }
+  @media (max-width: 560px) { .tier { grid-template-columns: 1fr; gap: 4px; } }
+  .tier .badge { font-weight: 750; font-size: 15px; }
+  .tier.t1 .badge { color: var(--tier1); }
+  .tier.t0 .badge { color: var(--tier0); }
+  .tier.tx .badge { color: var(--warn); }
+  .tier p { color: var(--muted); font-size: 15.5px; }
+
+  .why { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+  @media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+  .why .card h3 { font-size: 17px; }
+
+  blockquote.honest {
+    margin-top: 30px; padding: 22px 24px;
+    border-left: 3px solid var(--accent);
+    background: var(--panel); border-radius: 0 14px 14px 0;
+    color: var(--ink); font-size: 18px; max-width: 60ch;
+  }
+  blockquote.honest .who { display: block; margin-top: 10px; color: var(--muted); font-size: 14px; }
+
+  footer.site {
+    border-top: 1px solid var(--line); padding: 34px 0 54px;
+    color: var(--muted); font-size: 14px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand"><a href="#">Reality</a></div>
+    <nav class="top">
+      <a href="#how">How it works</a>
+      <a href="#verdicts">Verdicts</a>
+      <a href="#why">Why now</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Don't detect fakes.<br><span class="flip">Prove what's real.</span></h1>
+    <p class="lede">
+      AI video already fools people — and every “deepfake detector” becomes training
+      material for the next generation of fakes. Detection is a losing arms race.
+      Reality takes the opposite bet: your phone's secure hardware witnesses the
+      moment of capture, and that proof travels with the footage to every viewer —
+      surviving messengers, re-encodes, and re-uploads.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:academicnair.009@gmail.com?subject=Reality%20%E2%80%94%20early%20access">Get early access</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="kicker">How it works</div>
+    <h2>Witness. Archive. Verify.</h2>
+    <p class="sub">Three layers carry trust from the camera sensor to the person watching.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="step">01 — WITNESS</div>
+        <h3>Capture, attested in hardware</h3>
+        <p>At the moment of recording, the phone's secure hardware (TEE) signs the
+        capture with a key that never leaves the chip — validated against the
+        manufacturer's root of trust. Not an app promise: silicon.</p>
+      </div>
+      <div class="card">
+        <div class="step">02 — ARCHIVE</div>
+        <h3>A fingerprint that survives</h3>
+        <p>The capture's perceptual fingerprint is written to an append-only
+        transparency log — the same construction browsers use for TLS certificates —
+        and anchored to a public log. It matches the footage even after platforms
+        re-encode it.</p>
+      </div>
+      <div class="card">
+        <div class="step">03 — VERIFY</div>
+        <h3>Free, public verdicts</h3>
+        <p>Anyone drops a file on the verify page and gets an evidence-backed
+        verdict in seconds, with the cryptographic proof one click away.
+        Verification is free and public — always.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="verdicts">
+    <div class="kicker">Verdicts</div>
+    <h2>We say exactly what we can prove — and no more</h2>
+    <p class="sub">Binary “real / fake” stamps die in public. Reality grades evidence honestly.</p>
+    <div class="tiers">
+      <div class="tier t1">
+        <span class="badge">ATTESTED</span>
+        <p>This exact footage was signed inside a phone's secure hardware at capture
+        time, and the file you're holding matches that recording.</p>
+      </div>
+      <div class="tier t0">
+        <span class="badge">REGISTERED</span>
+        <p>The footage's fingerprint is in the archive and we know who registered it —
+        with no hardware proof of the camera. Weaker, and labeled as such.</p>
+      </div>
+      <div class="tier tx">
+        <span class="badge">UNKNOWN ≠ FAKE</span>
+        <p>Footage we've never seen is simply unknown. Absence of proof is not proof
+        of fakery — a trust product that overclaims is worse than none.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="kicker">Why now</div>
+    <h2>Metadata gets stripped. Detection decays. Provenance survives.</h2>
+    <div class="why">
+      <div class="card">
+        <h3>Metadata-based provenance breaks in transit</h3>
+        <p>Industry approaches attach signed metadata to the file — and most social
+        platforms strip or re-encode it away before a viewer ever sees it. Reality's
+        proof lives server-side, keyed to what the footage <em>looks like</em>, so it
+        survives the trip.</p>
+      </div>
+      <div class="card">
+        <h3>Detectors age. Cryptography doesn't.</h3>
+        <p>Every classifier that spots today's fakes trains tomorrow's generators.
+        A hardware signature over a capture, anchored in an append-only public log,
+        doesn't degrade as models improve.</p>
+      </div>
+    </div>
+    <blockquote class="honest">
+      “You can't decide real-or-fake from a finished file. But a camera that was
+      present when the photons hit the sensor can vouch for what it saw.”
+      <span class="who">— the idea behind Reality</span>
+    </blockquote>
+  </section>
+
+  <section id="contact">
+    <div class="kicker">Early access</div>
+    <h2>We're validating with early partners</h2>
+    <p class="sub">Newsrooms, investigators, insurers, creators — if trusting footage is
+    part of your job, we want to hear how it fails you today. Working prototype:
+    hardware-attested capture on Android, photos and video, live transparency log.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:academicnair.009@gmail.com?subject=Reality%20%E2%80%94%20early%20access">Talk to us</a>
+    </div>
+  </section>
+
+  <footer class="site">
+    <span>© 2026 Reality</span>
+    <span>Verification is free and public — always.</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -135,3 +135,15 @@ When the form link arrives, paste it into the constant — nothing else needed.
 
 Push to `main` → GitHub Pages publishes automatically (branch: main, path: /).
 Repo: github.com/academicnair009/reality-landing (public — Pages free tier).
+v1 went live 2026-08-03 (merge 8af23db) at
+https://academicnair009.github.io/reality-landing/.
+
+Open items (state as of 2026-08-03):
+- Signup: `SIGNUP_URL` placeholder near the top of index.html still on the
+  mailto fallback — swap in Ashish's Google Form link when he provides it.
+- Custom domain rialiti.io: do NOT add a CNAME file until DNS is actually
+  configured (adding it early breaks the github.io URL). Hosting/DNS
+  decision is in flux — details live OUTSIDE this public repo (ask Ashish,
+  or see the private knowledge vault note "Reality Landing"). Hosting may
+  move off GitHub Pages entirely; if it does, kill this Pages site and
+  make this repo private.

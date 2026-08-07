@@ -98,6 +98,18 @@ All images are self-hosted in `assets/`; nothing is hotlinked at runtime.
 - **Modifications:** gently desaturated and composited (dimming happens in
   CSS); served as one JPEG so the page never makes hundreds of image requests.
 
+## Demo files (`assets/demo/`) — pending
+
+The "test it yourself" demo section is written but **switched off**: its three
+files do not exist yet. When they land, each gets a full entry here. Two of
+them are the same real photograph (the original capture, and the copy WhatsApp
+gave back after a real round trip). The third, `ai-recreation.jpg`, will be
+**AI generated** — the single deliberate exception to this site's
+no-AI-imagery rule, present only so that visitors can watch the product fail
+to find any capture behind it. It is labelled as AI generated in its alt text
+and in the page copy, and it appears nowhere else on the site. See
+`assets/demo/README.md`.
+
 ## Fonts
 
 - **Lexend** and **Playfair Display**, served via Google Fonts (SIL Open Font

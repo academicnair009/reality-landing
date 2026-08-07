@@ -74,6 +74,33 @@ Debug: append `?debug=1` for a fixed on-page HUD (innerHeight, scrollY,
 mosaic opacity, and each wrapper's image + opacity + phase). Zero cost when
 the param is absent. Ask the founder to screenshot it for device reports.
 
+## Top-right tabs (2026-08-07)
+
+A fixed `<nav class="tabs">` in the top-right carries the two product links:
+**RIALITI Check** (https://check.rialiti.io) and the **Android app** APK
+(https://check.rialiti.io/static/downloads/rialiti-capture-v0.4.apk). The app
+is an early alpha and must always say so visibly — the `ALPHA` badge sits in
+the label itself, with a "sideload" caption beside it on desktop and a fuller
+honest note (Play Store / "unknown sources" warning) in the closing's `.quiet`
+block. Do not soften or hide any of that.
+
+The bar is not present at the top of the page: its opacity/offset are written
+per-frame from `f.tabs` in the PURE SCROLL MODEL, on the *same ramp* as beat
+1's line of copy (`smooth(p[0], .1, .3)`) — "the tabs appear alongside the
+scroll text" — then persist, and retrace in reverse on scroll-up. Below
+1024px it drops to its own line under the letter rail. `.tabs:focus-within`
+forces it visible so keyboard users can reach it while it is parked.
+
+## Demo section — "test it yourself" (SCAFFOLDED, OFF)
+
+Written and styled, but commented out inside `<section class="closing">`
+between two lines that each read `ENABLE ME BY DELETING THIS LINE`, because
+its images do not exist yet. Delete those two lines (and fill the three TODO
+alt texts) to ship it. Expected files and the pre-flight checklist are in
+`assets/demo/README.md`. Note it needs ONE AI-generated image
+(`ai-recreation.jpg`) — a deliberate, labelled exception to the no-AI-imagery
+rule, documented in `CREDITS.md`; never ship it unlabelled.
+
 ## Copy stance — mechanism-free, poetic (founder decision, 2026-08-03)
 
 The scrollytelling page must NOT explain "how" and must NOT mention: AI,

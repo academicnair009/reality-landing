@@ -18,6 +18,8 @@
  *      (seamless wipe against the incoming stage);
  *   6. rail letters: flown glyph + slot glyph opacities always sum to 1 once
  *      the letter exists — the swap is a pure crossfade, never a pop;
+ *   6b. the top-right tab bar rides in exactly with beat 1's line of copy
+ *      (same ramp), never fades back out, and is absent at the page top;
  *   7. all channels are continuous (no jumps between adjacent scroll steps);
  *   8. the reverse sweep reproduces the forward sweep bit-for-bit.
  *
@@ -152,10 +154,25 @@ for (const [vw, vh, svhArg] of [[390, 844], [360, 740], [1440, 900], [390, 844, 
         fail(`y=${y}: letter ${i + 1} fly+slot = ${(f.fly[i].op + f.slot[i].op).toFixed(4)}`);
     }
 
+    /* ---- 6b: tabs ride in with the first line of copy, then persist ----
+       The copy ramp is cin = smooth(p[0], .1, .3); the tabs must use the
+       identical ramp (so they "appear alongside the scroll text") and must
+       never fall back once up. */
+    {
+      const cin = fwd[k].copy[0].op + 0; // copy fades out later; compare on the way in
+      if (f.p[0] <= 0.7 && Math.abs(f.tabs.op - cin) > 1e-9)
+        fail(`y=${y}: tabs op ${f.tabs.op.toFixed(4)} != beat-1 copy ramp ${cin.toFixed(4)}`);
+      if (Math.abs(f.tabs.ty + 14 * (1 - f.tabs.op)) > 1e-9)
+        fail(`y=${y}: tabs offset ${f.tabs.ty} not tied to its own opacity`);
+      if (k > 0 && f.tabs.op < fwd[k - 1].tabs.op - 1e-12)
+        fail(`y=${y}: tabs opacity fell back ${fwd[k - 1].tabs.op} → ${f.tabs.op}`);
+    }
+
     /* ---- 7: continuity vs previous step ---- */
     if (k > 0) {
       const g = fwd[k - 1];
       if (Math.abs(f.mosaic - g.mosaic) > 0.05) fail(`y=${y}: mosaic jump`);
+      if (Math.abs(f.tabs.op - g.tabs.op) > 0.25) fail(`y=${y}: tabs opacity jump`);
       for (let i = 0; i < 7; i++) {
         const a = f.photos[i], b = g.photos[i];
         /* opacity is binary while parked/entering; only meaningful once the
@@ -227,7 +244,9 @@ for (const [vw, vh, svhArg] of [[390, 844], [360, 740], [1440, 900], [390, 844, 
     if (f0.mosaic !== 0) fail(`y=0: mosaic ${f0.mosaic} != 0`);
     if (f0.photos.some(p => p.op !== 0)) fail("y=0: a photo is visible over the opening");
     if (f0.slot.some(s => s.op !== 0)) fail("y=0: a rail letter is visible at the top");
+    if (f0.tabs.op !== 0) fail(`y=0: tab bar visible over the opening (op ${f0.tabs.op})`);
   }
+  if (fEnd.tabs.op !== 1) fail(`yMax: tab bar not fully present (op ${fEnd.tabs.op})`);
   if (Math.abs(fEnd.mosaic - 0.62) > 1e-9) fail(`yMax: mosaic ${fEnd.mosaic} != 0.62`);
   if (fEnd.tileOp !== 1) fail(`yMax: tileOp ${fEnd.tileOp} != 1`);
   if (fEnd.slot.some(s => s.op !== 1)) fail("yMax: rail letters incomplete");

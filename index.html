@@ -68,6 +68,78 @@
      no one-shot animations, so scrolling up retraces exactly. */
   .anim .rail .slot { opacity: 0; }
 
+  /* ---------- top-right tabs (product links) ----------
+     They are NOT part of the story: they fade/slide in from the top-right
+     in step with the first beat's line of copy and then persist. Like the
+     rail slots, their opacity/transform are written per-frame from scroll
+     position (see PURE SCROLL MODEL → f.tabs), so scrolling back to the
+     opening retraces them away exactly. Without JS / with reduced motion
+     they are simply present, like everything else on the page. */
+  /* Column, not a wrapping row: a wrapped note would widen the shrink-to-fit
+     box to the max-content of the whole line (~600px), which reaches back
+     across the letter rail and swallows pointer events over the photograph. */
+  .tabs {
+    position: fixed; top: 0; right: clamp(12px, 2.4vw, 26px); z-index: 11;
+    min-height: var(--rail-h);
+    display: flex; flex-direction: column;
+    align-items: flex-end; justify-content: center;
+    gap: 3px;
+    text-align: right;
+  }
+  .tab-row { display: flex; align-items: center; gap: 8px; }
+  .anim .tabs { opacity: 0; pointer-events: none; }
+  /* keyboard users can always reach the tabs, even parked at the top of the
+     page: focus forces the bar visible (beats the per-frame inline styles). */
+  .tabs:focus-within {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .tab {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    font-size: clamp(.72rem, 1.5vw, .82rem);
+    letter-spacing: .03em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--ink);
+    padding: 7px 15px;
+    border: 1px solid rgba(244,241,236,.3);
+    border-radius: 999px;
+    background: rgba(5,5,5,.58);
+    transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+  }
+  .tab:hover, .tab:focus-visible {
+    border-color: rgba(244,241,236,.85);
+    background: rgba(5,5,5,.78);
+    transform: translateY(-1px);
+  }
+  .tab .badge {
+    font-size: .56rem; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 2px 6px 2px 7px; /* +1px left: optically centre the tracking */
+    border-radius: 999px;
+    background: rgba(244,241,236,.16);
+  }
+  .tabs .tab-note {
+    font-size: .58rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-shadow: 0 1px 10px rgba(0,0,0,.85);
+  }
+  /* below ~1024px the two pills would crowd the letter rail, so the bar
+     drops to its own line directly beneath it and the note is dropped
+     (the ALPHA badge still rides in the label itself). */
+  @media (max-width: 1023px) {
+    .tabs { top: calc(var(--rail-h) - 6px); right: 12px; min-height: 0; }
+    .tabs .tab-note { display: none; }
+    .tab { font-size: .7rem; letter-spacing: .02em; padding: 6px 12px; }
+    .tab .badge { font-size: .52rem; letter-spacing: .12em; }
+  }
+
   /* ---------- flying letters (JS-created, fixed) ---------- */
   .fly {
     position: fixed; top: 0; left: 0; z-index: 9;
@@ -313,6 +385,105 @@
     color: var(--muted);
   }
   .quiet span { display: block; }
+  .quiet .note {
+    margin-top: 10px;
+    font-size: .8rem;
+    max-width: 30em;
+    margin-left: auto; margin-right: auto;
+  }
+
+  /* ---------- "test it yourself" demo (lives inside the closing) ----------
+     Markup is currently commented out in the body; these rules are inert
+     until it is enabled. See the ENABLE ME marker in the closing section. */
+  .demo {
+    width: 100%; max-width: 940px;
+    margin: 74px auto 8px;
+    text-align: left;
+  }
+  .demo h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 400; font-style: italic;
+    font-size: clamp(1.5rem, 4.4vw, 2.2rem);
+    line-height: 1.3;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .demo-lead {
+    margin: 12px auto 0;
+    max-width: 34em;
+    text-align: center;
+    font-size: .95rem;
+    color: var(--muted);
+  }
+  .demo-cards {
+    list-style: none;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 34px;
+  }
+  .demo-card {
+    display: flex; flex-direction: column;
+    padding: 14px 16px 18px;
+    border: 1px solid rgba(244,241,236,.14);
+    border-radius: 14px;
+    background: rgba(5,5,5,.58);
+  }
+  .demo-card img {
+    width: 100%; aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    background: rgba(244,241,236,.06);
+  }
+  .demo-card h4 {
+    margin-top: 14px;
+    font-weight: 600; font-size: .95rem; line-height: 1.4;
+  }
+  .demo-card p {
+    margin-top: 6px;
+    font-size: .84rem;
+    color: var(--muted);
+  }
+  .demo-card .verdict {
+    margin: 10px 0 18px;
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: .82;
+  }
+  .demo-dl {
+    margin: auto 0 0; align-self: flex-start;
+    font-family: "Lexend", sans-serif; font-weight: 600;
+    font-size: .78rem; letter-spacing: .05em;
+    text-decoration: none;
+    padding: 9px 18px;
+    border: 1px solid rgba(244,241,236,.34);
+    border-radius: 999px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .demo-dl:hover, .demo-dl:focus-visible {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+  .demo-steps {
+    margin: 32px auto 0;
+    max-width: 34em;
+    padding-left: 1.3em;
+    font-size: .9rem;
+    color: var(--muted);
+  }
+  .demo-steps li { margin-top: 5px; }
+  .demo-fineprint {
+    margin: 24px auto 0;
+    max-width: 42em;
+    font-size: .8rem;
+    text-align: center;
+    color: var(--muted);
+  }
+  @media (max-width: 780px) {
+    .demo { margin-top: 56px; }
+    .demo-cards { grid-template-columns: 1fr; }
+  }
 
   footer {
     margin-top: auto;
@@ -330,6 +501,18 @@
 <div class="rail" aria-hidden="true">
   <span class="slot">R</span><span class="slot">I</span><span class="slot">A</span><span class="slot">L</span><span class="slot">I</span><span class="slot">T</span><span class="slot">I</span>
 </div>
+
+<nav class="tabs" id="tabs" aria-label="Product">
+  <span class="tab-row">
+    <a class="tab" href="https://check.rialiti.io" target="_blank" rel="noopener">RIALITI Check</a>
+    <a class="tab" href="https://check.rialiti.io/static/downloads/rialiti-capture-v0.4.apk"
+       download="rialiti-capture-v0.4.apk"
+       aria-label="Download the RIALITI capture app for Android, version 0.4 — an early alpha, 21 MB, installed outside the Play Store">
+      Android app <span class="badge">Alpha</span>
+    </a>
+  </span>
+  <span class="tab-note">Alpha build &middot; Android only &middot; sideload</span>
+</nav>
 
 <main>
   <section class="opening" id="opening">
@@ -412,16 +595,87 @@
   <section class="closing" id="closing">
     <img class="mosaic" src="assets/mosaic.jpg" loading="lazy" decoding="async" alt="" aria-hidden="true">
     <div class="veil"></div>
-    <p class="mission" data-cl>To protect what’s human</p>
-    <h2 class="headline" data-cl>Keep what’s real, real.</h2>
-    <div data-cl>
+    <p class="mission" data-cl="mission">To protect what’s human</p>
+    <h2 class="headline" data-cl="headline">Keep what’s real, real.</h2>
+    <div data-cl="block">
       <a class="cta" id="signup" href="mailto:academicnair.009@gmail.com?subject=RIALITI%20early%20access">Get early access</a>
       <p class="quiet">
         <span>Every photograph on this page is real.</span>
         <span>Verification will always be free.</span>
+        <span class="note">The Android app is an early alpha (v0.4). It installs from
+        our own site rather than the Play Store, so Android will warn you about
+        “unknown sources” before it lets you continue.</span>
       </p>
     </div>
-    <footer data-cl>
+
+    <!-- ==============================================================
+         DEMO SECTION ("test it yourself") — SWITCHED OFF.
+         Its three image files do not exist yet, and a visible section
+         with dead download links would be worse than no section.
+
+         TO TURN IT ON, once assets/demo/ holds the three files named in
+         assets/demo/README.md: delete the two marker lines below (the one
+         just after this note, which opens the comment, and the matching
+         one just before the footer, which closes it). Then replace the
+         three TODO alt texts with honest descriptions of the photograph.
+         Nothing else needs changing: the styles, the layout and the
+         scroll reveal (keyed on data-cl="demo") are already wired.
+         ============================================================== -->
+
+    <!-- ENABLE ME BY DELETING THIS LINE
+    <section class="demo" data-cl="demo" aria-labelledby="demo-h">
+      <h3 id="demo-h">Don’t trust us. Test it yourself.</h3>
+      <p class="demo-lead">
+        One real photograph, three files. Download them, put each one through
+        RIALITI Check, and read the answers yourself.
+      </p>
+
+      <ol class="demo-cards">
+        <li class="demo-card">
+          <img src="assets/demo/original-capture.jpg" loading="lazy" decoding="async"
+               alt="TODO: honest description of the original photograph.">
+          <h4>The original capture</h4>
+          <p>The photograph as the camera recorded it, exactly as it was archived.</p>
+          <p class="verdict">Should match its archived capture</p>
+          <a class="demo-dl" href="assets/demo/original-capture.jpg" download>Download</a>
+        </li>
+        <li class="demo-card">
+          <img src="assets/demo/whatsapp-compressed.jpg" loading="lazy" decoding="async"
+               alt="TODO: the same photograph after being sent through WhatsApp; visibly softer and smaller.">
+          <h4>The same photo, sent through WhatsApp</h4>
+          <p>Resized and re&#8209;compressed on the way, the way every shared photo is.</p>
+          <p class="verdict">Still matches the same capture</p>
+          <a class="demo-dl" href="assets/demo/whatsapp-compressed.jpg" download>Download</a>
+        </li>
+        <li class="demo-card">
+          <img src="assets/demo/ai-recreation.jpg" loading="lazy" decoding="async"
+               alt="TODO: an AI generated recreation of the same scene, near identical to the eye. This image is not a photograph.">
+          <h4>An AI recreation</h4>
+          <p>Generated to look like the same moment, pixel for pixel. No camera ever recorded it.</p>
+          <p class="verdict">Matches no capture at all</p>
+          <a class="demo-dl" href="assets/demo/ai-recreation.jpg" download>Download</a>
+        </li>
+      </ol>
+
+      <ol class="demo-steps">
+        <li>Download all three files.</li>
+        <li>Open <a href="https://check.rialiti.io" target="_blank" rel="noopener">RIALITI Check</a>.</li>
+        <li>Upload them one at a time.</li>
+        <li>Compare what it tells you about each one.</li>
+      </ol>
+
+      <p class="demo-fineprint">
+        RIALITI checks where a file came from, not whether it looks real. The
+        compressed copy still traces back to the capture it came from; the
+        recreation traces back to nothing, because nothing was ever captured.
+        That is not a general test for AI imagery. The recreation is the only
+        image on this whole site that is not a photograph, and it is here to
+        be caught.
+      </p>
+    </section>
+    ENABLE ME BY DELETING THIS LINE -->
+
+    <footer data-cl="footer">
       © 2026 RIALITI &nbsp;·&nbsp; rialiti.io &nbsp;·&nbsp; <a href="CREDITS.md">photograph credits</a>
     </footer>
   </section>
@@ -458,9 +712,14 @@
   var scrims = beats.map(function (b) { return b.querySelector(".scrim"); });
   var copies = beats.map(function (b) { return b.querySelector(".copy"); });
   var slots = Array.prototype.slice.call(document.querySelectorAll(".rail .slot"));
+  var tabs = document.getElementById("tabs");
   var closing = document.getElementById("closing");
-  var closingEls = Array.prototype.slice.call(closing.querySelectorAll("[data-cl]"));
-  // closingEls order: mission, headline, cta block, footer
+  /* closing reveal elements are addressed by NAME, not by index, so the
+     optional demo section can appear/disappear without shifting anything */
+  var clEls = {};
+  ["mission", "headline", "block", "demo", "footer"].forEach(function (k) {
+    clEls[k] = closing.querySelector('[data-cl="' + k + '"]');
+  });
 
   /* ---- fixed background layers, painted behind all in-flow content ---- */
   var mosaicLayer = document.createElement("div");
@@ -635,12 +894,22 @@
                  s: 1 + (m.endScale - 1) * tf });
     }
 
+    /* Top-right tabs: they ride in on exactly the ramp that brings the
+       first line of copy up — "when the scroll text appears, the tabs
+       appear alongside it" — sliding down out of the masthead rather than
+       up from below, since that is where they live. p[0] never falls back
+       once beat 1 is pinned, so they then persist for the whole document;
+       scrolling back into the opening retraces the reveal in reverse. */
+    var tabsIn = smooth(p[0], 0.1, 0.3);
+    var tabs = { op: tabsIn, ty: -14 * (1 - tabsIn) };
+
     var hcl = smooth(cp, 0.35, 0.6);
     return { p: p, e: e, cp: cp, mosaic: M, tileOp: tileOp, photos: photos,
-             scrimOp: scrimOp, copy: copy, fly: fly, slot: slot,
+             scrimOp: scrimOp, copy: copy, fly: fly, slot: slot, tabs: tabs,
              closing: { mission: smooth(cp, 0.2, 0.45),
                         headline: hcl, headlineTy: 20 * (1 - hcl),
                         block: smooth(cp, 0.5, 0.75),
+                        demo: smooth(cp, 0.55, 0.85),
                         footer: smooth(cp, 0.55, 0.85) } };
   }
 /* ==== END PURE SCROLL MODEL ==== */
@@ -680,14 +949,22 @@
       st(flies[i], "transform", "translate3d(" + f.fly[i].x.toFixed(2) + "px," +
                                 f.fly[i].y.toFixed(2) + "px,0) scale(" + f.fly[i].s.toFixed(4) + ")");
     }
+    /* top-right tabs — pointer events off while they are not yet there, so
+       they never intercept a click over the photography; keyboard focus is
+       unaffected (see .tabs:focus-within) */
+    st(tabs, "opacity", f.tabs.op.toFixed(3));
+    st(tabs, "transform", "translateY(" + f.tabs.ty.toFixed(2) + "px)");
+    st(tabs, "pointerEvents", f.tabs.op <= 0.02 ? "none" : "auto");
+
     var cl = f.closing;
-    if (closingEls[0]) st(closingEls[0], "opacity", cl.mission.toFixed(3));
-    if (closingEls[1]) {
-      st(closingEls[1], "opacity", cl.headline.toFixed(3));
-      st(closingEls[1], "transform", "translateY(" + cl.headlineTy.toFixed(2) + "px)");
+    if (clEls.mission) st(clEls.mission, "opacity", cl.mission.toFixed(3));
+    if (clEls.headline) {
+      st(clEls.headline, "opacity", cl.headline.toFixed(3));
+      st(clEls.headline, "transform", "translateY(" + cl.headlineTy.toFixed(2) + "px)");
     }
-    if (closingEls[2]) st(closingEls[2], "opacity", cl.block.toFixed(3));
-    if (closingEls[3]) st(closingEls[3], "opacity", cl.footer.toFixed(3));
+    if (clEls.block) st(clEls.block, "opacity", cl.block.toFixed(3));
+    if (clEls.demo) st(clEls.demo, "opacity", cl.demo.toFixed(3));
+    if (clEls.footer) st(clEls.footer, "opacity", cl.footer.toFixed(3));
 
     /* debug HUD: wrapper↔image pairing, per-photo phase, live viewport */
     if (dbg) {

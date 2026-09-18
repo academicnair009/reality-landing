@@ -74,7 +74,15 @@ Debug: append `?debug=1` for a fixed on-page HUD (innerHeight, scrollY,
 mosaic opacity, and each wrapper's image + opacity + phase). Zero cost when
 the param is absent. Ask the founder to screenshot it for device reports.
 
-## Top-right tabs (2026-08-07)
+## Top-right tabs (2026-08-07; APK tab removed 2026-09-18)
+
+**2026-09-18:** the Android APK tab, its "Alpha build · sideload" note and the
+"unknown sources" line in the closing were REMOVED (founder decision: the app
+is going through Google Play closed testing; no more sideload links on the
+public page). Only the RIALITI Check tab remains. The CSS for `.badge` and
+`.tab-note` is still present for reuse when a Play Store link replaces it.
+
+Historical description follows:
 
 A fixed `<nav class="tabs">` in the top-right carries the two product links:
 **RIALITI Check** (https://check.rialiti.io) and the **Android app** APK

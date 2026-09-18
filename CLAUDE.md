@@ -182,3 +182,14 @@ Open items (state as of 2026-08-03):
   or see the private knowledge vault note "Reality Landing"). Hosting may
   move off GitHub Pages entirely; if it does, kill this Pages site and
   make this repo private.
+
+## Privacy policy page (2026-09-18)
+
+`privacy/index.html` is a plain static page at https://www.rialiti.io/privacy/
+(no scroll model, own inline CSS using the same tokens). It exists because
+Google Play requires a privacy policy URL for the RIALITI Capture app. Its
+facts (what the app collects, retention, deletion by email, "used to improve
+our detection systems" wording) were derived from the app code on 2026-09-18;
+if the app changes what it sends, this page must change with it and get a new
+effective date. Contact address on the page is the same mailto as the signup
+CTA. No founder name anywhere (standing rule).

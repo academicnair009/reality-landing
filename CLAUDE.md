@@ -191,5 +191,5 @@ Google Play requires a privacy policy URL for the RIALITI Capture app. Its
 facts (what the app collects, retention, deletion by email, "used to improve
 our detection systems" wording) were derived from the app code on 2026-09-18;
 if the app changes what it sends, this page must change with it and get a new
-effective date. Contact address on the page is the same mailto as the signup
-CTA. No founder name anywhere (standing rule).
+effective date. Contact address on the page is founders@rialiti.io (founder decision
+2026-09-18); the signup CTA on the home page still uses the Gmail mailto. No founder name anywhere (standing rule).

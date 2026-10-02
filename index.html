@@ -327,6 +327,12 @@
     padding: calc(var(--rail-h) + 8px) 24px 28px;
     overflow: hidden;
   }
+  /* below 1024px the tab row drops into the band just under the letter
+     rail (see .tabs), so the closing starts below the pills: otherwise
+     they sit on top of the mission line. Must follow the rule above. */
+  @media (max-width: 1023px) {
+    .closing { padding-top: calc(var(--rail-h) + 44px); }
+  }
   .closing .mosaic {
     position: absolute; inset: 0;
     width: 100%; height: 100%;

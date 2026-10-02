@@ -74,7 +74,19 @@ Debug: append `?debug=1` for a fixed on-page HUD (innerHeight, scrollY,
 mosaic opacity, and each wrapper's image + opacity + phase). Zero cost when
 the param is absent. Ask the founder to screenshot it for device reports.
 
-## Top-right tabs (2026-08-07; APK tab removed 2026-09-18)
+## Top-right tabs (2026-08-07; APK tab removed 2026-09-18; restored 2026-10-02)
+
+**2026-10-02:** the Android tab is BACK (founder decision), plus a
+"Download for Android" outlined button with three install steps in the
+closing (`#android`). Both point at ONE counted link on the API:
+`https://api.rialiti.io/download/android?src=rialiti-io`. Never link the APK
+file directly (that bypasses the download counter); to change the version,
+the server's APK_FILE changes, not this page (only the "0.8.2 · about 24 MB"
+text and the tab's aria-label mention the version). Other sites use the same
+link with their own `?src=` tag (lowercase slug, max 32 chars). The honest
+alpha / unknown-apps note and the "will not install over a Google Play copy"
+line are required while the build is sideloaded.
+
 
 **2026-09-18:** the Android APK tab, its "Alpha build · sideload" note and the
 "unknown sources" line in the closing were REMOVED (founder decision: the app

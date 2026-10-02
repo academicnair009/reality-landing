@@ -395,6 +395,33 @@
     margin-left: auto; margin-right: auto;
   }
 
+  /* ---------- Android download (closing) ----------
+     The secondary call to action: an outlined pill under the quiet lines,
+     a one-line spec, three short install steps. Static markup, so the
+     no-JS / reduced-motion page shows it like everything else. */
+  .android { margin-top: 34px; }
+  .android-meta, .steps, .android .quiet.note { text-shadow: 0 1px 10px rgba(0,0,0,.85); }
+  .cta.ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid rgba(244,241,236,.55);
+    font-weight: 400;
+    padding: 13px 34px;
+  }
+  .cta.ghost:hover, .cta.ghost:focus-visible { border-color: var(--ink); }
+  .android-meta {
+    margin-top: 12px;
+    font-size: .78rem; letter-spacing: .04em;
+    color: var(--muted);
+  }
+  .steps {
+    margin: 16px auto 0; padding-left: 1.4em;
+    max-width: 26em;
+    text-align: left;
+    font-size: .85rem; line-height: 1.6;
+    color: var(--muted);
+  }
+  .android .quiet.note { margin: 12px auto 0; font-size: .8rem; max-width: 30em; }
+
   /* ---------- "test it yourself" demo (lives inside the closing) ----------
      Markup is currently commented out in the body; these rules are inert
      until it is enabled. See the ENABLE ME marker in the closing section. */
@@ -508,7 +535,12 @@
 <nav class="tabs" id="tabs" aria-label="Product">
   <span class="tab-row">
     <a class="tab" href="https://check.rialiti.io" target="_blank" rel="noopener">RIALITI Check</a>
+    <a class="tab" href="https://api.rialiti.io/download/android?src=rialiti-io"
+       aria-label="Download the RIALITI app for Android, version 0.8.2. An early alpha, about 24 MB, installed from this site rather than the Play Store.">
+      Android app <span class="badge">Alpha</span>
+    </a>
   </span>
+  <span class="tab-note">Alpha build &middot; Android only &middot; direct download</span>
 </nav>
 
 <main>
@@ -600,6 +632,17 @@
         <span>Every photograph on this page is real.</span>
         <span>Verification will always be free.</span>
       </p>
+      <div class="android" id="android">
+        <a class="cta ghost" href="https://api.rialiti.io/download/android?src=rialiti-io">Download for Android</a>
+        <p class="android-meta">Version 0.8.2 &middot; about 24 MB &middot; Android 9 or newer</p>
+        <ol class="steps">
+          <li>Tap the button above. The download starts right away.</li>
+          <li>Open the file when it finishes. If Android asks, let your browser install apps.</li>
+          <li>Tap Install, then open RIALITI.</li>
+        </ol>
+        <p class="quiet note">The app is an early alpha. It comes from this site rather than the Play Store, so Android will warn you about unknown apps before it lets you continue.</p>
+        <p class="quiet note">Already have RIALITI from Google Play? This file will not install over it, so keep using that one.</p>
+      </div>
     </div>
 
     <!-- ==============================================================

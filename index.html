@@ -252,6 +252,8 @@ h2 { font-weight: 600; font-size: var(--t-h2); line-height: 1.08; letter-spacing
 .uses { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
 .uses-list { list-style: none; display: grid; gap: 36px; }
 .uses-list h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.012em; text-wrap: balance; }
+.uses-list h3 a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(238,241,245,.45); }
+.uses-list h3 a:hover { text-decoration-color: currentColor; }
 .uses-list p { margin-top: 6px; color: var(--muted); max-width: 30em; text-wrap: pretty; }
 
 /* ---------- how it works: a real sequence, so numbers ---------- */
@@ -562,17 +564,13 @@ textarea.field { resize: vertical; min-height: 84px; }
   </figure>
 </section>
 
-<!-- Use cases are not links until their guides exist. When a guide ships, wrap that h3's
-     text in a link to its reserved path (/guides/used-cars/, /guides/watches-and-phones/,
-     /guides/online-sellers/, /guides/rentals/, /guides/pets/, /guides/insurance-and-disputes/)
-     and add the guide to sitemap.xml. -->
 <section class="sec uses wrap" aria-labelledby="uses-h">
   <div class="uses-head">
     <h2 id="uses-h">For any photo that has to be believed.</h2>
     <p class="body">Shoot it in RIALITI and send it anywhere. Anyone can check it.</p>
   </div>
   <ul class="uses-list">
-    <li><h3>Selling a used car</h3><p>Show the real dents and the real mileage, as they are today.</p></li>
+    <li><h3><a href="guides/used-cars/">Selling a used car</a></h3><p>Show the real dents and the real mileage, as they are today.</p></li>
     <li><h3>Watches and phones</h3><p>Prove you have it in hand, not a photo you found.</p></li>
     <li><h3>Shopify and marketplace sellers</h3><p>Product photos buyers can check for themselves.</p></li>
     <li><h3>Renting out or moving out</h3><p>A dated record of the condition, before and after.</p></li>
@@ -596,6 +594,7 @@ textarea.field { resize: vertical; min-height: 84px; }
     <h2 id="ai-h">How do you tell if a photo is AI?</h2>
     <p class="body">Mostly, you can’t. In <a class="inline-link" href="https://conjointly.com/blog/real-vs-ai-images-2025/">a 2025 test</a>, people told real photos from AI images at about the rate of a coin flip: 49 percent right on real images, 52 percent on AI ones.</p>
     <p class="body">RIALITI doesn’t guess. A photo taken in the app carries a public record of the moment it was captured, and anyone can check it free. An AI image has no record. A real photo edited with AI no longer matches its record. Either way the check finds nothing to match, and that is the difference between looking real and being real.</p>
+    <p class="body">For the usual tells and why they stopped working, read <a class="inline-link" href="guides/how-to-tell-if-a-photo-is-ai/">the full guide</a>.</p>
   </div>
   <div class="scope">
     <div>
@@ -788,6 +787,7 @@ textarea.field { resize: vertical; min-height: 84px; }
   <a class="brand" href="./" aria-label="RIALITI home"><img src="assets/v2/icons/rialiti-mark.svg" width="26" height="21" alt=""><span class="wordmark">RIALITI</span></a>
   <nav aria-label="Footer">
     <a href="https://check.rialiti.io">RIALITI Check</a>
+    <a href="guides/">Guides</a>
     <a href="privacy/">Privacy</a>
     <a href="CREDITS.md">Photograph credits</a>
     <a href="mailto:founders@rialiti.io">founders@rialiti.io</a>

@@ -35,15 +35,17 @@ Sections, top to bottom:
    compositor layer is released after it runs).
 3. **Problem**: edited car over real car, each tagged ("Edited" / "Real
    capture"), "Both look real. Only one can prove it."
-4. **Use cases**: six `h3` + line items, a typographic list. NOT links until
-   their guides exist; reserved paths are in an HTML comment above the
-   section and in `copy.md`. When a guide ships: link the h3 text, add it to
-   `sitemap.xml`.
+4. **Use cases**: six `h3` + line items, a typographic list. "Selling a used
+   car" links to `/guides/used-cars/`; the others stay plain text until their
+   guides exist (see `copy.md`). When a guide ships: link the h3 text and run
+   `python3 scripts/build_guide.py --all` (updates `/guides/`, every guide's
+   "More guides" block and `sitemap.xml`).
 5. **How it works** (`#how`): three numbered steps and "An AI image, or a
    real photo edited with AI, traces back to nothing."
 5b. **AI photos** (`#ai`): "How do you tell if a photo is AI?", the 2025
    Conjointly coin-flip finding (49% / 52%, linked), why RIALITI does not
-   guess, and a "What RIALITI does / What it doesn't" list.
+   guess, a link to the full guide, and a "What RIALITI does / What it
+   doesn't" list.
 6. **Proof** (`#proof`): "Don't trust us. Check it yourself." with the live
    public record link and a dated screenshot of it. Contains the demo switch
    (below).
@@ -57,11 +59,11 @@ Sections, top to bottom:
    they match; edit both together).
 8. **Close** (`#get`): "Keep what's real, real.", Play button, the iPhone
    waitlist panel (`#iphone`), the signature mission line.
-9. **Footer**: RIALITI Check, Privacy (`privacy/`), Photograph credits
+9. **Footer**: RIALITI Check, Guides (`guides/`), Privacy (`privacy/`), Photograph credits
    (`CREDITS.md`), founders@rialiti.io (role address), trademark line.
 
 Also: `404.html` (absolute asset paths, noindex), `robots.txt`,
-`sitemap.xml` (home and privacy only), JSON-LD Organization and
+`sitemap.xml` (home, privacy, `/guides/` and every guide), JSON-LD Organization and
 SoftwareApplication in the head, OG/Twitter image
 `assets/v2/og/og-1200x630.jpg`.
 

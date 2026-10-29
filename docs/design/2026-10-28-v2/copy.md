@@ -71,14 +71,14 @@ Play URL (every Play button): `https://play.google.com/store/apps/details?id=app
 |---|---|
 | H2 | For any photo that has to be believed. |
 | Body | Shoot it in RIALITI and send it anywhere. Anyone can check it. |
-| 1 H3 / line | Selling a used car / Show the real dents and the real mileage, as they are today. |
+| 1 H3 / line | Selling a used car / Show the real dents and the real mileage, as they are today. (H3 text links to `/guides/used-cars/`, since 2026-10-29) |
 | 2 | Watches and phones / Prove you have it in hand, not a photo you found. |
 | 3 | Shopify and marketplace sellers / Product photos buyers can check for themselves. |
 | 4 | Renting out or moving out / A dated record of the condition, before and after. |
 | 5 | Pets and rehoming / Show buyers a real animal, photographed today. |
 | 6 | Insurance, disputes, reporting / Show when the photo was taken, and that it’s unedited. |
 
-Reserved guide paths (not linked until the guide exists): `/guides/used-cars/`, `/guides/watches-and-phones/`, `/guides/online-sellers/`, `/guides/rentals/`, `/guides/pets/`, `/guides/insurance-and-disputes/`.
+Guide links: tile 1 links to `/guides/used-cars/` (shipped 2026-10-28). The other tiles stay plain text until their guide exists; when one ships, link its H3 text and rebuild the guides (`python3 scripts/build_guide.py --all`, which also updates `sitemap.xml` and `/guides/`).
 
 ## 4. How it works (`id="how"`)
 
@@ -98,6 +98,7 @@ Reserved guide paths (not linked until the guide exists): `/guides/used-cars/`, 
 | H2 | How do you tell if a photo is AI? |
 | Body 1 | Mostly, you can’t. In a 2025 test, people told real photos from AI images at about the rate of a coin flip: 49 percent right on real images, 52 percent on AI ones. (link text "a 2025 test" to https://conjointly.com/blog/real-vs-ai-images-2025/ : Conjointly, published 25 September 2025, 301 US adults, 49% / 52%, "no better than random guessing"; checked 2026-10-28) |
 | Body 2 | RIALITI doesn’t guess. A photo taken in the app carries a public record of the moment it was captured, and anyone can check it free. An AI image has no record. A real photo edited with AI no longer matches its record. Either way the check finds nothing to match, and that is the difference between looking real and being real. |
+| Body 3 (added 2026-10-29) | For the usual tells and why they stopped working, read the full guide. (link text "the full guide" to `/guides/how-to-tell-if-a-photo-is-ai/`) |
 | H3 left | What RIALITI does |
 | Items | Proves a photo is a real, unedited capture / Shows when it was taken / Works on any copy, even after WhatsApp / Free to check |
 | H3 right | What it doesn’t |
@@ -189,7 +190,7 @@ Verdict lines must be confirmed against check.rialiti.io with the real files bef
 |---|---|
 | Logo link `aria-label` | RIALITI home |
 | Nav `aria-label` | Footer |
-| Links, in order | RIALITI Check, Privacy, Photograph credits, founders@rialiti.io (separate links, no separators drawn between them) |
+| Links, in order | RIALITI Check, Guides (`/guides/`, added 2026-10-29), Privacy, Photograph credits, founders@rialiti.io (separate links, no separators drawn between them) |
 | Legal | © 2026 RIALITI. Google Play is a trademark of Google LLC. |
 
 ## 404 page (`/404.html`)

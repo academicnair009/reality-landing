@@ -160,7 +160,7 @@ Verdict lines must be confirmed against check.rialiti.io with the real files bef
 | Q1 / A1 | How can I tell if a photo is AI-generated? / Mostly, you can’t by looking. In a 2025 test, people told real photos from AI images at about the rate of a coin flip. Ask for a photo taken in RIALITI Capture and check it free at check.rialiti.io. (visible answer links "a 2025 test" to the same study) |
 | Q2 / A2 | Can RIALITI detect AI images? / No. It proves real ones. Anything without a record, including AI images and AI-edited photos, cannot be proven, and the check says so. |
 | Q3 / A3 | What if someone edits my photo with AI after I send it? / The edited copy no longer matches your record, so it fails the check. Your original still proves real. |
-| Q4 / A4 | Does it still work after WhatsApp or Instagram compression? / Yes. Resizing and compression keep the match; editing the content breaks it. |
+| Q4 / A4 | Does it still work after WhatsApp compression? / Yes. Resizing and compression keep the match; editing the content breaks it. |
 
 ## 7. Close (`id="get"`)
 

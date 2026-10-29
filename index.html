@@ -2,1054 +2,856 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RIALITI — Keep what’s real, real.</title>
-<meta name="description" content="Seven moments. Seven letters. RIALITI exists to protect what’s human — keep what’s real, real. Every photograph on this page is real.">
-<meta property="og:title" content="RIALITI — Keep what’s real, real.">
-<meta property="og:description" content="Some moments happen once. RIALITI exists to protect what’s human.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prove a photo is real | RIALITI Capture for Android</title>
+<meta name="description" content="Take a photo in the free RIALITI Capture app and anyone can check it’s real and unedited at check.rialiti.io, even after WhatsApp. Free on Android.">
+<link rel="canonical" href="https://www.rialiti.io/">
+<meta name="theme-color" content="#0C0D11">
+<meta name="color-scheme" content="dark">
+
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="RIALITI">
+<meta property="og:title" content="Prove your photo is real.">
+<meta property="og:description" content="Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.">
 <meta property="og:url" content="https://www.rialiti.io/">
+<meta property="og:image" content="https://www.rialiti.io/assets/v2/og/og-1200x630.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prove your photo is real.">
+<meta name="twitter:description" content="Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.">
+<meta name="twitter:image" content="https://www.rialiti.io/assets/v2/og/og-1200x630.jpg">
+<meta name="twitter:image:alt" content="Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.">
+
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/v2/fonts/lexend-sub.woff2" as="font" type="font/woff2" crossorigin>
 
-<script>
-  /* ============================================================
-     SIGNUP LINK — paste the Google Form URL between the quotes.
-     While it is the placeholder, the button falls back to email.
-     ============================================================ */
-  const SIGNUP_URL = "GOOGLE_FORM_URL_HERE";
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.rialiti.io/#org",
+      "name": "RIALITI",
+      "url": "https://www.rialiti.io/",
+      "logo": "https://www.rialiti.io/assets/play/icon-512.png",
+      "email": "founders@rialiti.io"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "RIALITI Capture",
+      "operatingSystem": "Android",
+      "applicationCategory": "MultimediaApplication",
+      "description": "Take photos that anyone can later check are real and unedited, for free at check.rialiti.io.",
+      "url": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+      "installUrl": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://www.rialiti.io/#org" }
+    }
+  ]
+}
 </script>
 
+<script>
+/* Story mode is decided before first layout, so the page never re-flows under the reader.
+   No JS, reduced motion, or no sticky support: the story stays a plain static sequence. */
+(function (d) {
+  try {
+    if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+        window.CSS && CSS.supports && CSS.supports("position", "sticky")) d.className += " anim";
+  } catch (e) {}
+})(document.documentElement);
+</script>
+<!-- WAITLIST (1 of 3): while WAITLIST_URL is empty, a visitor without JavaScript sees
+     "The iPhone waitlist opens soon." instead of a form that could not send anything.
+     Delete this noscript block once the Apps Script is deployed. -->
+<noscript><style>#wl { display: none; }</style></noscript>
+
 <style>
-  :root {
-    --bg: #050505;
-    --ink: #F4F1EC;
-    --muted: #AFAAA2;
-    --rail-h: 60px;
-    --big-letter: clamp(7.5rem, 30vw, 17rem);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ===================================================================
+   RIALITI home page v2 (2026-10-28). Design: docs/design/2026-10-28-v2/
+   Tokens are the RIALITI Capture app's own: the page background equals the
+   app screen, so the real app screenshot in the hero sits on it frameless.
+   =================================================================== */
+@font-face { font-family: "Lexend"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("assets/v2/fonts/lexend-sub.woff2") format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("assets/v2/fonts/playfair-italic-sub.woff2") format("woff2"); }
+/* Metric-matched fallbacks: while the web fonts load, system text takes about the same width
+   and line height, so the swap barely moves the layout. Ratios computed from the font files. */
+@font-face { font-family: "Lexend Fallback"; src: local("Arial"), local("Roboto"), local("Helvetica Neue");
+  size-adjust: 106.3%; ascent-override: 94%; descent-override: 23.5%; line-gap-override: 0%; }
+@font-face { font-family: "Playfair Fallback"; font-style: italic; src: local("Georgia Italic"), local("Georgia-Italic"), local("Georgia");
+  size-adjust: 97%; ascent-override: 111.5%; descent-override: 25.9%; line-gap-override: 0%; }
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+:root {
+  --bg: #0C0D11;          /* the app's screen background, sampled from 04-verified.png */
+  --panel: #14171C;       /* the app's card */
+  --line: #2A3038;
+  --line-strong: #5B6573;
+  --ink: #EEF1F5;
+  --muted: #A3ADBA;
+  --green: #34D399;       /* two meanings only: verified, and the one primary action */
+  --green-hover: #5EE0B0;
+  --green-ink: #04251A;
+  --flag: #FF8A8A;        /* "Edited" and form errors */
+  --story: #000000;       /* the photographs' own black */
+  --story-ink: #F4F1EC;   /* warm ink, the human voice */
+  --story-muted: #B5AFA6;
 
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0 0 0 0); white-space: nowrap;
-  }
-  a { color: var(--ink); }
-  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  --sans: "Lexend", "Lexend Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "Playfair Display", "Playfair Fallback", Georgia, "Times New Roman", serif;
+  --t-display: clamp(2.5rem, 1.6rem + 4.6vw, 5.75rem);
+  --t-h2: clamp(1.875rem, 1.35rem + 2.3vw, 3.5rem);
+  --t-step: clamp(1.375rem, 1.05rem + 1.45vw, 2.375rem);
+  --t-h3: clamp(1.25rem, 1.1rem + .7vw, 1.75rem);
+  --t-lead: clamp(1.125rem, 1.03rem + .42vw, 1.375rem);
+  --t-body: 1.0625rem;
+  --t-small: .875rem;
+  --t-micro: .8125rem;
+  --t-story: clamp(1.75rem, 1.2rem + 2.45vw, 3.5rem);
 
-  /* ---------- brand rail (the seven letter slots) ---------- */
-  .rail {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-    height: var(--rail-h);
-    display: flex; align-items: center; justify-content: center;
-    gap: clamp(8px, 2.6vw, 18px);
-    background: linear-gradient(rgba(5,5,5,.82), rgba(5,5,5,0));
-    pointer-events: none;
-  }
-  .rail .slot {
-    font-family: "Lexend", sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.15rem, 4.2vw, 1.6rem);
-    line-height: 1;
-    letter-spacing: 0;
-  }
-  /* letters visible by default (no-JS / reduced-motion complete page).
-     Under .anim, slot opacity/scale are written per-frame from scroll —
-     no one-shot animations, so scrolling up retraces exactly. */
-  .anim .rail .slot { opacity: 0; }
+  --margin: max(clamp(20px, 5.5vw, 80px), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  --gutter: clamp(16px, 1.7vw, 24px);
+  --section: clamp(96px, 7vw + 70px, 176px);
+  --r-photo: 20px; --r-panel: 16px; --r-field: 12px; --r-pill: 999px;
+}
 
-  /* ---------- top-right tabs (product links) ----------
-     They are NOT part of the story: they fade/slide in from the top-right
-     in step with the first beat's line of copy and then persist. Like the
-     rail slots, their opacity/transform are written per-frame from scroll
-     position (see PURE SCROLL MODEL → f.tabs), so scrolling back to the
-     opening retraces them away exactly. Without JS / with reduced motion
-     they are simply present, like everything else on the page. */
-  /* Column, not a wrapping row: a wrapped note would widen the shrink-to-fit
-     box to the max-content of the whole line (~600px), which reaches back
-     across the letter rail and swallows pointer events over the photograph. */
-  .tabs {
-    position: fixed; top: 0; right: clamp(12px, 2.4vw, 26px); z-index: 11;
-    min-height: var(--rail-h);
-    display: flex; flex-direction: column;
-    align-items: flex-end; justify-content: center;
-    gap: 3px;
-    text-align: right;
-  }
-  .tab-row { display: flex; align-items: center; gap: 8px; }
-  .anim .tabs { opacity: 0; pointer-events: none; }
-  /* keyboard users can always reach the tabs, even parked at the top of the
-     page: focus forces the bar visible (beats the per-frame inline styles). */
-  .tabs:focus-within {
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
-  }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 300 var(--t-body)/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3, p, ol, ul, figure { margin: 0; padding: 0; }
+img { display: block; max-width: 100%; height: auto; }
+picture { display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.wrap { width: min(100% - 2 * var(--margin), 1280px); margin-inline: auto; }
+[id] { scroll-margin-top: 24px; }
 
-  .tab {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-family: "Lexend", sans-serif;
-    font-weight: 300;
-    font-size: clamp(.72rem, 1.5vw, .82rem);
-    letter-spacing: .03em;
-    text-decoration: none;
-    white-space: nowrap;
-    color: var(--ink);
-    padding: 7px 15px;
-    border: 1px solid rgba(244,241,236,.3);
-    border-radius: 999px;
-    background: rgba(5,5,5,.58);
-    transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
-  }
-  .tab:hover, .tab:focus-visible {
-    border-color: rgba(244,241,236,.85);
-    background: rgba(5,5,5,.78);
-    transform: translateY(-1px);
-  }
-  .tab .badge {
-    font-size: .56rem; font-weight: 600; letter-spacing: .16em;
-    text-transform: uppercase;
-    padding: 2px 6px 2px 7px; /* +1px left: optically centre the tracking */
-    border-radius: 999px;
-    background: rgba(244,241,236,.16);
-  }
-  .tabs .tab-note {
-    font-size: .58rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-shadow: 0 1px 10px rgba(0,0,0,.85);
-  }
-  /* below ~1024px the two pills would crowd the letter rail, so the bar
-     drops to its own line directly beneath it and the note is dropped
-     (the ALPHA badge still rides in the label itself). */
-  @media (max-width: 1023px) {
-    .tabs { top: calc(var(--rail-h) - 6px); right: 12px; min-height: 0; }
-    .tabs .tab-note { display: none; }
-    .tab { font-size: .7rem; letter-spacing: .02em; padding: 6px 12px; }
-    .tab .badge { font-size: .52rem; letter-spacing: .12em; }
-  }
+/* ---------- header (not sticky: nothing floats over the story's photographs) ---------- */
+.top { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand img { width: 34px; height: 28px; }
+.wordmark { font-weight: 600; font-size: 1.0625rem; line-height: 1; letter-spacing: .22em; margin-right: -.22em; }
+.top nav { display: flex; gap: 28px; font-size: .9375rem; font-weight: 400; }
+.top nav a { text-decoration: none; color: var(--muted); padding: 10px 0; }
+.top nav a:hover { color: var(--ink); }
 
-  /* ---------- flying letters (JS-created, fixed) ---------- */
-  .fly {
-    position: fixed; top: 0; left: 0; z-index: 9;
-    font-family: "Lexend", sans-serif;
-    font-weight: 700;
-    font-size: var(--big-letter);
-    line-height: 1;
-    letter-spacing: 0;
-    color: var(--ink);
-    text-shadow: 0 4px 40px rgba(0,0,0,.6);
-    transform-origin: 0 0;
-    opacity: 0;
-    will-change: transform, opacity;
-    pointer-events: none;
-  }
+/* ---------- buttons and links ---------- */
+.play { display: inline-flex; align-items: center; justify-content: center;
+  min-height: 56px; padding: 0 30px; border-radius: var(--r-pill);
+  background: var(--green); color: var(--green-ink); text-decoration: none;
+  font-weight: 600; font-size: 1.0625rem; line-height: 1; letter-spacing: -.005em; white-space: nowrap;
+  transition: background-color .15s ease; }
+.play:hover { background: var(--green-hover); }
+.play:active { transform: translateY(1px); }
+.play:focus-visible { outline-color: var(--green); outline-offset: 4px; border-radius: var(--r-pill); }
+.textlink { font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;
+  text-decoration-color: rgba(238, 241, 245, .45); }
+.textlink:hover { text-decoration-color: var(--ink); text-decoration-thickness: 2px; }
+.ghost { display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 1rem; line-height: 1;
+  transition: border-color .15s ease; }
+.ghost:hover { border-color: var(--ink); }
+.ghost:focus-visible { border-radius: var(--r-pill); }
+.inline-link { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
-  /* ---------- opening (thesis) ---------- */
-  .opening {
-    position: relative;
-    min-height: 100vh; min-height: 100svh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 0 24px;
-  }
-  .opening .thesis {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 400; font-style: italic;
-    font-size: clamp(1.6rem, 5.6vw, 3rem);
-    line-height: 1.5;
-    letter-spacing: .02em;
-    text-wrap: balance;
-  }
-  .opening .cue {
-    position: absolute;
-    bottom: 34px;
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    color: var(--muted);
-  }
-  .cue .cue-label {
-    font-size: .68rem;
-    letter-spacing: .38em;
-    text-transform: uppercase;
-    padding-left: .38em; /* optically center the tracked text */
-  }
-  .cue .cue-chevron {
-    width: 9px; height: 9px;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
-    transform: rotate(45deg);
-  }
-  /* animate only when JS adds .anim (no-JS / reduced-motion: simply visible) */
-  .anim .opening .thesis {
-    opacity: 0;
-    animation: thesisIn 1.8s ease .35s forwards;
-  }
-  @keyframes thesisIn {
-    from { opacity: 0; letter-spacing: .07em; }
-    to   { opacity: 1; letter-spacing: .02em; }
-  }
-  .anim .opening .cue {
-    opacity: 0;
-    animation:
-      cueIn 1.2s ease 2.5s forwards,
-      cuePulse 2.6s ease-in-out 3.7s infinite;
-  }
-  @keyframes cueIn { to { opacity: .85; } }
-  @keyframes cuePulse {
-    0%, 100% { opacity: .85; }
-    50% { opacity: .3; }
-  }
+/* ---------- hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 28px 0 96px; }
+.hero h1 { font-weight: 600; font-size: var(--t-display); line-height: 1; letter-spacing: -.035em; max-width: 9.5em; text-wrap: balance; }
+.lead { margin-top: 20px; font-size: var(--t-lead); line-height: 1.5; color: var(--muted); max-width: 27em; text-wrap: pretty; }
+.actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.aside { margin-top: 20px; font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; }
+.hero-fig { min-width: 0; }
+.stack { position: relative; width: 100%; max-width: 520px; aspect-ratio: 520 / 632; }
+.stack .cap { position: absolute; right: 0; top: 0; width: 84.6%; height: 82.3%; }
+.stack .cap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; border-radius: var(--r-photo); background: #2B2117; }
+.stack .rec { position: absolute; left: 0; bottom: 0; width: 76.9%; filter: drop-shadow(0 18px 36px rgba(0, 0, 0, .6)); }
+.hero-fig figcaption { margin: 18px 0 0 15.4%; font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; max-width: 30em; }
+/* The page's one orchestrated moment: the record attaches to the photo. Runs once, CSS only.
+   Fill is backwards, not both: a forwards-filled animation keeps its layer promoted forever. */
+@media (prefers-reduced-motion: no-preference) {
+  .stack .rec { animation: record-in 700ms cubic-bezier(.2, .75, .25, 1) 450ms backwards; }
+  @keyframes record-in { from { opacity: 0; transform: translateY(32px); } }
+}
 
-  /* ---------- beats ---------- */
-  .beat { position: relative; }
-  .anim .beat { height: 175vh; height: 175svh; }
-  .anim .beat.short { height: 150vh; height: 150svh; }
+/* ---------- section scaffolding ---------- */
+.sec { padding-top: var(--section); }
+h2 { font-weight: 600; font-size: var(--t-h2); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }
+.body { margin-top: 20px; font-size: var(--t-lead); line-height: 1.5; color: var(--muted); max-width: 30em; text-wrap: pretty; }
 
-  .stage {
-    position: relative;
-    min-height: 100vh; min-height: 100svh;
-    overflow: hidden;
-    display: grid; place-items: end center;
-  }
-  .anim .stage {
-    position: sticky; top: 0;
-    height: 100vh; height: 100svh;
-    min-height: 0;
-  }
+/* ---------- the problem ---------- */
+.problem { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.problem h2 { max-width: 13em; }
+.pair { display: grid; gap: 28px; max-width: 600px; }
+.pair img { width: 100%; aspect-ratio: 785 / 470; object-fit: cover; border-radius: var(--r-photo); background: #2B2117; }
+.pair-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 12px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px 4px 9px; border-radius: var(--r-pill);
+  font-size: var(--t-small); font-weight: 500; line-height: 1.4; }
+.tag svg { width: 14px; height: 14px; flex: none; }
+.tag-edited { color: var(--flag); background: #2A1719; }
+.tag-real { color: var(--green); background: #10261E; }
+.pc { font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; }
+.pair figcaption { font-size: var(--t-lead); line-height: 1.5; font-weight: 400; color: var(--ink); }
 
-  .stage img.photo {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  #beat-2 img.photo,
-  .photo-wrap img[src*="earthrise"] { object-position: 62% 60%; } /* keep Earth + horizon framed on phones */
-  #beat-6 img.photo,
-  .photo-wrap img[src*="beat6-proof"] { object-position: 58% 50%; } /* keep both held prints inside portrait crops */
+/* ---------- use cases: a typographic list, not cards ---------- */
+.uses { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+.uses-list { list-style: none; display: grid; gap: 36px; }
+.uses-list h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.012em; text-wrap: balance; }
+.uses-list p { margin-top: 6px; color: var(--muted); max-width: 30em; text-wrap: pretty; }
 
-  /* ---------- fixed background layers (JS-created, scroll-driven) ----------
-     Stacking, bottom → top: canvas (body bg) → #mosaic-layer (z:-2) →
-     #photo-layer wrappers (z:-1; DOM order = beat order, so an incoming
-     photo naturally paints above already-landed tiles) → in-flow stages
-     with scrims/copy → flying letters (z:9) → rail (z:10). */
-  #mosaic-layer {
-    position: fixed; inset: 0; z-index: -2;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #mosaic-layer img { width: 100%; height: 100%; object-fit: cover; }
-  #photo-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-  /* Each hero photo lives in a viewport-sized wrapper. The flight to a
-     square mosaic cell is a non-uniform wrapper scale; the inner image is
-     counter-scaled so its NET transform stays uniform — the photograph is
-     never distorted, the crop window simply narrows from the viewport to
-     the square centre of what you just watched. Fullscreen framing is
-     therefore identical to plain object-fit: cover. */
-  .photo-wrap {
-    position: fixed; top: 0; left: 0;
-    transform-origin: 0 0;
-    overflow: hidden;
-    opacity: 0;
-  }
-  .photo-wrap img {
-    display: block;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transform-origin: 50% 50%;
-  }
-  /* promoted only while actually moving (entry slide / Ken-Burns / flight) */
-  .photo-wrap.live { will-change: transform, opacity; }
-  .photo-wrap.live img { will-change: transform; }
+/* ---------- how it works: a real sequence, so numbers ---------- */
+.steps { list-style: none; margin-top: 48px; display: grid; gap: 28px; counter-reset: step; max-width: 22em; font-size: var(--t-step); }
+.steps li { counter-increment: step; position: relative; padding-left: 1.6em; text-wrap: balance;
+  font-weight: 400; line-height: 1.22; letter-spacing: -.015em; }
+.steps li::before { content: counter(step); position: absolute; left: 0; top: 0; color: var(--muted); font-weight: 300; }
+.steps a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; text-decoration-color: rgba(238, 241, 245, .45); }
+.steps a:hover { text-decoration-color: var(--ink); }
+.how-note { margin-top: 48px; font-size: var(--t-lead); line-height: 1.5; color: var(--ink); font-weight: 400; max-width: 30em; }
 
-  .stage .scrim {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(rgba(5,5,5,.55), rgba(5,5,5,.15) 35%, rgba(5,5,5,.25) 70%, rgba(5,5,5,.8));
-  }
+/* ---------- proof: a different room ---------- */
+.proof { margin-top: var(--section); background: var(--panel); padding-block: var(--section); }
+.proof-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+.fine { margin-top: 28px; font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; max-width: 32em; }
+.proof-fig img { width: 100%; max-width: 362px; border-radius: var(--r-panel); border: 1px solid var(--line); background: var(--bg); }
+.proof-fig figcaption { margin-top: 14px; font-size: var(--t-small); color: var(--muted); font-weight: 400; }
 
-  /* static big letter — replaced by .fly when animating */
-  .beat-letter {
-    position: absolute; top: calc(var(--rail-h) + 4vh); left: 50%;
-    transform: translateX(-50%);
-    font-weight: 700; font-size: clamp(4rem, 14vw, 7rem); line-height: 1;
-    text-shadow: 0 4px 40px rgba(0,0,0,.6);
-  }
-  .anim .beat-letter { display: none; }
+/* demo ("test it yourself"): styled now; its markup is switched off until real files exist */
+.demo { margin-top: 96px; padding-top: 48px; border-top: 1px solid var(--line); }
+.demo h3 { font-weight: 600; font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.012em; }
+.demo-lead { margin-top: 12px; color: var(--muted); max-width: 34em; text-wrap: pretty; }
+.demo-cards { list-style: none; margin-top: 32px; display: grid; gap: 20px; }
+.demo-card { background: var(--bg); border-radius: var(--r-panel); padding: 16px 16px 20px; display: flex; flex-direction: column; }
+.demo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.demo-card h4 { margin: 18px 0 0; font-weight: 500; font-size: 1.125rem; line-height: 1.3; }
+.demo-card p { margin-top: 6px; color: var(--muted); font-size: 1rem; }
+.demo-card .verdict { margin-top: 12px; color: var(--ink); font-weight: 400; font-size: var(--t-small); }
+.demo-card .ghost { margin-top: auto; align-self: flex-start; }
+.demo-card .verdict + .ghost { margin-top: 18px; }
+.demo-fine { margin-top: 24px; font-size: var(--t-small); color: var(--muted); font-weight: 400; max-width: 40em; }
 
-  .copy {
-    position: relative; z-index: 2;
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 400; font-style: italic;
-    font-size: clamp(1.5rem, 5.2vw, 2.6rem);
-    line-height: 1.35;
-    text-align: center;
-    max-width: 17em;
-    padding: 0 24px;
-    margin-bottom: 20vh; margin-bottom: 20svh;
-    text-shadow: 0 2px 24px rgba(0,0,0,.65);
-    text-wrap: balance;
-  }
-  .anim .copy { opacity: 0; will-change: transform, opacity; }
+/* ---------- story (the only place for Playfair and true black) ---------- */
+.story { background: var(--story); color: var(--story-ink); }
+.story .stage { position: relative; }
+.frame img { width: 100%; height: auto; }
+.frame figcaption, .story .cap { font-size: var(--t-micro); line-height: 1.45; color: var(--story-muted); font-weight: 400; }
+.line { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: var(--t-story); line-height: 1.22; text-wrap: balance; }
+.story-a .stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 0 0 96px; }
+.story-a .frame figcaption { padding: 10px var(--margin) 0; }
+.story-a .line { padding: 16px var(--margin) 0; max-width: 16em; box-sizing: content-box; }
+.story-a .f2 { margin-top: 56px; }
+.story-b .stage { padding: 64px var(--margin) 96px; text-align: center; }
+.story-b img { margin-inline: auto; width: min(100%, 78vh, 760px); width: min(100%, 78svh, 760px); aspect-ratio: 1; object-fit: cover;
+  -webkit-mask-image: radial-gradient(closest-side, #000 86%, transparent 100%); mask-image: radial-gradient(closest-side, #000 86%, transparent 100%); }
+.mission { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(2.125rem, 1.3rem + 3.6vw, 5rem);
+  line-height: 1.1; letter-spacing: -.01em; margin-top: -.2em; text-wrap: balance; }
+.story-b .cap { margin-top: 28px; }
+.story-end { padding: 96px 0 var(--section); }
+.coda { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem); line-height: 1.3; }
+.ethos { margin-top: 16px; color: var(--story-muted); font-weight: 400; font-size: var(--t-body); }
+.ethos a { color: var(--story-ink); text-underline-offset: 3px; }
 
-  /* ---- ?debug=1 on-device readout (created by JS only when enabled) ---- */
-  #debug-hud {
-    position: fixed; left: 8px; bottom: 8px; z-index: 99;
-    font: 10px/1.5 ui-monospace, Menlo, monospace;
-    color: #7CFC9A;
-    background: rgba(0,0,0,.72);
-    padding: 6px 8px;
-    border-radius: 4px;
-    pointer-events: none;
-    white-space: pre;
-  }
+/* ---------- story, scroll-scrubbed (html.anim, set in <head> only when motion is allowed) ----------
+   Only opacity is written per frame. The altered photograph is the one element that is ever
+   promoted (will-change while .live), and its raster is visibility: hidden while parked. */
+.anim .story-a { height: 300vh; height: 300svh; }
+.anim .story-b { height: 190vh; height: 190svh; }
+.anim .story .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; padding: 0; display: block; }
+.anim .story-a .frame { position: absolute; inset: 0; z-index: 0; margin: 0; }   /* z-index 0: each frame keeps its scrim and credit inside it */
+.anim .story-a .frame picture, .anim .story-a .frame img { width: 100%; height: 100%; }
+.anim .story-a .frame img { object-fit: cover; object-position: 50% 40%; }
+/* The scrim lives inside each frame, so it fades with its own photograph and nothing large ever
+   sits above the promoted one (an overlapping full-screen layer would be promoted with it). */
+.anim .story-a .frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .72) 82%, rgba(0, 0, 0, .86)); }
+.anim .story-a .frame figcaption { position: absolute; z-index: 2; left: var(--margin); right: var(--margin);
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px)); padding: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, .9); }
+.anim .story-a .line { position: absolute; z-index: 2; left: var(--margin); right: var(--margin); max-width: none;
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px)); padding: 0; text-shadow: 0 2px 18px rgba(0, 0, 0, .8); }
+.anim .story-a .f2, .anim .story-a .l1, .anim .story-a .l2 { opacity: 0; }
+.anim .story-a .f2 picture { visibility: hidden; }
+.anim .story-a .f2.live { will-change: opacity; }
+.anim .story-b .stage { display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 0 var(--margin); }
+.anim .story-b img { width: min(100%, 74vh, 760px); width: min(100%, 74svh, 760px); }
+.anim .story-b .mission, .anim .story-b .cap { opacity: 0; }
 
-  /* ---------- closing ---------- */
-  .closing {
-    position: relative;
-    min-height: 100vh; min-height: 100svh;
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center;
-    padding: calc(var(--rail-h) + 8px) 24px 28px;
-    overflow: hidden;
-  }
-  /* below 1024px the tab row drops into the band just under the letter
-     rail (see .tabs), so the closing starts below the pills: otherwise
-     they sit on top of the mission line. Must follow the rule above. */
-  @media (max-width: 1023px) {
-    .closing { padding-top: calc(var(--rail-h) + 44px); }
-  }
-  .closing .mosaic {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: .52;
-  }
-  .closing .veil {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(rgba(5,5,5,.88), rgba(5,5,5,.38) 30%, rgba(5,5,5,.44) 70%, rgba(5,5,5,.92));
-  }
-  .closing > * { position: relative; z-index: 2; }
+/* ---------- close ---------- */
+.close { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; padding-block: var(--section) 96px; }
+.close .body { margin-bottom: 32px; }
+.waitlist { background: var(--panel); border-radius: 20px; padding: 28px 20px 24px; border: 1px solid var(--line); }
+.waitlist h3 { font-weight: 600; font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.012em; }
+.waitlist > p { margin-top: 8px; color: var(--muted); font-size: 1rem; text-wrap: pretty; }
+.waitlist form { margin-top: 24px; }
+.waitlist .row { display: grid; gap: 8px; }
+.waitlist label { font-size: .9375rem; font-weight: 500; color: var(--ink); }
+.waitlist label .opt { font-weight: 400; color: var(--muted); }
+.field { display: block; width: 100%; margin: 0 0 12px; font: 400 1.0625rem/1.4 var(--sans); color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line-strong); border-radius: var(--r-field); padding: 14px 16px; min-height: 52px;
+  transition: border-color .15s ease, box-shadow .15s ease; }
+textarea.field { resize: vertical; min-height: 84px; }
+.field:hover { border-color: #7D8794; }
+.field:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.field[aria-invalid="true"] { border-color: var(--flag); box-shadow: 0 0 0 1px var(--flag); }
+.hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.submit { margin-top: 4px; min-height: 52px; border: 0; border-radius: var(--r-pill); background: var(--ink); color: var(--bg);
+  font: 600 1rem/1 var(--sans); padding: 0 26px; cursor: pointer; justify-self: start; transition: background-color .15s ease; }
+.submit:hover { background: #FFFFFF; }
+.submit:focus-visible { border-radius: var(--r-pill); }
+.submit[disabled] { opacity: .6; cursor: progress; }
+.status { margin-top: 16px; font-size: .9375rem; line-height: 1.5; font-weight: 400; display: flex; gap: 8px; align-items: flex-start; }
+.status:empty { margin: 0; }
+.status:focus { outline: none; }
+.status svg { width: 16px; height: 16px; margin-top: 4px; flex: none; }
+.status.ok { color: var(--green); }
+.status.err { color: var(--flag); }
+.status.preview { color: var(--ink); }
+.waitlist.done .row { display: none; }
+.waitlist.done .status { margin-top: 0; }
+.nojs { margin-top: 20px; color: var(--ink); font-weight: 400; }
+.sign { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); line-height: 1.3; color: var(--story-ink); padding-top: 8px; }
 
-  /* Under .anim the fixed #mosaic-layer plays the mosaic's role, so the
-     closing's own copy is hidden; it stays for the no-JS / reduced-motion
-     static page. The reveal is scrubbed from scroll position (no observer
-     latch) so scrolling back up plays it in reverse. */
-  .anim .closing .mosaic { display: none; }
-  .anim .closing [data-cl] { opacity: 0; }
+/* ---------- footer ---------- */
+.foot { border-top: 1px solid var(--line); padding: 32px 0 calc(48px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 20px;
+  font-size: var(--t-small); color: var(--muted); font-weight: 400; }
+.foot .brand { justify-self: start; }
+.foot .brand img { width: 26px; height: 21px; }
+.foot .wordmark { font-size: .875rem; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.foot nav a { color: var(--muted); text-decoration: none; padding: 6px 0; }
+.foot nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.legal { font-size: var(--t-micro); line-height: 1.45; }
 
-  .mission {
-    font-size: clamp(.72rem, 2.4vw, .95rem);
-    font-weight: 300;
-    letter-spacing: .42em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 2px;
-    padding-left: .42em; /* optically center the tracked text */
-  }
+/* ---------- phone (below 700) ---------- */
+@media (max-width: 699px) {
+  .top { height: 60px; }
+  .top nav .nav-how { display: none; }
+  .actions { flex-direction: column; align-items: stretch; gap: 18px; }
+  .actions .play, .close .play { width: 100%; }
+  .actions .textlink { align-self: flex-start; padding: 4px 0; }
+  .actions .ghost { align-self: flex-start; }
+  .hero { padding-bottom: 72px; }
+  .stack { aspect-ratio: 320 / 421; }
+  .stack .cap { width: 87.5%; height: 78.4%; }
+  .stack .rec { width: 90%; }
+  .hero-fig figcaption { margin-left: 12.5%; }
+  .submit { width: 100%; justify-self: stretch; }
+}
 
-  .closing .headline {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 400; font-style: italic;
-    font-size: clamp(2rem, 7vw, 3.6rem);
-    line-height: 1.25;
-    margin: auto 0 28px;
-    text-wrap: balance;
-  }
+/* ---------- desktop grid (1024 and up) ---------- */
+@media (min-width: 1024px) {
+  .hero { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: center;
+    padding-top: 40px; min-height: calc(100vh - 72px); min-height: calc(100svh - 72px); max-height: 1000px; }
+  .hero-copy { grid-column: 1 / span 7; }
+  .hero-fig { grid-column: 8 / span 5; }
 
-  .cta {
-    display: inline-block;
-    background: var(--ink); color: #0A0A0A;
-    font-family: "Lexend", sans-serif; font-weight: 600;
-    font-size: clamp(1rem, 3.4vw, 1.15rem);
-    text-decoration: none;
-    padding: 16px 42px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .cta:hover, .cta:focus-visible {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(244,241,236,.25);
-  }
+  .problem { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; }
+  .problem-copy { grid-column: 1 / span 6; position: sticky; top: 96px; }
+  .pair { grid-column: 7 / span 6; max-width: none; }
 
-  .quiet {
-    margin-top: 26px;
-    font-size: .9rem;
-    color: var(--muted);
-  }
-  .quiet span { display: block; }
-  .quiet .note {
-    margin-top: 10px;
-    font-size: .8rem;
-    max-width: 30em;
-    margin-left: auto; margin-right: auto;
-  }
+  .uses { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; }
+  .uses-head { grid-column: 1 / span 5; position: sticky; top: 96px; }
+  .uses-list { grid-column: 7 / span 6; gap: 44px; padding-top: 6px; }
 
-  /* ---------- Android download (closing) ----------
-     The secondary call to action: an outlined pill under the quiet lines,
-     a one-line spec, three short install steps. Static markup, so the
-     no-JS / reduced-motion page shows it like everything else. */
-  .android { margin-top: 34px; }
-  .android-meta, .steps, .android .quiet.note { text-shadow: 0 1px 10px rgba(0,0,0,.85); }
-  .cta.ghost {
-    background: transparent; color: var(--ink);
-    border: 1px solid rgba(244,241,236,.55);
-    font-weight: 400;
-    padding: 13px 34px;
-  }
-  .cta.ghost:hover, .cta.ghost:focus-visible { border-color: var(--ink); }
-  .android-meta {
-    margin-top: 12px;
-    font-size: .78rem; letter-spacing: .04em;
-    color: var(--muted);
-  }
-  .steps {
-    margin: 16px auto 0; padding-left: 1.4em;
-    max-width: 26em;
-    text-align: left;
-    font-size: .85rem; line-height: 1.6;
-    color: var(--muted);
-  }
-  .android .quiet.note { margin: 12px auto 0; font-size: .8rem; max-width: 30em; }
+  .how { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .how h2 { grid-column: 1 / span 6; }
+  .how .steps { grid-column: 1 / span 10; margin-top: 64px; gap: 36px; max-width: 27em; }
+  .how-note { grid-column: 1 / span 7; }
 
-  /* ---------- "test it yourself" demo (lives inside the closing) ----------
-     Markup is currently commented out in the body; these rules are inert
-     until it is enabled. See the ENABLE ME marker in the closing section. */
-  .demo {
-    width: 100%; max-width: 940px;
-    margin: 74px auto 8px;
-    text-align: left;
-  }
-  .demo h3 {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 400; font-style: italic;
-    font-size: clamp(1.5rem, 4.4vw, 2.2rem);
-    line-height: 1.3;
-    text-align: center;
-    text-wrap: balance;
-  }
-  .demo-lead {
-    margin: 12px auto 0;
-    max-width: 34em;
-    text-align: center;
-    font-size: .95rem;
-    color: var(--muted);
-  }
-  .demo-cards {
-    list-style: none;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 34px;
-  }
-  .demo-card {
-    display: flex; flex-direction: column;
-    padding: 14px 16px 18px;
-    border: 1px solid rgba(244,241,236,.14);
-    border-radius: 14px;
-    background: rgba(5,5,5,.58);
-  }
-  .demo-card img {
-    width: 100%; aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 8px;
-    background: rgba(244,241,236,.06);
-  }
-  .demo-card h4 {
-    margin-top: 14px;
-    font-weight: 600; font-size: .95rem; line-height: 1.4;
-  }
-  .demo-card p {
-    margin-top: 6px;
-    font-size: .84rem;
-    color: var(--muted);
-  }
-  .demo-card .verdict {
-    margin: 10px 0 18px;
-    font-size: .7rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink);
-    opacity: .82;
-  }
-  .demo-dl {
-    margin: auto 0 0; align-self: flex-start;
-    font-family: "Lexend", sans-serif; font-weight: 600;
-    font-size: .78rem; letter-spacing: .05em;
-    text-decoration: none;
-    padding: 9px 18px;
-    border: 1px solid rgba(244,241,236,.34);
-    border-radius: 999px;
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .demo-dl:hover, .demo-dl:focus-visible {
-    border-color: var(--ink);
-    transform: translateY(-2px);
-  }
-  .demo-steps {
-    margin: 32px auto 0;
-    max-width: 34em;
-    padding-left: 1.3em;
-    font-size: .9rem;
-    color: var(--muted);
-  }
-  .demo-steps li { margin-top: 5px; }
-  .demo-fineprint {
-    margin: 24px auto 0;
-    max-width: 42em;
-    font-size: .8rem;
-    text-align: center;
-    color: var(--muted);
-  }
-  @media (max-width: 780px) {
-    .demo { margin-top: 56px; }
-    .demo-cards { grid-template-columns: 1fr; }
-  }
+  .proof-in { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: center; }
+  .proof-copy { grid-column: 1 / span 6; }
+  .proof-fig { grid-column: 8 / span 5; }
+  .demo-cards { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
 
-  footer {
-    margin-top: auto;
-    padding-top: 40px;
-    font-size: .8rem;
-    color: var(--muted);
-  }
-  footer a { color: var(--muted); }
+  .story-a .stage { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 96px;
+    width: min(100% - 2 * var(--margin), 1280px); margin-inline: auto; padding-top: 96px; align-items: center; }
+  .story-a .f1, .story-a .f2 { grid-column: 1 / span 5; margin: 0; }
+  .story-a .frame img { border-radius: 4px; }
+  .story-a .frame figcaption { padding: 12px 0 0; }
+  .story-a .l1, .story-a .l2 { grid-column: 7 / span 6; padding: 0; }
+  .story-a .f1, .story-a .l1 { grid-row: 1; }
+  .story-a .f2, .story-a .l2 { grid-row: 2; }
+  .story-b .stage { padding-top: 96px; }
+
+  /* desktop scrub: the photographs are prints on the grid, not wallpaper (sources are 681 px wide) */
+  .anim .story-a .stage { width: auto; margin: 0; }
+  .anim .story-a .frame::after { display: none; }
+  .anim .story-a .frame { inset: auto; top: 8vh; top: 8svh; left: max(var(--margin), (100% - 1280px) / 2);
+    height: 84vh; height: 84svh; width: calc((84vh - 34px) * 681 / 1024); width: calc((84svh - 34px) * 681 / 1024); }
+  .anim .story-a .frame picture { height: calc(100% - 34px); }
+  .anim .story-a .frame figcaption { position: static; padding-top: 12px; text-shadow: none; }
+  .anim .story-a .line { top: 50%; bottom: auto; transform: translateY(-50%); text-shadow: none; max-width: 13em;
+    left: calc(max(var(--margin), (100% - 1280px) / 2) + (84vh - 34px) * 681 / 1024 + 8vw);
+    left: calc(max(var(--margin), (100% - 1280px) / 2) + (84svh - 34px) * 681 / 1024 + 8vw);
+    right: max(var(--margin), (100% - 1280px) / 2); }
+
+  .close { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; }
+  .close-copy { grid-column: 1 / span 6; }
+  .waitlist { grid-column: 8 / span 5; padding: 36px 36px 28px; }
+  .sign { grid-column: 1 / -1; }
+
+  .foot { grid-template-columns: auto 1fr auto; align-items: center; gap: 40px; }
+  .foot nav { justify-content: center; }
+}
+
+/* ?debug=1 HUD (created by the script only when asked for) */
+#debug-hud { position: fixed; left: 8px; bottom: 8px; z-index: 99; pointer-events: none; white-space: pre;
+  font: 11px/1.45 ui-monospace, Menlo, monospace; color: #7CFC9A; background: rgba(0, 0, 0, .78); padding: 6px 8px; border-radius: 4px; }
+
+@media (forced-colors: active) {
+  .play, .ghost, .submit, .tag { border: 1px solid ButtonText; }
+}
 </style>
 </head>
 <body>
-
-<h1 class="sr-only">RIALITI — keep what’s real, real.</h1>
-
-<div class="rail" aria-hidden="true">
-  <span class="slot">R</span><span class="slot">I</span><span class="slot">A</span><span class="slot">L</span><span class="slot">I</span><span class="slot">T</span><span class="slot">I</span>
-</div>
-
-<nav class="tabs" id="tabs" aria-label="Product">
-  <span class="tab-row">
-    <a class="tab" href="https://check.rialiti.io" target="_blank" rel="noopener">RIALITI Check</a>
-    <a class="tab" href="https://api.rialiti.io/download/android?src=rialiti-io"
-       aria-label="Download the RIALITI app for Android, version 0.8.2. An early alpha, about 24 MB, installed from this site rather than the Play Store.">
-      Android app <span class="badge">Alpha</span>
-    </a>
-  </span>
-  <span class="tab-note">Alpha build &middot; Android only &middot; direct download</span>
-</nav>
+<header class="top wrap">
+  <a class="brand" href="./" aria-label="RIALITI home">
+    <img src="assets/v2/icons/rialiti-mark.svg" width="34" height="28" alt="">
+    <span class="wordmark">RIALITI</span>
+  </a>
+  <nav aria-label="Main">
+    <a class="nav-how" href="#how">How it works</a>
+    <a href="https://check.rialiti.io">Check a photo</a>
+  </nav>
+</header>
 
 <main>
-  <section class="opening" id="opening">
-    <p class="thesis">Every photograph is a promise:<br>this happened.</p>
-    <div class="cue" aria-hidden="true">
-      <span class="cue-label">Scroll</span>
-      <span class="cue-chevron"></span>
+<section class="hero wrap" aria-labelledby="hero-h">
+  <div class="hero-copy">
+    <h1 id="hero-h">Prove your photo is real.</h1>
+    <p class="lead">Take it in the free RIALITI&nbsp;Capture app. Anyone can check it, even after WhatsApp.</p>
+    <div class="actions">
+      <a class="play" href="https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Drialiti.io" target="_blank" rel="noopener">Get it on Google Play</a>
+      <a class="textlink" href="https://check.rialiti.io">Check a photo for free</a>
     </div>
-  </section>
-
-  <section class="beat" id="beat-1">
-    <div class="stage">
-      <img class="photo" src="assets/beat1-first-steps.jpg" fetchpriority="high"
-           alt="A toddler in owl-print pants pulls herself upright against an armchair in a bright living room — first steps.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">R</span>
-      <h2 class="copy">Some moments happen once.</h2>
+    <p class="aside">Free on Android. On iPhone? <a class="inline-link" href="#iphone">Join the waitlist</a>.</p>
+  </div>
+  <figure class="hero-fig">
+    <div class="stack">
+      <picture class="cap">
+        <source type="image/webp" srcset="assets/v2/hero/capture-560.webp 560w, assets/v2/hero/capture-786.webp 786w" sizes="(min-width: 700px) 440px, 78vw">
+        <img src="assets/v2/hero/capture-786.jpg" srcset="assets/v2/hero/capture-560.jpg 560w, assets/v2/hero/capture-786.jpg 786w" sizes="(min-width: 700px) 440px, 78vw"
+             width="786" height="1048" fetchpriority="high"
+             alt="A blue die-cast toy car on a wooden table, photographed in the RIALITI Capture app.">
+      </picture>
+      <picture class="rec">
+        <source type="image/webp" srcset="assets/v2/hero/record-card-640.webp 640w, assets/v2/hero/record-card-967.webp 967w" sizes="(min-width: 700px) 400px, 80vw">
+        <img src="assets/v2/hero/record-card-967.png" srcset="assets/v2/hero/record-card-640.png 640w, assets/v2/hero/record-card-967.png 967w" sizes="(min-width: 700px) 400px, 80vw"
+             width="967" height="560"
+             alt="The app’s Verified capture panel for this photo. It shows the entry ra-e58e1b6d5bed4de9 and says anyone can check this capture at check.rialiti.io.">
+      </picture>
     </div>
-  </section>
+    <figcaption>A toy car, shot in RIALITI Capture on 21&nbsp;September&nbsp;2026. <a class="inline-link" href="https://check.rialiti.io/e/ra-e58e1b6d5bed4de9">Open its public record</a></figcaption>
+  </figure>
+</section>
 
-  <section class="beat" id="beat-2">
-    <div class="stage">
-      <img class="photo" src="assets/beat2-earthrise.jpg" decoding="async"
-           alt="Earthrise: the Earth rising over the Moon’s horizon, photographed by the crew of Apollo 8 on 24 December 1968.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">I</span>
-      <h2 class="copy">Some changed how we see everything.</h2>
-    </div>
-  </section>
-
-  <section class="beat" id="beat-3">
-    <div class="stage">
-      <img class="photo" src="assets/beat3-embrace.jpg" decoding="async"
-           alt="A bride and groom embrace on a cliff edge above deep teal water, her arm around his neck, wind lifting her hair.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">A</span>
-      <h2 class="copy">Some we promise to keep.</h2>
-    </div>
-  </section>
-
-  <section class="beat" id="beat-4">
-    <div class="stage">
-      <img class="photo" src="assets/beat4-portrait.jpg" decoding="async"
-           alt="A framed portrait of an elderly woman on the mantel of an Iowa farmhouse, photographed on film in 1936.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">L</span>
-      <h2 class="copy">Some are all that’s left of someone.</h2>
-    </div>
-  </section>
-
-  <section class="beat" id="beat-5">
-    <div class="stage">
-      <img class="photo" src="assets/beat5-turn.jpg" decoding="async"
-           alt="The same photograph of the toddler’s first steps, deliberately altered: the colour is drained, fragments repeat, and the child has too many feet. This version of the moment never happened.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">I</span>
-      <h2 class="copy">And soon — some will never have happened at all.</h2>
-    </div>
-  </section>
-
-  <section class="beat short" id="beat-6">
-    <div class="stage">
-      <img class="photo" src="assets/beat6-proof.jpg" decoding="async"
-           alt="East Boston, 1973: Matthew Vieira holds up two small faded prints of his children, photographed decades earlier in the park where he stands — the park itself is now gone.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">T</span>
-      <h2 class="copy">Real moments deserve proof.</h2>
-    </div>
-  </section>
-
-  <section class="beat short" id="beat-7">
-    <div class="stage">
-      <img class="photo" src="assets/beat7-bluemarble.jpg" decoding="async"
-           alt="The Blue Marble: the whole Earth — ocean, Africa, Antarctica under swirling cloud — photographed by the crew of Apollo 17 on 7 December 1972.">
-      <div class="scrim"></div>
-      <span class="beat-letter" aria-hidden="true">I</span>
-    </div>
-  </section>
-
-  <section class="closing" id="closing">
-    <img class="mosaic" src="assets/mosaic.jpg" loading="lazy" decoding="async" alt="" aria-hidden="true">
-    <div class="veil"></div>
-    <p class="mission" data-cl="mission">To protect what’s human</p>
-    <h2 class="headline" data-cl="headline">Keep what’s real, real.</h2>
-    <div data-cl="block">
-      <a class="cta" id="signup" href="mailto:academicnair.009@gmail.com?subject=RIALITI%20early%20access">Get early access</a>
-      <p class="quiet">
-        <span>Every photograph on this page is real.</span>
-        <span>Verification will always be free.</span>
-      </p>
-      <div class="android" id="android">
-        <a class="cta ghost" href="https://api.rialiti.io/download/android?src=rialiti-io">Download for Android</a>
-        <p class="android-meta">Version 0.8.2 &middot; about 24 MB &middot; Android 9 or newer</p>
-        <ol class="steps">
-          <li>Tap the button above. The download starts right away.</li>
-          <li>Open the file when it finishes. If Android asks, let your browser install apps.</li>
-          <li>Tap Install, then open RIALITI.</li>
-        </ol>
-        <p class="quiet note">The app is an early alpha. It comes from this site rather than the Play Store, so Android will warn you about unknown apps before it lets you continue.</p>
-        <p class="quiet note">Already have RIALITI from Google Play? This file will not install over it, so keep using that one.</p>
+<section class="sec problem wrap" aria-labelledby="problem-h">
+  <div class="problem-copy">
+    <h2 id="problem-h">Photos used to be proof. Now anyone can make one.</h2>
+    <p class="body">A listing photo. A damage photo. A photo of the watch you’re about to pay for. Looking real no longer means it is.</p>
+  </div>
+  <figure class="pair">
+    <div>
+      <picture>
+        <source type="image/webp" srcset="assets/v2/problem/car-edited-400.webp 400w, assets/v2/problem/car-edited-785.webp 785w" sizes="(min-width: 1024px) 628px, (min-width: 700px) 600px, 89vw">
+        <img src="assets/v2/problem/car-edited-785.jpg" srcset="assets/v2/problem/car-edited-400.jpg 400w, assets/v2/problem/car-edited-785.jpg 785w" sizes="(min-width: 1024px) 628px, (min-width: 700px) 600px, 89vw"
+             width="785" height="470" loading="lazy" decoding="async"
+             alt="The same toy car photo, edited by us so it looks newer: the racing decals, number and scuffs are gone.">
+      </picture>
+      <div class="pair-meta">
+        <p class="tag tag-edited"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Edited</p>
+        <p class="pc">Made by us, by hand, from the original below.</p>
       </div>
+    </div>
+    <div>
+      <picture>
+        <source type="image/webp" srcset="assets/v2/problem/car-real-400.webp 400w, assets/v2/problem/car-real-785.webp 785w" sizes="(min-width: 1024px) 628px, (min-width: 700px) 600px, 89vw">
+        <img src="assets/v2/problem/car-real-785.jpg" srcset="assets/v2/problem/car-real-400.jpg 400w, assets/v2/problem/car-real-785.jpg 785w" sizes="(min-width: 1024px) 628px, (min-width: 700px) 600px, 89vw"
+             width="785" height="470" loading="lazy" decoding="async"
+             alt="The original capture of the toy car, with its racing decals, number and scuffs.">
+      </picture>
+      <div class="pair-meta">
+        <p class="tag tag-real"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Real capture</p>
+        <p class="pc">The original. It has a public record.</p>
+      </div>
+    </div>
+    <figcaption>Both look real. Only one can prove it.</figcaption>
+  </figure>
+</section>
+
+<!-- Use cases are not links until their guides exist. When a guide ships, wrap that h3's
+     text in a link to its reserved path (/guides/used-cars/, /guides/watches-and-phones/,
+     /guides/online-sellers/, /guides/rentals/, /guides/pets/, /guides/insurance-and-disputes/)
+     and add the guide to sitemap.xml. -->
+<section class="sec uses wrap" aria-labelledby="uses-h">
+  <div class="uses-head">
+    <h2 id="uses-h">For any photo that has to be believed.</h2>
+    <p class="body">Shoot it in RIALITI and send it anywhere. Anyone can check it.</p>
+  </div>
+  <ul class="uses-list">
+    <li><h3>Selling a used car</h3><p>Show the real dents and the real mileage, as they are today.</p></li>
+    <li><h3>Watches and phones</h3><p>Prove you have it in hand, not a photo you found.</p></li>
+    <li><h3>Shopify and marketplace sellers</h3><p>Product photos buyers can check for themselves.</p></li>
+    <li><h3>Renting out or moving out</h3><p>A dated record of the condition, before and after.</p></li>
+    <li><h3>Pets and rehoming</h3><p>Show buyers a real animal, photographed today.</p></li>
+    <li><h3>Insurance, disputes, reporting</h3><p>Show when the photo was taken, and that it’s unedited.</p></li>
+  </ul>
+</section>
+
+<section class="sec how wrap" id="how" aria-labelledby="how-h">
+  <h2 id="how-h">Three steps. No account.</h2>
+  <ol class="steps">
+    <li>Take the photo in the free RIALITI Capture app.</li>
+    <li>Send it anywhere. WhatsApp, a listing, an email.</li>
+    <li>Anyone checks it free at <a href="https://check.rialiti.io">check.rialiti.io</a>.</li>
+  </ol>
+  <p class="how-note">An edited photo or an AI image traces back to nothing.</p>
+</section>
+
+<section class="proof" id="proof" aria-labelledby="proof-h">
+  <div class="wrap">
+    <div class="proof-in">
+      <div class="proof-copy">
+        <h2 id="proof-h">Don’t trust us. Check it yourself.</h2>
+        <p class="body">The toy car at the top of this page has a public record. Open it on RIALITI Check and read it for yourself.</p>
+        <div class="actions">
+          <a class="ghost" href="https://check.rialiti.io/e/ra-e58e1b6d5bed4de9">Open the car’s record</a>
+          <a class="textlink" href="https://check.rialiti.io">Check a photo of your own</a>
+        </div>
+        <p class="fine">RIALITI checks where a file came from, not whether it looks real.</p>
+      </div>
+      <figure class="proof-fig">
+        <picture>
+          <source type="image/webp" srcset="assets/v2/proof/check-record-362.webp 362w, assets/v2/proof/check-record-724.webp 724w" sizes="362px">
+          <img src="assets/v2/proof/check-record-724.png" width="724" height="1138" loading="lazy" decoding="async"
+               alt="RIALITI Check showing this record: Verified attested capture, Tier 1, captured 21 September 2026 at 04:20 UTC, match ratio 100 percent.">
+        </picture>
+        <figcaption>RIALITI Check, opened on 28 October 2026.</figcaption>
+      </figure>
     </div>
 
     <!-- ==============================================================
-         DEMO SECTION ("test it yourself") — SWITCHED OFF.
-         Its three image files do not exist yet, and a visible section
-         with dead download links would be worse than no section.
+         DEMO ("test it yourself"): BUILT, SWITCHED OFF.
+         Its files do not exist yet, and a section with dead downloads
+         would be worse than no section. Never fabricate the WhatsApp copy.
 
-         TO TURN IT ON, once assets/demo/ holds the three files named in
-         assets/demo/README.md: delete the two marker lines below (the one
-         just after this note, which opens the comment, and the matching
-         one just before the footer, which closes it). Then replace the
-         three TODO alt texts with honest descriptions of the photograph.
-         Nothing else needs changing: the styles, the layout and the
-         scroll reveal (keyed on data-cl="demo") are already wired.
+         TO TURN IT ON, once assets/demo/ holds the files named in
+         assets/demo/README.md and their verdicts are confirmed on
+         check.rialiti.io: delete the two marker lines below (the one just
+         after this note, which opens the comment, and the matching one
+         that closes it), then replace the TODO alt text. For the two-file
+         version, follow the README (drop the AI card and the fine print,
+         swap the lead). The styles are already in the stylesheet.
          ============================================================== -->
-
     <!-- ENABLE ME BY DELETING THIS LINE
-    <section class="demo" data-cl="demo" aria-labelledby="demo-h">
-      <h3 id="demo-h">Don’t trust us. Test it yourself.</h3>
-      <p class="demo-lead">
-        One real photograph, three files. Download them, put each one through
-        RIALITI Check, and read the answers yourself.
-      </p>
-
-      <ol class="demo-cards">
+    <div class="demo" id="demo">
+      <h3>Try it with the files.</h3>
+      <p class="demo-lead">Download a real capture, the copy WhatsApp gave back, and an AI recreation. Put each through RIALITI Check and compare the answers.</p>
+      <ul class="demo-cards">
         <li class="demo-card">
-          <img src="assets/demo/original-capture.jpg" loading="lazy" decoding="async"
-               alt="TODO: honest description of the original photograph.">
+          <img src="assets/demo/original-capture.jpg" width="800" height="600" loading="lazy" decoding="async"
+               alt="TODO by founder: honest description of the photograph.">
           <h4>The original capture</h4>
-          <p>The photograph as the camera recorded it, exactly as it was archived.</p>
+          <p>The photo as the camera recorded it, exactly as it was archived.</p>
           <p class="verdict">Should match its archived capture</p>
-          <a class="demo-dl" href="assets/demo/original-capture.jpg" download>Download</a>
+          <a class="ghost" href="assets/demo/original-capture.jpg" download>Download the original</a>
         </li>
         <li class="demo-card">
-          <img src="assets/demo/whatsapp-compressed.jpg" loading="lazy" decoding="async"
-               alt="TODO: the same photograph after being sent through WhatsApp; visibly softer and smaller.">
+          <img src="assets/demo/whatsapp-compressed.jpg" width="800" height="600" loading="lazy" decoding="async"
+               alt="The same photograph after a real WhatsApp send. It is smaller and softer.">
           <h4>The same photo, sent through WhatsApp</h4>
-          <p>Resized and re&#8209;compressed on the way, the way every shared photo is.</p>
+          <p>Resized and recompressed on the way, the way every shared photo is.</p>
           <p class="verdict">Still matches the same capture</p>
-          <a class="demo-dl" href="assets/demo/whatsapp-compressed.jpg" download>Download</a>
+          <a class="ghost" href="assets/demo/whatsapp-compressed.jpg" download>Download the WhatsApp copy</a>
         </li>
-        <li class="demo-card">
-          <img src="assets/demo/ai-recreation.jpg" loading="lazy" decoding="async"
-               alt="TODO: an AI generated recreation of the same scene, near identical to the eye. This image is not a photograph.">
+        <li class="demo-card demo-ai">
+          <img src="assets/demo/ai-recreation.jpg" width="800" height="600" loading="lazy" decoding="async"
+               alt="An AI generated recreation of the same scene. This image is not a photograph.">
           <h4>An AI recreation</h4>
-          <p>Generated to look like the same moment, pixel for pixel. No camera ever recorded it.</p>
+          <p>Generated to look like the same moment. No camera ever recorded it.</p>
           <p class="verdict">Matches no capture at all</p>
-          <a class="demo-dl" href="assets/demo/ai-recreation.jpg" download>Download</a>
+          <a class="ghost" href="assets/demo/ai-recreation.jpg" download>Download the AI recreation</a>
         </li>
-      </ol>
-
-      <ol class="demo-steps">
-        <li>Download all three files.</li>
-        <li>Open <a href="https://check.rialiti.io" target="_blank" rel="noopener">RIALITI Check</a>.</li>
-        <li>Upload them one at a time.</li>
-        <li>Compare what it tells you about each one.</li>
-      </ol>
-
-      <p class="demo-fineprint">
-        RIALITI checks where a file came from, not whether it looks real. The
-        compressed copy still traces back to the capture it came from; the
-        recreation traces back to nothing, because nothing was ever captured.
-        That is not a general test for AI imagery. The recreation is the only
-        image on this whole site that is not a photograph, and it is here to
-        be caught.
-      </p>
-    </section>
+      </ul>
+      <p class="demo-fine">The recreation is the only image on this site that is not a photograph. It is here so you can see it trace back to nothing.</p>
+    </div>
     ENABLE ME BY DELETING THIS LINE -->
+  </div>
+</section>
 
-    <footer data-cl="footer">
-      © 2026 RIALITI &nbsp;·&nbsp; rialiti.io &nbsp;·&nbsp; <a href="CREDITS.md">photograph credits</a>
-    </footer>
-  </section>
+<section class="story" id="why" aria-labelledby="why-h">
+  <h2 id="why-h" class="sr-only">Why RIALITI exists</h2>
+  <div class="story-a">
+    <div class="stage">
+      <figure class="frame f1">
+        <picture>
+          <source type="image/webp" srcset="assets/v2/story/first-steps-681.webp">
+          <img src="assets/v2/story/first-steps-681.jpg" width="681" height="1024" loading="lazy" decoding="async"
+               alt="A toddler in owl-print pants pulls herself upright against an armchair in a bright living room, taking her first steps.">
+        </picture>
+        <figcaption>First Steps #6 by FDWR. CC BY 2.0.</figcaption>
+      </figure>
+      <p class="line l1">Some moments happen once.</p>
+      <figure class="frame f2">
+        <picture>
+          <source type="image/webp" srcset="assets/v2/story/turn-681.webp">
+          <img src="assets/v2/story/turn-681.jpg" width="681" height="1024" loading="lazy" decoding="async"
+               alt="The same photograph of the toddler’s first steps, deliberately altered by us: the color is drained, fragments repeat, and the child has too many feet. This version of the moment never happened.">
+        </picture>
+        <figcaption>The same photograph, altered by us. This version never happened.</figcaption>
+      </figure>
+      <p class="line l2">And soon, some will never have happened at all.</p>
+    </div>
+  </div>
+  <div class="story-b">
+    <div class="stage">
+      <picture>
+        <source type="image/webp" srcset="assets/v2/story/blue-marble-760.webp 760w, assets/v2/story/blue-marble-1200.webp 1200w" sizes="(min-width: 1024px) 680px, 100vw">
+        <img src="assets/v2/story/blue-marble-760.jpg" srcset="assets/v2/story/blue-marble-760.jpg 760w, assets/v2/story/blue-marble-1200.jpg 1200w" sizes="(min-width: 1024px) 680px, 100vw"
+             width="1200" height="1200" loading="lazy" decoding="async"
+             alt="The Blue Marble: the whole Earth, with ocean, Africa and Antarctica under swirling cloud, photographed by the crew of Apollo 17 on 7 December 1972.">
+      </picture>
+      <p class="mission">To Protect What’s Human</p>
+      <p class="cap">The Blue Marble. Apollo 17, 7 December 1972. NASA.</p>
+    </div>
+  </div>
+  <div class="story-end wrap">
+    <p class="coda">Real moments deserve proof.</p>
+    <p class="ethos">Every photograph on this page is real. The two we altered say so. <a href="CREDITS.md">Photograph credits</a></p>
+  </div>
+</section>
+
+<section class="close wrap" id="get" aria-labelledby="get-h">
+  <div class="close-copy">
+    <h2 id="get-h">Keep what’s real, real.</h2>
+    <p class="body">Free on Android. Verification will always be free.</p>
+    <a class="play" href="https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Drialiti.io" target="_blank" rel="noopener">Get it on Google Play</a>
+  </div>
+  <div class="waitlist" id="iphone">
+    <h3 id="iphone-h">Not on iPhone yet.</h3>
+    <p>Leave your email and we’ll tell you when it is. We won’t use it for anything else.</p>
+    <!-- WAITLIST (2 of 3): once the Apps Script is deployed, add action="<the /exec URL>" here so
+         the form also works without JavaScript (the script answers reply=html with a small page). -->
+    <form id="wl" method="post" novalidate aria-labelledby="iphone-h">
+      <div class="row">
+        <label for="wl-email">Email</label>
+        <input class="field" id="wl-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" spellcheck="false" aria-describedby="wl-status">
+        <label for="wl-use">What will you use it for? <span class="opt">Optional</span></label>
+        <textarea class="field" id="wl-use" name="use_for" rows="2" maxlength="500"></textarea>
+        <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="source" value="rialiti.io-home">
+        <input type="hidden" name="reply" value="html">
+        <button class="submit" type="submit">Join the iPhone waitlist</button>
+      </div>
+      <p class="status" id="wl-status" role="status" aria-live="polite" tabindex="-1"></p>
+    </form>
+    <noscript><p class="nojs">The iPhone waitlist opens soon.</p></noscript>
+  </div>
+  <p class="sign">To Protect What’s Human</p>
+</section>
 </main>
 
+<footer class="foot wrap">
+  <a class="brand" href="./" aria-label="RIALITI home"><img src="assets/v2/icons/rialiti-mark.svg" width="26" height="21" alt=""><span class="wordmark">RIALITI</span></a>
+  <nav aria-label="Footer">
+    <a href="https://check.rialiti.io">RIALITI Check</a>
+    <a href="privacy/">Privacy</a>
+    <a href="CREDITS.md">Photograph credits</a>
+    <a href="mailto:founders@rialiti.io">founders@rialiti.io</a>
+  </nav>
+  <p class="legal">© 2026 RIALITI. Google Play is a trademark of Google LLC.</p>
+</footer>
+
 <script>
+/* WAITLIST (3 of 3): paste the Apps Script /exec URL between the quotes
+   (docs/design/2026-10-28-v2/waitlist-apps-script.gs has the deploy steps).
+   Empty means preview mode: the form validates, then says honestly that nothing was sent. */
+var WAITLIST_URL = "";
+
+/* ============================== PURE SCROLL MODEL ==============================
+   Every animated value is a pure function of (scrollY, layout). No observers, no
+   latches, no one-shot triggers: scrolling up retraces exactly. The block between
+   the two PURE SCROLL MODEL markers is extracted and executed headlessly by
+   scripts/verify_story.mjs. Keep the markers and keep it free of DOM access. */
+function smooth(x, a, b) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
+function clamp01(x) { return Math.min(1, Math.max(0, x)); }
+/* g = { aTop, aH, bTop, bH, stageH } measured from layout (never from scroll). */
+function storyFrame(y, g) {
+  var pa = clamp01((y - g.aTop) / Math.max(1, g.aH - g.stageH));
+  var pb = clamp01((y - g.bTop) / Math.max(1, g.bH - g.stageH));
+  return {
+    pa: pa, pb: pb,
+    l1: smooth(pa, .04, .16) * (1 - smooth(pa, .40, .48)),   /* "Some moments happen once." */
+    cap1: 1 - smooth(pa, .40, .47),                          /* credit under the real photo */
+    turn: smooth(pa, .48, .64),                              /* the altered photograph */
+    cap2: smooth(pa, .60, .68),                              /* "The same photograph, altered by us." */
+    l2: smooth(pa, .66, .78),                                /* "And soon, some will never ..." */
+    mission: smooth(pb, .16, .40),                           /* "To Protect What's Human" */
+    turnLive: pa > .44 && pa < .68                           /* will-change only while moving */
+  };
+}
+/* ============================ END PURE SCROLL MODEL ============================ */
+
+/* ---------- story: applies the model to the DOM ---------- */
 (function () {
   "use strict";
+  var root = document.documentElement;
+  var A = document.querySelector(".story-a"), B = document.querySelector(".story-b");
+  if (!A || !B) return;
+  var stage = A.querySelector(".stage");
+  var f2 = A.querySelector(".f2"), f2pic = f2.querySelector("picture");
+  var els = {
+    l1: A.querySelector(".l1"), turn: f2, cap1: A.querySelector(".f1 figcaption"),
+    cap2: f2.querySelector("figcaption"), l2: A.querySelector(".l2"),
+    mission: B.querySelector(".mission"), mcap: B.querySelector(".cap")
+  };
+  var g = null, last = {}, queued = false, on = false, hud = null;
+  var motion = window.matchMedia ? matchMedia("(prefers-reduced-motion: reduce)") : null;
 
-  /* Signup link: use the Google Form once provided, else keep mailto. */
-  var signup = document.getElementById("signup");
-  if (SIGNUP_URL && SIGNUP_URL !== "GOOGLE_FORM_URL_HERE") {
-    signup.href = SIGNUP_URL;
-    signup.target = "_blank";
-    signup.rel = "noopener";
-  }
-
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) return; // static page is complete as-is
-
-  document.documentElement.classList.add("anim");
-
-  /* ---- mosaic grid geometry — MUST match scripts/build_mosaic.py ---- */
-  var MOSAIC_W = 2016, MOSAIC_H = 1296, MOSAIC_TILE = 72;
-  /* (col,row) landing cell for each hero photo. build_mosaic.py bakes these
-     seven cells dark so each photograph flies in and fills its empty slot. */
-  var HERO_CELLS = [[12, 4], [16, 6], [13, 8], [15, 10], [12, 12], [10, 7], [17, 9]];
-
-  var LETTERS = ["R", "I", "A", "L", "I", "T", "I"];
-  var beats = LETTERS.map(function (_, i) {
-    return document.getElementById("beat-" + (i + 1));
-  });
-  var stages = beats.map(function (b) { return b.querySelector(".stage"); });
-  var scrims = beats.map(function (b) { return b.querySelector(".scrim"); });
-  var copies = beats.map(function (b) { return b.querySelector(".copy"); });
-  var slots = Array.prototype.slice.call(document.querySelectorAll(".rail .slot"));
-  var tabs = document.getElementById("tabs");
-  var closing = document.getElementById("closing");
-  /* closing reveal elements are addressed by NAME, not by index, so the
-     optional demo section can appear/disappear without shifting anything */
-  var clEls = {};
-  ["mission", "headline", "block", "demo", "footer"].forEach(function (k) {
-    clEls[k] = closing.querySelector('[data-cl="' + k + '"]');
-  });
-
-  /* ---- fixed background layers, painted behind all in-flow content ---- */
-  var mosaicLayer = document.createElement("div");
-  mosaicLayer.id = "mosaic-layer";
-  mosaicLayer.setAttribute("aria-hidden", "true");
-  var mosaicImg = document.createElement("img");
-  mosaicImg.src = "assets/mosaic.jpg";
-  mosaicImg.alt = "";
-  mosaicImg.decoding = "async";
-  mosaicLayer.appendChild(mosaicImg);
-
-  var photoLayer = document.createElement("div");
-  photoLayer.id = "photo-layer";
-  var wraps = [], imgs = [];
-  for (var bi = 0; bi < 7; bi++) {
-    var photo = beats[bi].querySelector("img.photo");
-    var wrap = document.createElement("div");
-    wrap.className = "photo-wrap";
-    wrap.appendChild(photo); // move the real node — no duplicate decode
-    photoLayer.appendChild(wrap);
-    wraps.push(wrap);
-    imgs.push(photo);
-  }
-  document.body.insertBefore(mosaicLayer, document.body.firstChild);
-  document.body.insertBefore(photoLayer, mosaicLayer.nextSibling);
-
-  /* One fixed "flying" letter per beat. */
-  var flies = LETTERS.map(function (ch) {
-    var el = document.createElement("span");
-    el.className = "fly";
-    el.textContent = ch;
-    el.setAttribute("aria-hidden", "true");
-    document.body.appendChild(el);
-    return el;
-  });
-
-  /* ---- ?debug=1 — on-device ground-truth HUD (zero cost when absent) ---- */
-  var dbg = null;
-  if (/[?&]debug=1\b/.test(location.search)) {
-    dbg = document.createElement("pre");
-    dbg.id = "debug-hud";
-    dbg.setAttribute("aria-hidden", "true");
-    document.body.appendChild(dbg);
-  }
-
-  /* ---- style writer that skips unchanged values ---- */
-  function st(el, prop, val) {
-    var c = el.__st || (el.__st = {});
-    if (c[prop] !== val) { c[prop] = val; el.style[prop] = val; }
-  }
-
-  /* ---- metrics: measured once (and on resize), read every frame ---- */
-  var m = { vw: 0, vh: 0, cells: [], slots: [],
-            flyW: [], flyH: [], endScale: 1, stageH: [] };
-
+  function hasAnim() { return /(^|\s)anim(\s|$)/.test(root.className); }
   function measure() {
-    m.vw = window.innerWidth;
-    m.vh = window.innerHeight;
-    var i;
-    for (i = 0; i < wraps.length; i++) {
-      wraps[i].style.width = m.vw + "px";
-      wraps[i].style.height = m.vh + "px";
-    }
-    /* on-screen rect of each landing cell, replicating object-fit: cover */
-    var sc = Math.max(m.vw / MOSAIC_W, m.vh / MOSAIC_H);
-    var dx = (m.vw - MOSAIC_W * sc) / 2, dy = (m.vh - MOSAIC_H * sc) / 2;
-    m.cells = HERO_CELLS.map(function (cr) {
-      return { x: dx + cr[0] * MOSAIC_TILE * sc,
-               y: dy + cr[1] * MOSAIC_TILE * sc,
-               s: MOSAIC_TILE * sc };
-    });
-    slots.forEach(function (s) { st(s, "transform", "none"); });
-    m.slots = slots.map(function (s) {
-      var r = s.getBoundingClientRect(); // rail is fixed → viewport coords
-      return { left: r.left, top: r.top };
-    });
-    flies.forEach(function (f, j) {
-      st(f, "transform", "none");
-      m.flyW[j] = f.offsetWidth;
-      m.flyH[j] = f.offsetHeight;
-    });
-    var slotFont = parseFloat(getComputedStyle(slots[0]).fontSize);
-    var bigFont = parseFloat(getComputedStyle(flies[0]).fontSize);
-    m.endScale = slotFont / bigFont;
-    m.stageH = stages.map(function (s) { return s.offsetHeight; });
+    var y = window.pageYOffset;
+    g = { aTop: A.getBoundingClientRect().top + y, aH: A.offsetHeight,
+          bTop: B.getBoundingClientRect().top + y, bH: B.offsetHeight, stageH: stage.offsetHeight };
+  }
+  function set(key, v) {
+    v = Math.round(v * 1000) / 1000;
+    if (last[key] !== v) { els[key].style.opacity = v; last[key] = v; }
+  }
+  function apply() {
+    queued = false;
+    if (!on) return;
+    var y = window.pageYOffset;
+    /* More than a screen away from both sections: nothing to write. */
+    if (y < g.aTop - g.stageH || y > g.bTop + g.bH) { if (hud) paintHud(null, y); return; }
+    var f = storyFrame(y, g);
+    set("l1", f.l1); set("cap1", f.cap1); set("turn", f.turn); set("cap2", f.cap2); set("l2", f.l2);
+    set("mission", f.mission); set("mcap", f.mission);
+    var shown = f.turn > 0;   /* parked altered photograph: its raster leaves the render tree */
+    if (last.shown !== shown) { f2pic.style.visibility = shown ? "visible" : "hidden"; last.shown = shown; }
+    if (last.live !== f.turnLive) { f2.classList.toggle("live", f.turnLive); last.live = f.turnLive; }
+    if (hud) paintHud(f, y);
+  }
+  function onScroll() { if (!queued) { queued = true; requestAnimationFrame(apply); } }
+  function onLayout() { if (on) { measure(); last = {}; onScroll(); } }
+
+  function enable() {
+    if (!hasAnim()) root.className += " anim";
+    on = true; last = {}; measure(); apply();
+  }
+  function disable() {
+    on = false;
+    root.className = root.className.replace(/(^|\s)anim(?=\s|$)/g, "");
+    for (var k in els) els[k].style.opacity = "";
+    f2pic.style.visibility = ""; f2.classList.remove("live"); last = {};
   }
 
-/* ==== PURE SCROLL MODEL — every animated value on the page is computed
-   here as a pure function of section positions. No latched state, no
-   one-shot triggers: scrolling up retraces the exact same states.
-   This block is extracted and executed headlessly by
-   scripts/verify_scroll.mjs — keep it self-contained. ==== */
-  function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
-  function clampR(x, a, b) { return x < a ? a : x > b ? b : x; }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function smooth(p, a, b) { var t = clamp01((p - a) / (b - a)); return t * t * (3 - 2 * t); }
-  function easeInOut(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
-
-  /* tops[i]/secH[i]: viewport-relative top and height of the 7 beat
-     sections; ctop: closing section top; m: measured metrics. */
-  function computeFrame(tops, secH, ctop, m) {
-    var i, p = [], e = [];
-    for (i = 0; i < 7; i++) {
-      /* pin progress: 0→1 while the stage is stuck; exit progress: 0→1
-         while the finished stage travels off and the next one rises. */
-      var pin = Math.max(1, secH[i] - m.stageH[i]);
-      p.push(clamp01(-tops[i] / pin));
-      e.push(clamp01((-tops[i] - pin) / m.stageH[i]));
-    }
-    var cp = clamp01((m.vh - ctop) / m.vh); // closing entry progress
-
-    /* mosaic layer: absent above the story, very faint during beats,
-       breathes up during each hand-off, full for the finale. Every beat
-       now carries a photograph, so there is no imageless "hold" — the
-       waiting opacity is the 0.06 baseline plus the transition breaths;
-       beat 7's flight coincides exactly with the closing's entry, so the
-       cp ramp carries the mosaic to full as the last photo lands.
-       max() of pure ramps keeps it scrub-exact. */
-    var en0 = clamp01((m.vh - tops[0]) / m.vh);
-    var Mraw = 0.06;
-    for (i = 0; i < 6; i++) Mraw = Math.max(Mraw, lerp(0.06, 0.30, Math.sin(Math.PI * e[i])));
-    var M = Mraw * smooth(en0, 0, 1); // gate: fully absent above the story
-    M = Math.max(M, 0.62 * smooth(cp, 0.05, 0.8));
-    var tileOp = Math.min(1, M * 2.2); // landed heroes read a touch brighter
-
-    var photos = [];
-    for (i = 0; i < 7; i++) {
-      var cell = m.cells[i], ph;
-      if (e[i] <= 0) {
-        /* entering (slides up from below as a viewport card) or holding
-           fullscreen while its beat is pinned */
-        var shift = clampR(tops[i], 0, m.vh);
-        ph = { x: 0, y: shift, sx: 1, sy: 1,
-               op: shift >= m.vh ? 0 : 1, sat: 1 };
-      } else {
-        /* the flight: fullscreen → its darkened mosaic cell. The wrapper
-           scales non-uniformly toward the square cell; kx/ky below keep
-           the image's net transform uniform (never distorted). */
-        var t = easeInOut(e[i]);
-        ph = { x: lerp(0, cell.x, t),
-               y: lerp(0, cell.y, t),
-               sx: lerp(1, cell.s / m.vw, t),
-               sy: lerp(1, cell.s / m.vh, t),
-               op: lerp(1, tileOp, Math.pow(t, 1.35)),
-               sat: lerp(1, 0.8, smooth(t, 0.45, 1)) };
-      }
-      var u = Math.max(ph.sx, ph.sy);
-      var kb = 1.05 - 0.05 * smooth(p[i], 0, 0.6); // subtle settle while pinned
-      ph.kx = (u / ph.sx) * kb;
-      ph.ky = (u / ph.sy) * kb;
-      ph.live = tops[i] < m.vh && e[i] < 1;        // promote only while moving
-      photos.push(ph);
-    }
-
-    var scrimOp = [], copy = [], fly = [], slot = [];
-    for (i = 0; i < 7; i++) {
-      /* the outgoing scrim lifts as its photo departs, unveiling the
-         mosaic beneath */
-      scrimOp.push(1 - smooth(e[i], 0.15, 0.85));
-      var cin = smooth(p[i], 0.1, 0.3);
-      copy.push({ op: cin * (1 - smooth(p[i], 0.72, 0.9)), ty: 24 * (1 - cin) });
-      /* rail slot fades in exactly as the flown letter fades out — the two
-         glyphs overlap at identical position/size, so the swap is a pure
-         crossfade and reverses cleanly */
-      var so = smooth(p[i], 0.90, 0.95);
-      slot.push({ op: so, sc: 1.22 - 0.22 * smooth(p[i], 0.90, 0.99) });
-      var tf = easeInOut(smooth(p[i], 0.5, 0.9));
-      var x0 = (m.vw - m.flyW[i]) / 2, y0 = m.vh * 0.38 - m.flyH[i] / 2;
-      fly.push({ op: smooth(p[i], 0.04, 0.16) * (1 - so),
-                 x: x0 + (m.slots[i].left - x0) * tf,
-                 y: y0 + (m.slots[i].top - y0) * tf,
-                 s: 1 + (m.endScale - 1) * tf });
-    }
-
-    /* Top-right tabs: they ride in on exactly the ramp that brings the
-       first line of copy up — "when the scroll text appears, the tabs
-       appear alongside it" — sliding down out of the masthead rather than
-       up from below, since that is where they live. p[0] never falls back
-       once beat 1 is pinned, so they then persist for the whole document;
-       scrolling back into the opening retraces the reveal in reverse. */
-    var tabsIn = smooth(p[0], 0.1, 0.3);
-    var tabs = { op: tabsIn, ty: -14 * (1 - tabsIn) };
-
-    var hcl = smooth(cp, 0.35, 0.6);
-    return { p: p, e: e, cp: cp, mosaic: M, tileOp: tileOp, photos: photos,
-             scrimOp: scrimOp, copy: copy, fly: fly, slot: slot, tabs: tabs,
-             closing: { mission: smooth(cp, 0.2, 0.45),
-                        headline: hcl, headlineTy: 20 * (1 - hcl),
-                        block: smooth(cp, 0.5, 0.75),
-                        demo: smooth(cp, 0.55, 0.85),
-                        footer: smooth(cp, 0.55, 0.85) } };
+  /* ?debug=1: on-device ground truth for phone tests. Zero cost when absent. */
+  function paintHud(f, y) {
+    hud.textContent = "y " + Math.round(y) + "  innerH " + window.innerHeight + "  stageH " + g.stageH +
+      (f ? "\npa " + f.pa.toFixed(3) + "  pb " + f.pb.toFixed(3) +
+           "\nl1 " + f.l1.toFixed(2) + "  cap1 " + f.cap1.toFixed(2) + "  turn " + f.turn.toFixed(2) +
+           "\ncap2 " + f.cap2.toFixed(2) + "  l2 " + f.l2.toFixed(2) + "  mission " + f.mission.toFixed(2) +
+           "\nturnLive " + f.turnLive + "  altered raster " + (f.turn > 0 ? "visible" : "hidden")
+         : "\n(outside the story: no writes)");
   }
-/* ==== END PURE SCROLL MODEL ==== */
-
-  function apply(f) {
-    st(mosaicLayer, "opacity", f.mosaic.toFixed(3));
-    st(mosaicLayer, "visibility", f.mosaic <= 0 ? "hidden" : "visible");
-    var i;
-    for (i = 0; i < 7; i++) {
-      var ph = f.photos[i], w = wraps[i];
-      /* COMPOSITOR DISCIPLINE (founder's low-RAM Android is the gate):
-         a parked wrapper at opacity 0 still holds a viewport-sized GPU
-         texture once it carries a 3D transform — with 7 heroes that
-         exhausted texture memory and blanked later beats on device.
-         visibility:hidden drops the raster entirely, so only the rising
-         photo and (mid-flight) the outgoing one are ever live layers. */
-      st(w, "visibility", ph.op <= 0 ? "hidden" : "visible");
-      st(w, "transform", "translate3d(" + ph.x.toFixed(2) + "px," + ph.y.toFixed(2) +
-                         "px,0) scale(" + ph.sx.toFixed(4) + "," + ph.sy.toFixed(4) + ")");
-      st(w, "opacity", ph.op.toFixed(3));
-      st(w, "filter", ph.sat > 0.999 ? "none" : "saturate(" + ph.sat.toFixed(3) + ")");
-      st(imgs[i], "transform", "scale(" + ph.kx.toFixed(4) + "," + ph.ky.toFixed(4) + ")");
-      if (w.__live !== ph.live) {
-        w.__live = ph.live;
-        w.classList.toggle("live", ph.live);
-      }
-    }
-    for (i = 0; i < 7; i++) {
-      st(scrims[i], "opacity", f.scrimOp[i].toFixed(3));
-      if (copies[i]) {
-        st(copies[i], "opacity", f.copy[i].op.toFixed(3));
-        st(copies[i], "transform", "translateY(" + f.copy[i].ty.toFixed(2) + "px)");
-      }
-      st(slots[i], "opacity", f.slot[i].op.toFixed(3));
-      st(slots[i], "transform", "scale(" + f.slot[i].sc.toFixed(4) + ")");
-      st(flies[i], "opacity", f.fly[i].op.toFixed(3));
-      st(flies[i], "transform", "translate3d(" + f.fly[i].x.toFixed(2) + "px," +
-                                f.fly[i].y.toFixed(2) + "px,0) scale(" + f.fly[i].s.toFixed(4) + ")");
-    }
-    /* top-right tabs — pointer events off while they are not yet there, so
-       they never intercept a click over the photography; keyboard focus is
-       unaffected (see .tabs:focus-within) */
-    st(tabs, "opacity", f.tabs.op.toFixed(3));
-    st(tabs, "transform", "translateY(" + f.tabs.ty.toFixed(2) + "px)");
-    st(tabs, "pointerEvents", f.tabs.op <= 0.02 ? "none" : "auto");
-
-    var cl = f.closing;
-    if (clEls.mission) st(clEls.mission, "opacity", cl.mission.toFixed(3));
-    if (clEls.headline) {
-      st(clEls.headline, "opacity", cl.headline.toFixed(3));
-      st(clEls.headline, "transform", "translateY(" + cl.headlineTy.toFixed(2) + "px)");
-    }
-    if (clEls.block) st(clEls.block, "opacity", cl.block.toFixed(3));
-    if (clEls.demo) st(clEls.demo, "opacity", cl.demo.toFixed(3));
-    if (clEls.footer) st(clEls.footer, "opacity", cl.footer.toFixed(3));
-
-    /* debug HUD: wrapper↔image pairing, per-photo phase, live viewport */
-    if (dbg) {
-      var s = "ih " + window.innerHeight + "  m.vh " + m.vh +
-              "  y " + Math.round(window.scrollY) +
-              "  mosaic " + f.mosaic.toFixed(2) + "\n";
-      for (i = 0; i < 7; i++) {
-        var q = f.photos[i];
-        var phase = f.e[i] >= 1 ? "landed" : f.e[i] > 0 ? "flying" :
-                    q.op <= 0 ? "parked" : f.p[i] > 0 ? "pinned" : "rising";
-        s += (i + 1) + " " + imgs[i].src.split("/").pop().split(".")[0] +
-             " op" + q.op.toFixed(2) + " " + phase + "\n";
-      }
-      if (dbg.__t !== s) { dbg.__t = s; dbg.textContent = s; }
-    }
+  if (/[?&]debug=1(&|$)/.test(location.search)) {
+    hud = document.createElement("div"); hud.id = "debug-hud"; hud.setAttribute("aria-hidden", "true");
+    document.body.appendChild(hud);
   }
 
-  function update() {
-    /* all reads first (one rect per section), then writes — no thrash */
-    var tops = [], secH = [], i;
-    for (i = 0; i < 7; i++) {
-      var r = beats[i].getBoundingClientRect();
-      tops.push(r.top);
-      secH.push(r.height);
-    }
-    var ctop = closing.getBoundingClientRect().top;
-    apply(computeFrame(tops, secH, ctop, m));
-  }
+  try { if (hasAnim()) enable(); } catch (e) { disable(); }
 
-  var ticking = false;
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(function () { ticking = false; update(); });
-    }
-  }
-
-  function remeasure() { measure(); update(); }
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", remeasure);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
-  remeasure();
+  window.addEventListener("resize", onLayout);
+  window.addEventListener("load", onLayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(onLayout);
+  if (motion) {
+    var onMotion = function () {
+      if (motion.matches) disable();
+      else if (window.CSS && CSS.supports && CSS.supports("position", "sticky")) enable();
+    };
+    if (motion.addEventListener) motion.addEventListener("change", onMotion);
+    else if (motion.addListener) motion.addListener(onMotion);
+  }
+  window.__story = { measure: measure, apply: apply, g: function () { return g; },
+    frame: function () { return g ? storyFrame(window.pageYOffset, g) : null; } };
+})();
+
+/* ---------- iPhone waitlist ---------- */
+(function () {
+  "use strict";
+  var form = document.getElementById("wl");
+  if (!form || !window.URLSearchParams || !window.fetch) return;
+  var panel = document.getElementById("iphone");
+  var email = document.getElementById("wl-email"), note = document.getElementById("wl-use");
+  var status = document.getElementById("wl-status"), btn = form.querySelector(".submit");
+  var IDLE = btn.textContent;
+  var MSG = {
+    invalid: "Enter an email address, like name@example.com.",
+    tooLong: "Keep the note under 500 characters.",
+    failed: "That didn’t go through. Check your connection and try again.",
+    preview: "The waitlist isn’t connected yet, so nothing was sent. Your email stayed on this page.",
+    ok: "You’re on the iPhone waitlist. We’ll email you when RIALITI Capture is on the App Store."
+  };
+  var CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var busy = false;
+
+  function show(kind, text) {
+    status.className = "status " + kind;
+    status.innerHTML = (kind === "ok" ? CHECK : "") + "<span></span>";
+    status.lastChild.textContent = text;
+  }
+  function mark(field, bad) {
+    if (bad) field.setAttribute("aria-invalid", "true"); else field.removeAttribute("aria-invalid");
+  }
+  function validEmail(v) { return v.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  function finish(ok, code) {
+    busy = false; btn.disabled = false; btn.textContent = IDLE; form.removeAttribute("aria-busy");
+    if (ok) { panel.classList.add("done"); show("ok", MSG.ok); status.focus(); }
+    else if (code === "invalid_email") { mark(email, true); show("err", MSG.invalid); email.focus(); }
+    else if (code === "too_long") { mark(note, true); show("err", MSG.tooLong); note.focus(); }
+    else show("err", MSG.failed);
+  }
+
+  email.addEventListener("input", function () { mark(email, false); });
+  note.addEventListener("input", function () { mark(note, false); });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (busy) return;
+    var em = email.value.trim(), use = note.value.trim();
+    mark(email, false); mark(note, false);
+    if (!validEmail(em)) { mark(email, true); show("err", MSG.invalid); email.focus(); return; }
+    if (use.length > 500) { mark(note, true); show("err", MSG.tooLong); note.focus(); return; }
+    if (!WAITLIST_URL) { show("preview", MSG.preview); return; }   /* preview mode: no request leaves the page */
+
+    busy = true; btn.disabled = true; btn.textContent = "Joining…"; form.setAttribute("aria-busy", "true");
+    status.className = "status"; status.textContent = "";
+    var body = new URLSearchParams({
+      email: em, use_for: use, source: "rialiti.io-home",
+      user_agent: navigator.userAgent, page: location.href, website: form.elements.website.value
+    });
+    /* Form-urlencoded keeps this a CORS simple request (no preflight). If a browser cannot read
+       Apps Script's JSON, add mode: "no-cors"; the opaque response is then treated as success. */
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); else if (busy) finish(false); }, 12000);
+    fetch(WAITLIST_URL, { method: "POST", body: body, signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) {
+        if (r.type === "opaque") return { ok: true };
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (j) { clearTimeout(timer); if (busy) finish(!!(j && j.ok), j && j.error); })
+      .catch(function () { clearTimeout(timer); if (busy) finish(false); });
+  });
 })();
 </script>
 </body>

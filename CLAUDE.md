@@ -26,9 +26,9 @@ carries its record and date, the edited car says who edited it, every story
 photograph carries its credit, and the altered one says "altered by us".
 
 Sections, top to bottom:
-1. **Header** (not sticky): mark + wordmark, "How it works" (`#how`, hidden
-   below 700px), "Check a photo".
-2. **Hero**: "Prove your photo is real.", Play button, "Check a photo for
+1. **Header** (not sticky): mark + wordmark, "How it works" (`#how`) and
+   "AI photos" (`#ai`), both hidden below 700px, "Check a photo".
+2. **Hero**: "Prove your photo is real. Not AI." ("Not AI." on its own line), Play button, "Check a photo for
    free", iPhone aside, and the real verified capture (toy car, record
    `ra-e58e1b6d5bed4de9`) with the app's Verified panel. One CSS load
    animation: the panel rises onto the photo (fill `backwards` only, so its
@@ -39,8 +39,11 @@ Sections, top to bottom:
    their guides exist; reserved paths are in an HTML comment above the
    section and in `copy.md`. When a guide ships: link the h3 text, add it to
    `sitemap.xml`.
-5. **How it works** (`#how`): three numbered steps and "An edited photo or an
-   AI image traces back to nothing."
+5. **How it works** (`#how`): three numbered steps and "An AI image, or a
+   real photo edited with AI, traces back to nothing."
+5b. **AI photos** (`#ai`): "How do you tell if a photo is AI?", the 2025
+   Conjointly coin-flip finding (49% / 52%, linked), why RIALITI does not
+   guess, and a "What RIALITI does / What it doesn't" list.
 6. **Proof** (`#proof`): "Don't trust us. Check it yourself." with the live
    public record link and a dated screenshot of it. Contains the demo switch
    (below).
@@ -49,6 +52,9 @@ Sections, top to bottom:
    ("Some moments happen once." then "And soon, some will never have
    happened at all."), then the Blue Marble with "To Protect What's Human",
    then the coda "Real moments deserve proof." and the ethos line.
+7b. **FAQ** (`#faq`): four `details` items about AI photos, mirrored word
+   for word by a FAQPage JSON-LD block in the head (`render_page.mjs` checks
+   they match; edit both together).
 8. **Close** (`#get`): "Keep what's real, real.", Play button, the iPhone
    waitlist panel (`#iphone`), the signature mission line.
 9. **Footer**: RIALITI Check, Privacy (`privacy/`), Photograph credits
@@ -64,8 +70,11 @@ SoftwareApplication in the head, OG/Twitter image
 - RIALITI Capture: free Android app on Google Play, package
   `app.rialiti.capture`. RIALITI Check: https://check.rialiti.io, free forever.
 - The product PROVES a capture is real and unedited. It does NOT detect AI or
-  fakes. Allowed: "prove it's real", "ask for proof". Forbidden: "spot
-  fakes", "detect AI", "AI detector", "spot the edit".
+  fakes. Allowed: "prove it's real", "ask for proof", and (AI copy wave,
+  2026-10-28, founder) naming AI as the threat and "not AI" as what the proof
+  shows: AI search intent is the SEO angle. Forbidden: claiming to detect,
+  "detects AI", "AI detector", "spot fakes", "spot the edit". The FAQ asks
+  "Can RIALITI detect AI images?" only to answer No.
 - iPhone: not available, waitlist only, no date promised.
 - Required lines: "To Protect What's Human", "Every photograph on this page
   is real.", "Verification will always be free."

@@ -6,10 +6,9 @@
 <title>Privacy Policy — RIALITI</title>
 <meta name="description" content="What the RIALITI Capture app and the RIALITI verification service collect, why, and how to have it deleted.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/v2/fonts/lexend-sub.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face { font-family:"Lexend"; font-style:normal; font-weight:300 700; font-display:swap; src:url("../assets/v2/fonts/lexend-sub.woff2") format("woff2"); }
   :root { --bg:#050505; --ink:#F4F1EC; --muted:#AFAAA2; --green:#34d399; --panel:#14171c; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:"Lexend",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; font-weight:300; line-height:1.65; }
@@ -80,6 +79,9 @@
   <p><strong>From the app.</strong> Open a capture in Your captures and choose Delete. "Delete from this phone" removes the local copy. "Delete everywhere" also removes the photo or video, its fingerprints, its thumbnail and its label from our archive, and marks the record as withdrawn by its owner, so it can no longer be verified. This works because the request is signed by the same key in your phone's secure hardware that created the capture. We never use the Identity label to decide ownership.</p>
   <p><strong>If you reinstalled the app.</strong> We do not identify users, so a reinstalled app gets a new key and can no longer prove that earlier captures are yours. For those, email <a href="mailto:founders@rialiti.io?subject=RIALITI%20deletion%20request">founders@rialiti.io</a> with the capture's verification link or its fingerprint and we will remove them the same way.</p>
   <p><strong>What cannot be undone.</strong> The capture's fingerprint, and a salted hash of its label, sit in an append-only, tamper-evident log. Neither contains an image, and neither can be turned back into the label or identify you. They stay so that the log's history remains provable.</p>
+
+<h2>The iPhone waitlist</h2>
+  <p>The form on our home page that asks to be told when RIALITI Capture is on iPhone collects your email address, the optional note you write about what you would use it for, the address of the page you sent it from, and your browser's user agent string (the line that names your browser and system). They are stored in a Google Sheet that only we can open. We use them only to tell you when the iPhone app exists, and for nothing else. To be removed, email <a href="mailto:founders@rialiti.io?subject=RIALITI%20waitlist%20removal">founders@rialiti.io</a> from the address you signed up with.</p>
 
 <h2>Security</h2>
   <p>All traffic between the app and our server uses HTTPS. Signing keys are created inside your phone's secure hardware and never leave it. Write access to the archive requires a valid proof from an enrolled device.</p>

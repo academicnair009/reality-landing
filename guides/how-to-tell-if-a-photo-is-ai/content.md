@@ -11,7 +11,7 @@ cell: ai-a
 organic_content: ai-pillar
 paid_campaign: marketplace-oct26
 published: 2026-10-28
-modified: 2026-10-28
+modified: 2026-10-29
 hook_number: 52%
 hook_text: of AI images were called AI in a 2025 test, and 49% of real photos were called real. About a coin toss.
 hook_source_note: Survey of 301 US adults, September 2025, by

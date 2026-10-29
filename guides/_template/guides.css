@@ -181,6 +181,16 @@ h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing:
 .bullets a:hover { text-decoration-color: currentColor; }
 .sec .fact + .bullets, .sec .bullets + .prose-p { margin-top: 20px; }
 
+/* ---------- guides index (guides/index.html) ---------- */
+.guides-intro { padding-top: 56px; }
+.guide-list { list-style: none; margin-top: 48px; max-width: 40em; border-top: 1px solid var(--line); }
+.guide-list li { padding: 28px 0; border-bottom: 1px solid var(--line); }
+.guide-list h2 { font-size: var(--t-h3); line-height: 1.25; font-weight: 500; letter-spacing: -.012em; max-width: none; }
+.guide-list a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(238,241,245,.45); }
+.guide-list a:hover { text-decoration-color: currentColor; }
+.guide-list p { margin-top: 8px; color: var(--muted); max-width: 34em; }
+@media (min-width: 1024px) { .guides-intro { padding-top: 96px; } }
+
 /* ---------- FAQ ---------- */
 .faq { margin-top: 28px; display: grid; gap: 28px; max-width: 34em; }
 .faq h3 { font-size: 1.1875rem; line-height: 1.35; font-weight: 500; }

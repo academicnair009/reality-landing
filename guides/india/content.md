@@ -12,7 +12,7 @@ cell: in-a
 organic_content: india
 paid_campaign: marketplace-oct26
 published: 2026-10-28
-modified: 2026-10-28
+modified: 2026-10-29
 hook_number: Rs 65,782
 hook_text: lost in 29 UPI payments, starting with a Rs 100 "booking" on a fake Instagram iPhone store built on fake photos and chats.
 hook_source_note: Delhi Police, Outer-North cyber police station, arrest on 23 October 2025, reported by

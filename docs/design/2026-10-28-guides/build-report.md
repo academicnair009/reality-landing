@@ -139,7 +139,7 @@ python3 scripts/build_guide.py --check --all
 3. Rewrite the sections. Required: `[intro]`, `[how]`, `[seller]`, `[buyer]`, `[answer]` (exactly three paragraphs: match, AI, limits), `[faq]` (must include `### [ai-tell]` and `### [ai-check]`) and `[close]`. Optional: `[checklist]` and any number of `[text]` sections; they render in file order. The docstring at the top of `scripts/build_guide.py` is the format reference.
 4. `python3 scripts/build_guide.py watches`. It writes `guides/watches/index.html`, adds the page to `sitemap.xml`, and refuses to build if the honesty rail or copy rules are broken.
 5. Optional OG card: copy `docs/design/2026-10-28-guides/src/og-used-cars.html` to `og-watches.html`, change the number and lines, then run `node docs/design/2026-10-28-guides/src/render_og.mjs watches` (writes `assets/guides/watches/og-1200x630.jpg`) and set `og_image: /assets/guides/watches/og-1200x630.jpg`. Without one, the page falls back to the home page OG card.
-6. Add the guide to the pillar's "When this matters" list and run `python3 scripts/build_guide.py --all`.
+6. Add the guide to the pillar's "When this matters" list (and to `GUIDE_ORDER` in `scripts/build_guide.py` if it should not sort last), then run `python3 scripts/build_guide.py --all`. That also rebuilds `/guides/` and every guide's "More guides" block (added 2026-10-29), which links the other guides and the home page and leaves out any link a page already makes.
 7. Render, look at the 360 shots, commit.
 
 If you change `guides.css`, `guides.js`, `page.html` or `sections.html`, run `--all`: every page inlines them.

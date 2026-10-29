@@ -5,9 +5,19 @@
     python3 scripts/build_guide.py --all           # every guides/<slug>/content.md
     python3 scripts/build_guide.py --check --all   # exit 1 if any committed page differs
 
-Inputs:  guides/<slug>/content.md, guides/_template/page.html, guides.css, guides.js
+Inputs:  guides/<slug>/content.md, guides/_template/page.html, index.html, sections.html,
+         guides.css, guides.js
 Output:  guides/<slug>/index.html (committed; GitHub Pages serves it as is) and,
-         if missing, the page's <url> entry in sitemap.xml.
+         if missing, the page's <url> entry in sitemap.xml. With --all, also the
+         guides index, guides/index.html (from guides/_template/index.html).
+
+Guide order and cross-links: GUIDE_ORDER below lists the guides in the order the
+index shows them; a guide not in it is appended alphabetically, so a new page is
+listed and linked without touching this file. Every guide ends with a "More
+guides" block (before the close) linking the other guides and the home page,
+leaving out any link the page's own sections already make (the AI pillar's "When
+this matters" list already links them all, so it gets no block). Because every
+page lists every other page, run --all after adding or retitling a guide.
 
 Python 3 standard library only. The output is deterministic: running it twice on
 the same inputs gives byte-identical files. The build fails (exit 2) when the
@@ -89,6 +99,11 @@ AI_WORD = re.compile(r"\bAI\b")
 LINT = ["—", "spot", "detect", "ai detector", "attest", "hash", "cryptograph",
         "blockchain", "metadata", "alpha", "api.rialiti.io", "gmail"]
 SLUG_RE = re.compile(r"^[a-z0-9-]{1,32}$")
+
+# The guides index (/guides/) and every "More guides" block list guides in this order.
+GUIDE_ORDER = ["how-to-tell-if-a-photo-is-ai", "used-cars", "india"]
+HOME_LINK = ("/", "The RIALITI home page")
+INDEX_MODIFIED = "2026-10-29"           # the guides index's dateModified and sitemap lastmod
 
 
 class BuildError(Exception):
@@ -383,9 +398,23 @@ def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:40] or "section"
 
 
-def build(slug):
+def catalog():
+    """[(slug, meta)] for every guide, GUIDE_ORDER first, then any others alphabetically."""
+    found = sorted(p.parent.name for p in GUIDES.glob("*/content.md") if not p.parent.name.startswith("_"))
+    order = [s for s in GUIDE_ORDER if s in found] + [s for s in found if s not in GUIDE_ORDER]
+    return [(s, parse(GUIDES / s / "content.md")[0]) for s in order]
+
+
+def more_links(slug, cat, body):
+    """The "More guides" items: other guides, then home, minus hrefs the page already links."""
+    links = [(f"/guides/{s}/", m["title"]) for s, m in cat if s != slug] + [HOME_LINK]
+    return [(href, text) for href, text in links if f'href="{html.escape(href)}"' not in body]
+
+
+def build(slug, cat=None):
     src = GUIDES / slug / "content.md"
     meta, secs = parse(src)
+    cat = catalog() if cat is None else cat
     by = {sec["key"]: sec for sec in secs}
     canonical = f"{SITE}/guides/{slug}/"
     og_image = meta["og_image"] if meta["og_image"].startswith("http") else SITE + meta["og_image"]
@@ -406,7 +435,7 @@ def build(slug):
     faq = faq_items(by["faq"]["blocks"])
     parts = partials()
 
-    used_ids = {"how", "means", "faq", "get"}
+    used_ids = {"how", "means", "faq", "get", "more"}
     rendered = []
     for sec in secs:
         k = sec["key"]
@@ -436,6 +465,10 @@ def build(slug):
             rendered.append(fill(parts[k], {"id": sid, "heading": _text(sec["heading"]), "body": body}))
         elif k == "faq":
             rendered.append(fill(parts["faq"], {"heading": _text(sec["heading"]), "body": render_faq(faq)}))
+    more = more_links(slug, cat, "".join(rendered))
+    if more:
+        items = "\n".join(f'{IND}  <li><a href="{html.escape(h)}">{_text(t)}</a></li>' for h, t in more)
+        rendered.append(fill(parts["more"], {"items": items}))
     hook_long = len(meta["hook_number"]) > 4
     hook_source = (attr_free(meta["hook_source_note"]) +
                    f'<a href="{html.escape(meta["hook_source_url"])}" target="_blank" rel="noopener">'
@@ -475,11 +508,49 @@ def build(slug):
         "js": (TEMPLATE / "guides.js").read_text(encoding="utf-8"),
     }
     page = fill((TEMPLATE / "page.html").read_text(encoding="utf-8"), values)
+    lint(slug, page)
+    return page, canonical, meta
+
+
+def lint(name, page):
     low = page.lower()
     hits = [w for w in LINT if w in low]
     if hits:
-        raise BuildError(f"{slug}: rendered page contains banned text: {hits}")
-    return page, canonical, meta
+        raise BuildError(f"{name}: rendered page contains banned text: {hits}")
+
+
+def build_index(cat):
+    """guides/index.html: the list of every guide, from guides/_template/index.html."""
+    canonical = f"{SITE}/guides/"
+    tpl = (TEMPLATE / "index.html").read_text(encoding="utf-8")
+    title = re.search(r"<title>(.*?)</title>", tpl).group(1)
+    if len(html.unescape(title)) > 60:
+        raise BuildError(f"index title is {len(html.unescape(title))} characters; keep it at 60 or under")
+    li = "\n".join(
+        f'        <li>\n          <h2><a href="/guides/{s}/">{_text(m["title"])}</a></h2>\n'
+        f'          <p>{_text(m["description"])}</p>\n        </li>' for s, m in cat)
+    org = {"@type": "Organization", "@id": SITE + "/#organization", "name": "RIALITI", "url": SITE + "/",
+           "logo": {"@type": "ImageObject", "url": SITE + "/assets/play/icon-512.png", "width": 512, "height": 512}}
+    desc = re.search(r'<meta name="description" content="(.*?)">', tpl).group(1)
+    data = {"@context": "https://schema.org", "@graph": [{
+        "@type": "CollectionPage", "@id": canonical + "#page", "url": canonical,
+        "name": html.unescape(title), "description": html.unescape(desc), "inLanguage": "en",
+        "dateModified": INDEX_MODIFIED, "isPartOf": {"@type": "WebSite", "url": SITE + "/", "name": "RIALITI"},
+        "publisher": org,
+        "mainEntity": {"@type": "ItemList", "numberOfItems": len(cat), "itemListElement": [
+            {"@type": "ListItem", "position": n, "url": f"{SITE}/guides/{s}/", "name": typo(m["title"])}
+            for n, (s, m) in enumerate(cat, 1)]}}]}
+    organic = "utm_source=rialiti.io&utm_medium=guide&utm_campaign=guides&utm_content=guides-index"
+    page = fill(tpl, {
+        "canonical": canonical,
+        "jsonld": json.dumps(data, ensure_ascii=False, indent=1).replace("<", "\\u003c"),
+        "play_href": html.escape(PLAY + quote(organic, safe="")),
+        "guides": li,
+        "css": (TEMPLATE / "guides.css").read_text(encoding="utf-8"),
+        "js": (TEMPLATE / "guides.js").read_text(encoding="utf-8"),
+    })
+    lint("guides index", page)
+    return page, canonical
 
 
 def attr_free(s):
@@ -507,16 +578,27 @@ def main(argv):
         print(__doc__)
         return 64
     status = 0
-    for slug in args:
-        if not SLUG_RE.match(slug):
+    try:
+        cat = catalog()
+    except BuildError as e:
+        print(f"build_guide: {e}", file=sys.stderr)
+        return 2
+    jobs = list(args) + (["/index"] if "--all" in argv else [])
+    for slug in jobs:
+        if slug != "/index" and not SLUG_RE.match(slug):
             print(f"bad slug {slug!r}", file=sys.stderr)
             return 64
         try:
-            page, canonical, meta = build(slug)
+            if slug == "/index":
+                page, canonical = build_index(cat)
+                meta = {"modified": INDEX_MODIFIED}
+                out = GUIDES / "index.html"
+            else:
+                page, canonical, meta = build(slug, cat)
+                out = GUIDES / slug / "index.html"
         except BuildError as e:
             print(f"build_guide: {e}", file=sys.stderr)
             return 2
-        out = GUIDES / slug / "index.html"
         data = page.encode("utf-8")
         if check:
             same = out.exists() and out.read_bytes() == data

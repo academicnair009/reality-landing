@@ -11,7 +11,7 @@ cell: guide-used-cars
 organic_content: used-cars
 paid_campaign: marketplace-oct26
 published: 2026-10-28
-modified: 2026-10-28
+modified: 2026-10-29
 hook_number: 68%
 hook_text: of people asked about buying a used car worry about hidden faults or undisclosed damage. No other concern came higher.
 hook_source_note: Cazoo survey of 2,025 UK adults, 23 October 2026, reported by

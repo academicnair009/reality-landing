@@ -4,35 +4,57 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>RIALITI Capture on Google Play</title>
-<meta http-equiv="refresh" content="2; url=https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Drialiti.io%26utm_medium%3Dredirect%26utm_campaign%3Dgo-android%26utm_content%3Dnojs">
+<title>RIALITI Capture, free on Google Play</title>
+<meta name="description" content="Take a photo in the free RIALITI Capture app and anyone can check it is real and unedited, even after WhatsApp.">
+<meta name="theme-color" content="#0C0D11">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <style>
-  html { background: #0C0D11; color: #F4F1EC; font: 300 17px/1.6 Lexend, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
-  main { max-width: 28rem; text-align: center; }
-  h1 { font-weight: 600; font-size: 1.35rem; margin: 0 0 .6rem; }
-  p { margin: 0 0 1.2rem; color: #AFAAA2; }
-  a { color: #F4F1EC; }
+  :root { --bg: #0C0D11; --ink: #F4F1EC; --muted: #AFAAA2; --green: #34D399; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--ink); font: 300 17px/1.6 Lexend, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+  header { padding: 18px 20px; font-weight: 700; letter-spacing: .02em; }
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px 20px 40px; }
+  .card { max-width: 30rem; width: 100%; }
+  h1 { font-weight: 600; font-size: clamp(2rem, 7vw, 2.8rem); line-height: 1.12; letter-spacing: -.01em; margin-bottom: .8rem; }
+  .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.6rem; max-width: 26rem; }
+  .play { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 22rem;
+          background: var(--green); color: #06110C; font-weight: 600; font-size: 1.05rem; text-decoration: none;
+          padding: 15px 22px; border-radius: 12px; }
+  .play:hover, .play:focus-visible { filter: brightness(1.06); }
+  .play svg { width: 20px; height: 20px; flex: none; }
+  .check { display: inline-block; margin-top: 1.1rem; color: var(--ink); text-underline-offset: 3px; }
+  .fine { margin-top: 1.6rem; color: var(--muted); font-size: .92rem; }
+  .fine a { color: var(--muted); }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  footer { padding: 16px 20px 22px; color: var(--muted); font-size: .8rem; }
 </style>
 </head>
 <body>
+<header aria-label="RIALITI">RIALITI</header>
 <main>
-  <h1>Taking you to Google Play</h1>
-  <p>RIALITI Capture is free on Android. If nothing happens, use the link below.</p>
-  <p><a id="store" href="https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Drialiti.io%26utm_medium%3Dredirect%26utm_campaign%3Dgo-android%26utm_content%3Dmanual">Open RIALITI Capture on Google Play</a></p>
+  <div class="card">
+    <h1>Prove your photo is real.</h1>
+    <p class="lead">Take it in the free RIALITI Capture app. Anyone can check it is real and unedited, even after WhatsApp.</p>
+    <a class="play" id="play" href="https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Dnojs" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 4 3.5z"/></svg>
+      Get it on Google Play
+    </a>
+    <div><a class="check" href="https://check.rialiti.io" rel="noopener">Check a photo for free</a></div>
+    <p class="fine">Free on Android. Not on iPhone yet. Verification will always be free. <a href="/privacy/">Privacy</a></p>
+  </div>
 </main>
+<footer>Google Play is a trademark of Google LLC.</footer>
 <script>
-  /* Redirect to the Play listing, carrying an install referrer so Play Console
-     can attribute installs per campaign cell. ?c=<cell> is allow-listed; any
-     other value becomes "other". No cookies, no storage, nothing logged here. */
+  /* Tag the Play link with the campaign cell from ?c= so Play Console can
+     attribute installs per cell. Allow-listed; anything else becomes "other".
+     No cookies, no storage, nothing logged here, no automatic redirect. */
   (function () {
-    var allowed = /^[a-z0-9-]{1,32}$/;
     var c = new URLSearchParams(location.search).get("c") || "";
-    if (!allowed.test(c)) c = "other";
+    if (!/^[a-z0-9-]{1,32}$/.test(c)) c = "other";
     var ref = "utm_source=meta&utm_medium=paid&utm_campaign=marketplace-oct26&utm_content=" + c;
-    var url = "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=" + encodeURIComponent(ref);
-    document.getElementById("store").href = url;
-    location.replace(url);
+    document.getElementById("play").href =
+      "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=" + encodeURIComponent(ref);
   })();
 </script>
 </body>

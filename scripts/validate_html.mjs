@@ -4,7 +4,7 @@
  * document checks parse5 does not make: duplicate ids, label/for and aria-* idrefs resolve,
  * img alt/width/height, a single <title>, lang, no inline event handlers.
  * This is not the W3C Nu validator (it needs Java, not installed here).
- * Usage: node scripts/validate_html.mjs [files...]   (default: index.html 404.html privacy/index.html)
+ * Usage: node scripts/validate_html.mjs [files...]   (default: index.html 404.html privacy/index.html and the guides)
  */
 import fs from "node:fs"; import os from "node:os"; import path from "node:path"; import { pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -15,7 +15,7 @@ function find() {
   throw new Error("parse5 not found; set PARSE5");
 }
 const { parse } = await import(pathToFileURL(find()).href);
-const files = process.argv.slice(2).length ? process.argv.slice(2) : ["index.html", "404.html", "privacy/index.html"];
+const files = process.argv.slice(2).length ? process.argv.slice(2) : ["index.html", "404.html", "privacy/index.html", "guides/index.html", "guides/used-cars/index.html", "guides/india/index.html", "guides/how-to-tell-if-a-photo-is-ai/index.html"];
 let total = 0;
 for (const f of files) {
   const src = fs.readFileSync(path.join(ROOT, f), "utf8");

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+# Working files, not pages
+Disallow: /docs/
+Disallow: /scripts/
+
+Sitemap: https://www.rialiti.io/sitemap.xml

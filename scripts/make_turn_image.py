@@ -9,7 +9,7 @@ No AI imagery is involved anywhere — this is a real photograph with a
 visible-on-inspection darkroom-style manipulation, disclosed in CREDITS.md.
 
 Usage:
-    python3 scripts/make_turn_image.py assets/beat1-first-steps.jpg assets/beat5-turn.jpg
+    python3 scripts/make_turn_image.py docs/design/2026-10-28-v2/src/sources/beat1-first-steps.jpg docs/design/2026-10-28-v2/src/sources/beat5-turn.jpg
 """
 import random
 import sys

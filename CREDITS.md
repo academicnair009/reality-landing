@@ -51,19 +51,45 @@ All images are self-hosted in `assets/`; nothing is hotlinked at runtime.
 ### `assets/v2/icons/rialiti-mark.svg`
 - Byte-identical copy of the canonical `branding/rialiti-logo-vector.svg` (also identical to `assets/favicon.svg`). Not redrawn or recolored.
 
-## Earlier photographs (v1 story, 2026-08-03)
+## Source photographs of the story (v1 files, now build sources)
 
-The v2 page shows three of these (1, 5 and 7, re-encoded under `assets/v2/story/`). The others stay in the repo and in this history, marked "not shown on the current page".
+The story's three images (`assets/v2/story/`) are re-encoded from these files.
+On 2026-10-28 the files moved from `assets/` to `docs/design/2026-10-28-v2/src/sources/`,
+where `docs/design/2026-10-28-v2/src/build_assets.py` reads them.
 
-
-### 1. `beat1-first-steps.jpg`: "Some moments happen once."
+### 1. `docs/design/2026-10-28-v2/src/sources/beat1-first-steps.jpg`: "Some moments happen once."
 - **Title/Author:** *First Steps #6* by **FDWR** (Flickr)
 - **License:** CC BY 2.0, https://creativecommons.org/licenses/by/2.0/
 - **License verified at:** https://www.flickr.com/photos/62569532@N00/8664173566/ (verified 2026-08-03)
 - **File downloaded:** https://live.staticflickr.com/8244/8664173566_42cc18cc36_b.jpg
 - **Modifications:** resized, re-encoded (JPEG q75).
 
-### 2. `beat2-earthrise.jpg`: "Some changed how we see everything." (not shown on the current page)
+### 5. `docs/design/2026-10-28-v2/src/sources/beat5-turn.jpg`: "And soon, some will never have happened at all."
+- **HONEST NOTE:** this is the *same real photograph* as image 1 (*First Steps
+  #6* by FDWR, CC BY 2.0), which we **deliberately distorted** with classical
+  image processing, duplicated fragments, a smeared band, a ghosted double
+  exposure, drained colour, so that the moment feels subtly wrong. It is not
+  AI-generated; the treatment is reproducible from the committed script
+  `scripts/make_turn_image.py`. The page's alt text discloses the alteration.
+- **License of the derivative:** CC BY 2.0, credit FDWR (same as source).
+
+### 7. `docs/design/2026-10-28-v2/src/sources/beat7-bluemarble.jpg`: the Blue Marble, under the mission line
+- **Title/Author:** *The Blue Marble*, photograph **AS17-148-22727**, taken by
+  the crew of Apollo 17 traveling toward the Moon, 7 December 1972. Courtesy
+  **NASA**. (A different photograph and composition from image 2's
+  *Earthrise*: the full sunlit Earth, no lunar horizon.)
+- **License:** Public domain (NASA imagery; not copyrighted).
+- **Source (NASA original):** https://images.nasa.gov/details/as17-148-22727
+- **File downloaded:** https://images-assets.nasa.gov/image/as17-148-22727/as17-148-22727~large.jpg
+- **Modifications:** resized to 1400px, re-encoded (JPEG q62).
+
+## No longer on the page (removed 2026-10-28)
+
+These photographs were part of the v1 story (2026-08-03 to 2026-10-28). The
+v2 page does not show them and the files were deleted from the repo on
+2026-10-28 (they remain in git history). Their attribution is kept here.
+
+### 2. `beat2-earthrise.jpg`: "Some changed how we see everything."
 - **Title/Author:** *Earthrise*, photograph **AS08-14-2383**, taken by astronaut
   Bill Anders, Apollo 8, 24 December 1968. Courtesy **NASA**.
 - **License:** Public domain (NASA imagery; not copyrighted).
@@ -71,7 +97,7 @@ The v2 page shows three of these (1, 5 and 7, re-encoded under `assets/v2/story/
 - **File downloaded:** https://images-assets.nasa.gov/image/as08-14-2383/as08-14-2383~large.jpg
 - **Modifications:** resized, re-encoded (JPEG q75).
 
-### 3. `beat3-embrace.jpg`: "Some we promise to keep." (not shown on the current page)
+### 3. `beat3-embrace.jpg`: "Some we promise to keep."
 - **Title/Author:** *Wedding couple hug on cliff* by **Brian Hartley**
   (Unsplash, @mrbrianhartley), 2017. Real photograph (iPhone, VSCO-processed).
 - **License:** CC0 1.0, published on Unsplash under its pre-June-2017 CC0
@@ -86,7 +112,7 @@ The v2 page shows three of these (1, 5 and 7, re-encoded under `assets/v2/story/
 - **File downloaded:** https://upload.wikimedia.org/wikipedia/commons/a/a6/Wedding_couple_hug_on_cliff_%28Unsplash%29.jpg (3000×1687 original)
 - **Modifications:** resized to 1600px, re-encoded (JPEG q75).
 
-### 4. `beat4-portrait.jpg`: "Some are all that’s left of someone." (not shown on the current page)
+### 4. `beat4-portrait.jpg`: "Some are all that’s left of someone."
 - **Title/Author:** *Family portrait in home of Fred Rowe, farmer near
   Estherville, Iowa* by **Russell Lee**, December 1936. Farm Security
   Administration / Office of War Information collection, **Library of Congress**.
@@ -96,16 +122,7 @@ The v2 page shows three of these (1, 5 and 7, re-encoded under `assets/v2/story/
 - **File downloaded:** https://tile.loc.gov/storage-services/service/pnp/fsa/8a21000/8a21300/8a21393v.jpg
 - **Modifications:** resized, re-encoded (JPEG q75).
 
-### 5. `beat5-turn.jpg`: "And soon, some will never have happened at all."
-- **HONEST NOTE:** this is the *same real photograph* as image 1 (*First Steps
-  #6* by FDWR, CC BY 2.0), which we **deliberately distorted** with classical
-  image processing, duplicated fragments, a smeared band, a ghosted double
-  exposure, drained colour, so that the moment feels subtly wrong. It is not
-  AI-generated; the treatment is reproducible from the committed script
-  `scripts/make_turn_image.py`. The page's alt text discloses the alteration.
-- **License of the derivative:** CC BY 2.0, credit FDWR (same as source).
-
-### 6. `beat6-proof.jpg`: "Real moments deserve proof." (not shown on the current page; the line survives as the coda)
+### 6. `beat6-proof.jpg`: "Real moments deserve proof." (the line survives as the coda)
 - **Title/Author:** *Matthew Vieira stands in the very place where, some
   thirty-five years ago, he took these pictures of his children. At that time
   the area was Wood Island Park… since then the site has become part of Logan
@@ -122,22 +139,10 @@ The v2 page shows three of these (1, 5 and 7, re-encoded under `assets/v2/story/
 - **File downloaded:** https://upload.wikimedia.org/wikipedia/commons/5/55/MATTHEW_VIEIRA_STANDS_IN_THE_VERY_PLACE_WHERE%2C_SOME_THIRTY-FIVE_YEARS_AGO%2C_HE_TOOK_THESE_PICTURES_OF_HIS_CHILDREN._AT..._-_NARA_-_548451.jpg (3000×2027 original)
 - **Modifications:** resized to 1600px, re-encoded (JPEG q70).
 
-### 7. `beat7-bluemarble.jpg`: the Blue Marble, under the mission line
-- **Title/Author:** *The Blue Marble*, photograph **AS17-148-22727**, taken by
-  the crew of Apollo 17 traveling toward the Moon, 7 December 1972. Courtesy
-  **NASA**. (A different photograph and composition from image 2's
-  *Earthrise*: the full sunlit Earth, no lunar horizon.)
-- **License:** Public domain (NASA imagery; not copyrighted).
-- **Source (NASA original):** https://images.nasa.gov/details/as17-148-22727
-- **File downloaded:** https://images-assets.nasa.gov/image/as17-148-22727/as17-148-22727~large.jpg
-- **Modifications:** resized to 1400px, re-encoded (JPEG q62).
-
-## Mosaic
-
-### 8. `mosaic.jpg`: v1 closing background (not shown on the current page)
+### 8. `mosaic.jpg`: v1 closing background
 - **What it is:** a single pre-baked composite of **160 unique real-photograph
   thumbnails** tiled into a 28×18 grid (504 cells; tiles repeat with random
-  brightness/saturation jitter), built by `scripts/build_mosaic.py`. Seven
+  brightness/saturation jitter), built by `scripts/build_mosaic.py` (also removed 2026-10-28). Seven
   cells are baked near-black, the seven hero photographs above fly in and
   occupy them as the story scrolls.
 - **Source:** https://picsum.photos (Lorem Picsum free image service).

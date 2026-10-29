@@ -126,6 +126,9 @@ Play is a trademark of Google LLC."
 - Debug: `?debug=1` shows a fixed HUD (y, innerHeight, stage height, pa, pb,
   every opacity, turnLive, whether the altered raster is visible). Zero cost
   when absent. Ask the founder to screenshot it for device reports.
+  Kept for the founder's low-RAM phone test of v2. Once that test passes it
+  may be removed (the `#debug-hud` CSS rule, `paintHud` and the `?debug=1`
+  block in the story script); keep it if more device reports are expected.
 - After any animation change, ask the founder to re-test on the phone.
 
 Browser tools need `export PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH`
@@ -215,13 +218,16 @@ with it and get a new effective date. Contact: founders@rialiti.io.
 
 - **2026-08-03, v1 scrollytelling.** Seven full-viewport beats with photos;
   each beat's letter flew into a fixed rail spelling RIALITI; photos flew
-  into a fixed, pre-baked mosaic (`assets/mosaic.jpg`, `scripts/build_mosaic.py`)
-  that brightened at the close. Copy was mechanism-free by founder decision
+  into a fixed, pre-baked mosaic (`assets/mosaic.jpg`, built by
+  `scripts/build_mosaic.py`) that brightened at the close. Copy was mechanism-free by founder decision
   (lifted for everything above the story in v2). Verified by the old
-  `scripts/verify_scroll.mjs` (removed 2026-10-28). The beat photographs
-  stay in `assets/` and in `CREDITS.md`; beat 5 is still regenerated with
-  `python3 scripts/make_turn_image.py assets/beat1-first-steps.jpg assets/beat5-turn.jpg`
-  and is the source of `assets/v2/story/turn-681.*`.
+  `scripts/verify_scroll.mjs` (removed 2026-10-28). On 2026-10-28 the
+  unused beat photographs (2, 3, 4, 6), `assets/mosaic.jpg` and
+  `scripts/build_mosaic.py` were deleted (credits kept in `CREDITS.md`
+  under "No longer on the page"); beats 1, 5 and 7 moved to
+  `docs/design/2026-10-28-v2/src/sources/` as build sources of
+  `assets/v2/story/`. Beat 5 is regenerated with
+  `python3 scripts/make_turn_image.py docs/design/2026-10-28-v2/src/sources/beat1-first-steps.jpg docs/design/2026-10-28-v2/src/sources/beat5-turn.jpg`.
 - **2026-08-07 to 2026-10-02, top-right tabs and the APK.** Tabs for RIALITI
   Check and a sideloaded Android APK with alpha notes; removed 2026-09-18,
   restored 2026-10-02 via the counted link `api.rialiti.io/download/android`.

@@ -68,12 +68,12 @@ crop.save(out("proof/check-record-724.webp"), "WEBP", quality=86, method=6)
 crop.resize((362, round(crop.height * 362 / crop.width)), Image.LANCZOS).save(out("proof/check-record-362.webp"), "WEBP", quality=86, method=6)
 
 # ---------------------------------------------------------------- story (3 kept beats)
-b1 = Image.open(os.path.join(A, "beat1-first-steps.jpg"))
-b5 = Image.open(os.path.join(A, "beat5-turn.jpg"))
+b1 = Image.open(os.path.join(SRC, "beat1-first-steps.jpg"))
+b5 = Image.open(os.path.join(SRC, "beat5-turn.jpg"))
 assert b1.size == b5.size, "turn must share the first-steps framing for the crossfade"
 save_pair(b1, "story/first-steps", 681, q_webp=74, q_jpg=75)
 save_pair(b5, "story/turn", 681, q_webp=74, q_jpg=75)
-bm = Image.open(os.path.join(A, "beat7-bluemarble.jpg"))
+bm = Image.open(os.path.join(SRC, "beat7-bluemarble.jpg"))
 for w in (1200, 760):
     save_pair(bm, "story/blue-marble", w, q_webp=72, q_jpg=70)
 

@@ -105,3 +105,26 @@ Results after the fixes:
 - `node scripts/render_page.mjs`: **ALL CHECKS PASS, 67 of 67** (new: phone hit areas at least 44 px; form-post fallback when the fetch fails, checked at 360 and 1440 with a stubbed endpoint that drops the fetch and accepts the form post; no `action` while the URL is empty). Throttled phone: FCP 0.31 s, LCP 1.06 s (hero photograph).
 - `node scripts/validate_html.mjs`: **0 problems** in `index.html`, `404.html`, `privacy/index.html`.
 - `node scripts/verify_story.mjs --browser`: **MODEL PASS, PAGE PASS**. Purity in both scroll directions on the three geometries, the mutated model fails 111 checks, DOM equals the model at 170 stops each way at 360x740 and 1440x900, at most 2 large promoted layers on screen.
+
+## AI copy wave (2026-10-28, founder direction)
+
+The founder asked for the page to say that a photo can be proven real even when anyone can edit or invent photos with AI, because that is what people search for. Applied as specified in the coordinator's copy (now recorded in `copy.md`):
+
+- Head: title "Prove a photo is real, not AI | RIALITI Capture", new meta description, OG/Twitter titles "Prove your photo is real. Not AI.", new OG/Twitter descriptions, new SoftwareApplication description.
+- Hero: H1 "Prove your photo is real. Not AI." with "Not AI." always on its own line, so the first sentence stays whole (3 lines at 360, 768 and 1440). New lead. Play button top at y 401 on a 360x740 screen (was 305), still inside the first screen with 283 px to spare, so hero spacing did not need tightening.
+- Problem: new H2 and body about AI edits; edited-car note "Made by us, by hand, from the original. AI does this in seconds."
+- How it works: note "An AI image, or a real photo edited with AI, traces back to nothing."
+- New `#ai` section between How it works and Proof, with the study link and a does / doesn't list (muted check and cross marks, no green, so green keeps its two meanings).
+- New `#faq` section between the story and the close: four native `details` items, mirrored word for word by a FAQPage JSON-LD block; `render_page.mjs` now checks that they match.
+- Nav: "AI photos" to `#ai`, hidden below 700px like "How it works".
+
+Source check: the Conjointly article (published 25 September 2025, 301 US adults, 6 real and 6 AI images each) reports 49% correct on real images and 52% on AI images and says participants "performed no better than random guessing". It does not use the phrase "coin flip"; "about the rate of a coin flip" paraphrases its chance-level finding.
+
+Honesty rail: no detection claim anywhere. "detect" appears once, in the FAQ question "Can RIALITI detect AI images?", whose answer is "No. It proves real ones." Greps for em dash, en dash, "AI detector", "detects", "spot", "alpha", "api.rialiti.io", "gmail", the founder's name and the account name, and "Videos work" all return 0.
+
+Results:
+- `node scripts/render_page.mjs`: ALL CHECKS PASS, 68 of 68 (no overflow at 360, 768 and 1440; H1 on 3 lines; Play button inside the first screen; FAQ JSON-LD matches; contrast minimum 7.49:1; 22 keyboard stops, all with visible focus). HTML is now 62.1 KB raw, 17.7 KB gzip. Throttled phone: FCP 0.32 s, LCP 1.07 s (hero photograph).
+- `node scripts/validate_html.mjs`: 0 problems in all three pages.
+- `node scripts/verify_story.mjs --browser`: MODEL PASS, PAGE PASS, at most 2 large promoted layers.
+
+Open for the founder: the FAQ answer "Does it still work after WhatsApp or Instagram compression? Yes." extends the brief's verified WhatsApp claim to Instagram. Instagram recompression has not been tested here; confirm one real Instagram round trip on check.rialiti.io, or drop "or Instagram".

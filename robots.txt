@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /guides/_template/
+
+Sitemap: https://www.rialiti.io/sitemap.xml

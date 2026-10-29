@@ -1,46 +1,68 @@
-# assets/demo — files for the "test it yourself" demo
+# assets/demo: files for the "test it yourself" demo
 
-The demo section on the landing page hands a visitor three downloads of the
-**same moment** and invites them to run each one through
-[RIALITI Check](https://check.rialiti.io) themselves. It is switched OFF until
-all three files below exist.
+The proof section of the home page (`#proof`) can hand a visitor the files of
+**one real moment** and invite them to run each one through
+[RIALITI Check](https://check.rialiti.io) themselves. The demo is built and
+styled but switched OFF until the real files below exist. Never fabricate the
+WhatsApp copy, and never ship a verdict line that check.rialiti.io does not
+actually return for that file.
 
-The section's markup lives in `index.html`, inside `<section class="closing">`,
-commented out between two lines that each read
-`ENABLE ME BY DELETING THIS LINE`. Delete those two lines to turn it on, then
-replace the three `TODO` alt texts with honest descriptions of the actual
-photograph. Nothing else needs changing.
+## Where the switch is
+
+In `index.html`, inside `<section class="proof" id="proof">`, after the live
+record part, the block `<div class="demo" id="demo">` sits inside an HTML
+comment opened and closed by two lines that each read
+`ENABLE ME BY DELETING THIS LINE`. Delete both lines to turn it on, then
+replace the one `TODO by founder` alt text with an honest description of the
+photograph. Its styles (`.demo`, `.demo-card`, ...) are already in the page's
+stylesheet. Keep the markup free of `--` while it is commented out.
 
 ## Exact filenames expected
 
-| Filename | What it must be |
-| --- | --- |
-| `original-capture.jpg` | The genuine capture, straight from the RIALITI capture app, byte-identical to what was archived. This is the reference the other two are tested against. |
-| `whatsapp-compressed.jpg` | The **same** file after a real round trip through WhatsApp (send it to someone, save the copy they receive). Do not re-export it by hand — the point is the real, lossy transport the real world applies. |
-| `ai-recreation.jpg` | An AI generated recreation of the same scene, as close to pixel-for-pixel as it can be made. Nothing about it was captured by a camera. |
+| Filename | What it must be | Required |
+| --- | --- | --- |
+| `original-capture.jpg` | The genuine capture, straight from RIALITI Capture, byte-identical to what was archived. The reference the others are tested against. | yes |
+| `whatsapp-compressed.jpg` | The **same** file after a real round trip through WhatsApp (send it to someone, save the copy they receive). Do not re-export it by hand. | yes |
+| `ai-recreation.jpg` | An AI generated recreation of the same scene. Nothing about it was captured by a camera. | optional |
 
-All three are `.jpg`, referenced by these exact names, and are served as both
-the on-page thumbnail (lazy-loaded, cropped 4:3) and the download.
+Each card shows its file as a 4:3 thumbnail (lazy-loaded, `width="800"
+height="600"` so the ratio is reserved; any size file works) and offers it as a
+download. If a file is not 4:3, adjust nothing: it is cropped with
+`object-fit: cover`.
+
+## Two-file or three-file version
+
+The block ships as the three-file version. For the **two-file** version (no AI
+recreation), in the block also:
+
+1. delete the `<li class="demo-card demo-ai">` card,
+2. delete the `<p class="demo-fine">` paragraph,
+3. replace the lead with: "Download a real capture and the copy WhatsApp gave
+   back. Put both through RIALITI Check and compare the answers."
+
+(Exact strings are in `docs/design/2026-10-28-v2/copy.md`, section 5.)
 
 ## Before enabling, check
 
-1. **All three actually behave as claimed.** Upload each to
-   https://check.rialiti.io and confirm the verdicts match the three
-   `verdict` lines on the page (matches / still matches / matches nothing).
-   If reality disagrees with the copy, change the copy, not the claim.
-2. **Sizes.** These are downloads, so they are deliberately exempt from the
-   ≤150KB hero budget — but they load below the fold and lazily. Keep each
-   under ~4MB so the demo is not painful on mobile data.
-3. **Consent.** The photograph is going to be downloadable by anyone. Use one
-   nobody needs to consent to, or one where consent is explicit.
-4. **Credits.** Add all three to `CREDITS.md`, including the explicit note
-   that `ai-recreation.jpg` is AI generated — see the note already there.
+1. **Verdicts are real.** Upload each file to https://check.rialiti.io and
+   confirm the three `verdict` lines (should match its archived capture /
+   still matches the same capture / matches no capture at all). If reality
+   disagrees with the copy, change the copy, not the claim.
+2. **Sizes.** These are downloads, lazy-loaded below the fold; keep each under
+   about 4 MB so the demo is not painful on mobile data.
+3. **Consent.** The photograph becomes downloadable by anyone. Use one nobody
+   needs to consent to, or one where consent is explicit.
+4. **Credits.** Add every file to `CREDITS.md`, including the explicit note
+   that `ai-recreation.jpg` is AI generated (the note already there).
+5. Run `node scripts/render_page.mjs` and `node scripts/verify_story.mjs --browser`
+   (the demo adds height above the story; the story measures itself, but run
+   the checks anyway).
 
 ## Why an AI image is allowed here, and only here
 
-The repo rule is "no AI generated imagery, ever". This one file is a
-deliberate, labelled exception, in the same spirit as the distorted beat-5
-photograph: it exists to be caught by the product, it is described as AI
-generated in its alt text, in the page copy and in `CREDITS.md`, and it never
-appears anywhere else on the site. If that labelling is ever dropped, the file
-must be dropped with it.
+The site rule is "no AI generated imagery, ever". This one optional file is a
+deliberate, labelled exception, in the same spirit as the altered first-steps
+photograph: it exists to trace back to nothing on RIALITI Check, it is
+described as AI generated in its alt text, in the page copy and in
+`CREDITS.md`, and it never appears anywhere else on the site. If that labelling
+is ever dropped, the file must be dropped with it.

@@ -74,11 +74,28 @@ strong { font-weight: 500; color: var(--ink); }
 .hook-t, .hook .src { display: block; }
 .hook-t { margin-top: 14px; font-size: var(--t-lead); line-height: 1.45; font-weight: 400; max-width: 22em; text-wrap: pretty; }
 .src { margin-top: 10px; font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; max-width: 34em; }
+/* Long figures (more than four characters, like "Rs 65,782") are sized to fit the
+   line: the generator writes --hook-chars and the class hook-long. */
+.hook-long .hook-n { font-size: min(var(--t-hook), 9rem, calc((100vw - 2 * var(--margin)) / (var(--hook-chars) * .62))); letter-spacing: -.045em; }
 @media (min-width: 1024px) {
-  .hook { display: grid; grid-template-columns: auto 1fr; column-gap: 40px; align-items: end; padding-top: 48px; }
-  .hook-n { grid-row: 1 / span 2; }
-  .hook-t { margin-top: 0; }
-  .hook .src { margin-bottom: .9em; }
+  .hook:not(.hook-long) { display: grid; grid-template-columns: auto 1fr; column-gap: 40px; align-items: end; padding-top: 48px; }
+  .hook:not(.hook-long) .hook-n { grid-row: 1 / span 2; }
+  .hook:not(.hook-long) .hook-t { margin-top: 0; }
+  .hook:not(.hook-long) .src { margin-bottom: .9em; }
+  .hook { padding-top: 48px; }
+  .hook-long .hook-t { margin-top: 20px; }
+}
+
+/* The AI line: the second half of the hook, always present on a guide. */
+.hook-ai { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); font-size: var(--t-lead); line-height: 1.45;
+  font-weight: 400; color: var(--ink); max-width: 30em; text-wrap: pretty; }
+.hook-ai a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(238,241,245,.45); }
+
+@media (max-width: 699px) {
+  .hook-ai { margin-top: 16px; padding-top: 14px; font-size: 1rem; line-height: 1.5; }
+  .intro { padding-top: 28px; }
+  .premise { margin-top: 14px; font-size: 1.0625rem; }
+  .actions { margin-top: 22px; }
 }
 
 /* ---------- lede: hook, title, premise; on desktop the capture sits beside it ---------- */
@@ -137,6 +154,7 @@ h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing:
 .means svg { width: 20px; height: 20px; margin-top: .3em; }
 .means .yes svg { color: var(--green); }
 .means .no { color: var(--muted); }
+.means .no.ai { color: var(--ink); }
 .means .no svg { color: var(--muted); }
 
 /* ---------- checklist: real checkboxes, so a seller can tick them off by the car ---------- */
@@ -153,6 +171,15 @@ h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing:
 .check strong { display: block; font-size: 1.0625rem; font-weight: 500; color: var(--ink); }
 .check input:checked + span strong { text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: var(--muted); }
 .check-note { margin-top: 12px; font-size: var(--t-small); color: var(--muted); font-weight: 400; }
+
+/* ---------- free text sections ---------- */
+.prose-p { margin-top: 16px; color: var(--muted); max-width: 34em; }
+.bullets { list-style: none; margin-top: 24px; display: grid; gap: 16px; max-width: 34em; }
+.bullets li { position: relative; padding-left: 22px; color: var(--muted); }
+.bullets li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 2px; background: var(--line-strong); }
+.bullets a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(238,241,245,.45); }
+.bullets a:hover { text-decoration-color: currentColor; }
+.sec .fact + .bullets, .sec .bullets + .prose-p { margin-top: 20px; }
 
 /* ---------- FAQ ---------- */
 .faq { margin-top: 28px; display: grid; gap: 28px; max-width: 34em; }
@@ -182,9 +209,8 @@ h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing:
 /* ---------- the Play bar: always in reach ----------
    Phones and tablets: a full-width bar fixed to the bottom, inside the safe area.
    Desktop: a compact card in the empty right rail.
-   Without JS it is simply always shown. With JS (html.js) it is hidden while an
-   in-page Play button is on screen and shown once the reader scrolls past the
-   first one. Hidden means moved off screen and transparent, not removed: it
+   Without JS it is simply always shown. With JS (html.js) it is shown exactly
+   when no in-page Play button is on screen. Hidden means moved off screen and transparent, not removed: it
    stays in the tab order, and :focus-within brings it back for keyboard users. */
 .getbar { position: fixed; z-index: 10; left: 0; right: 0; bottom: 0;
   display: flex; align-items: center; justify-content: space-between; gap: 12px;

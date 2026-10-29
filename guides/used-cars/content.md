@@ -1,9 +1,9 @@
 ---
 slug: used-cars
-title: Used car photos you can trust: how to get proof it's real
-description: Selling or buying a used car? Photos taken in the free RIALITI Capture app can be checked by anyone, free, to prove they're real and unedited.
-h1: Used car photos anyone can check are real.
-og_title: Used car photos you can trust
+title: Used car photos you can prove are real, not AI edited
+description: Selling or buying a used car? Photos taken in the free RIALITI Capture app can be proven real and unedited by anyone, free, even when AI can fake the rest.
+h1: Car photos you can prove are real, not edited with AI.
+og_title: Used car photos you can prove are real, not AI edited
 og_description: The seller shoots the car in the free RIALITI Capture app. The buyer checks every photo free at check.rialiti.io.
 og_image: /assets/guides/used-cars/og-1200x630.jpg
 og_image_alt: 68% of people asked about buying a used car worry about hidden faults. Beside it, a photo taken in RIALITI Capture with its Verified capture panel.
@@ -17,6 +17,7 @@ hook_text: of people asked about buying a used car worry about hidden faults or 
 hook_source_note: Cazoo survey of 2,025 UK adults, 23 October 2026, reported by
 hook_source_name: AM Online
 hook_source_url: https://www.am-online.com/news/only-a-third-of-used-car-buyers-trust-dealers-cazoo-finds
+ai_line: And AI can now erase a dent or change a mileage photo in seconds. Most people can't tell by looking.
 hero_aside: Free on Android. The buyer needs nothing but a browser.
 handoff: The photos go out the usual way: Facebook Marketplace, WhatsApp, a listing, an email.
 ---
@@ -27,12 +28,13 @@ against its original on 2026-10-28:
          concern for 68% of respondents, followed by unclear vehicle histories at 45% and being overcharged at 41%".
   buyer  Santander UK Scamtracker, released 1 April 2026: cars/vehicles £660,960 of more than £3.4m
          purchase-scam claims, Jan to Mar 2026; next category pets £158,557 (x4.2).
-  buyer  Conjointly, 25 Sep 2025, 301 US adults: real images identified correctly 49%, AI images 52%.
+  faq    Conjointly, 25 Sep 2025, 301 US adults: real images identified correctly 49%, AI images 52%,
+         only 9% identified at least 70% correctly.
 Left out on purpose: KBB "74% prefer actual-vehicle photos" (a 2006 study, too old to quote as current).
 -->
 
 ## [intro]
-A buyer can't see the car until they make the trip, so the photos do the persuading. Here is how a seller can send car photos that any buyer can check for free, and what that check does and doesn't tell you.
+A buyer can't see the car until they make the trip, so the photos do the persuading. Here's how to send car photos any buyer can prove are real, for free.
 
 ## [how] How it works between a seller and a buyer
 Four steps for each side. Neither of you needs an account.
@@ -41,7 +43,7 @@ Four steps for each side. Neither of you needs an account.
 Show the car exactly as it is today, dents and all. Buyers who can check your photos have one less reason to doubt the rest of the listing.
 
 1. **Install RIALITI Capture.** It's free on Google Play and takes a minute.
-2. **Take the car photos inside the app.** Only photos taken in RIALITI Capture get a public record. Photos from your phone's own camera or gallery can't be checked.
+2. **Take the car photos inside the app.** Only photos taken in RIALITI Capture get a public record. If anyone edits one later, by hand or with AI, it no longer matches.
 3. **Send them wherever you already do.** Share straight from the app to Facebook Marketplace, WhatsApp, your listing or an email.
 4. **The record travels with the photo.** Each photo can be checked by anyone, even after WhatsApp has shrunk it.
 
@@ -49,16 +51,16 @@ Show the car exactly as it is today, dents and all. Buyers who can check your ph
 > Cars are the biggest purchase-scam category in Santander UK's claims: £660,960 from January to March 2026, more than four times the next category.
 > Source: [Santander UK Scamtracker](https://www.santander.co.uk/about-santander/media-centre/press-releases/the-santander-quarterly-scamtracker-reveals-soaring-pet/), 1 April 2026.
 
-> Looking harder doesn't settle it. In a 2025 test, people judged real photos correctly 49% of the time and AI images 52%, about the same as a coin toss.
-> Source: [Conjointly](https://conjointly.com/blog/real-vs-ai-images-2025/), survey of 301 US adults.
 
 1. **Ask for RIALITI photos.** Before you travel or pay, ask the seller to take the photos in RIALITI Capture. It's free for them too.
 2. **Open [check.rialiti.io](https://check.rialiti.io).** It works in any browser, on any phone or computer. No app needed.
 3. **Upload the photo you were sent.** Save it from the chat or the listing first. A copy that came through WhatsApp is fine.
-4. **Read the answer.** It tells you whether the photo traces back to a real capture, and when that capture was taken.
+4. **Read the answer.** It tells you whether the photo traces back to a real capture, and when it was taken. An AI image or an AI-edited photo traces back to nothing.
 
 ## [answer] What the answer means
 A match means the photo is a real capture from a phone camera, not edited, and taken on the date shown.
+
+An AI image, or a photo edited with AI, traces back to nothing. It has no record to match, so it can't be proven real.
 
 It can't tell you what's outside the frame, how the car drives, or who owns it. A photo with no match proves nothing either way, so ask for one taken in the app.
 
@@ -75,6 +77,12 @@ Take these in the app, in one go, in daylight. Tick them off as you go.
 The ticks stay on this page only. Nothing is saved or sent.
 
 ## [faq] Questions
+### [ai-tell] How can I tell if a car photo is AI?
+Mostly, you can't. In a 2025 test, people judged real photos correctly 49% of the time and AI images 52%, about a coin toss, and only 9% got 70% or more right ([Conjointly](https://conjointly.com/blog/real-vs-ai-images-2025/), 301 US adults). So don't guess: ask for photos taken in RIALITI Capture and check them.
+
+### [ai-check] Can RIALITI tell whether an image is AI?
+No. It proves real ones. A photo taken in the app can be shown to be real and unedited. Anything without a record, AI or not, can't be proven either way.
+
 ### Does the buyer need to install anything?
 No. Anyone can check a photo for free at [check.rialiti.io](https://check.rialiti.io), in any browser. Only the person taking the photos needs the app.
 

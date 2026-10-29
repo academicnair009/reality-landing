@@ -61,7 +61,7 @@ for (const slug of slugs) {
     await p.waitForTimeout(600);
     R.phone_bar_mid = await barState(p);
     await p.screenshot({ path: path.join(out, `${slug}-360-middle.png`) });
-    await p.evaluate(() => { const e = document.querySelector('#list'); window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 40); });
+    await p.evaluate(() => { const e = (document.querySelector('.check') || document.querySelector('.bullets') || document.querySelector('#faq')).closest('section'); window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 40); });
     await p.waitForTimeout(600);
     R.phone_bar_checklist = await barState(p);
     await p.screenshot({ path: path.join(out, `${slug}-360-checklist.png`) });

@@ -22,17 +22,28 @@ Content file format (see guides/used-cars/content.md for a full example):
     ## [intro]                 sections, each "## [key] Optional heading"
     Paragraph text. **bold**, [link text](https://...) and blank-line paragraphs.
 
-Section keys and what each block type becomes:
-    intro      paragraphs, under the H1
-    how        H2 heading; paragraphs become the section lead
-    seller     H3 heading; paragraphs, "> " sourced facts, "1. **Title.** detail" steps
-    buyer      same as seller
-    answer     H2 heading; first paragraph = what a match means, second = what it does not
-    checklist  H2 heading; lead paragraph, "- **Item.** tip" checkboxes, a closing note paragraph
-    faq        H2 heading; "### Question" then answer paragraphs (also emitted as FAQPage JSON-LD)
-    close      H2 heading; paragraphs
+Section keys (sections render in the order they appear in the file, except
+[close], which is always last, and [seller]/[buyer], which belong to [how]):
+    intro      required. Paragraphs under the H1.
+    how        required. H2 heading; paragraphs become the section lead.
+    seller     required. H3 heading; paragraphs, "> " sourced facts, "1. **Title.** detail" steps.
+    buyer      required. Same as seller.
+    answer     required. H2 heading; exactly three paragraphs: what a match means,
+               what an AI image or AI-edited photo gets (nothing to match), what it does not tell you.
+    checklist  optional. H2 heading; lead paragraph, "- **Item.** tip" checkboxes, a closing note.
+    text       optional, repeatable. H2 heading; paragraphs, "> " facts, "- " bullet lists.
+    faq        required. H2 heading; "### Question" then answer paragraphs (also FAQPage JSON-LD).
+               Two questions are standard on every guide and must be tagged:
+                 ### [ai-tell] How can I tell if a <thing> photo is AI?   (answer: mostly you can't; ask for proof)
+                 ### [ai-check] Can RIALITI tell whether an image is AI?  (answer: no, it proves real ones)
+    close      required. H2 heading; paragraphs.
 A "> " fact block is one or more lines; a line starting "Source:" becomes its credit.
 HTML comments (<!-- ... -->) are dropped, so editors can leave notes in the file.
+
+Standard AI fields, required on every guide (founder decision 2026-10-28: the reader
+must learn that their photos can be proven real even when others edit or invent
+photos with AI): "AI" in title and h1, the ai_line front-matter field (shown under
+the hook statistic), the three-line [answer], and the two tagged FAQ entries.
 """
 import html
 import json
@@ -49,7 +60,7 @@ SITE = "https://www.rialiti.io"
 PLAY = "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer="
 
 REQUIRED = ["slug", "title", "description", "h1", "cell", "published",
-            "hook_number", "hook_text", "hook_source_name", "hook_source_url"]
+            "hook_number", "hook_text", "hook_source_name", "hook_source_url", "ai_line"]
 DEFAULTS = {
     "modified": None,                       # defaults to published
     "paid_campaign": "marketplace-oct26",
@@ -69,7 +80,10 @@ DEFAULTS = {
     "close_aside": "Not on iPhone yet. Anyone can check a photo from any phone at "
                    "[check.rialiti.io](https://check.rialiti.io).",
 }
-SECTIONS = ["intro", "how", "seller", "buyer", "answer", "checklist", "faq", "close"]
+SECTIONS = ["intro", "how", "seller", "buyer", "answer", "checklist", "text", "faq", "close"]
+REQUIRED_SECTIONS = ["intro", "how", "seller", "buyer", "answer", "faq", "close"]
+REPEATABLE = {"text"}
+AI_WORD = re.compile(r"\bAI\b")
 
 # Honesty rail and copy rules (brief.md). Checked case-insensitively on the whole page.
 LINT = ["—", "spot", "detect", "ai detector", "attest", "hash", "cryptograph",
@@ -112,23 +126,28 @@ def parse(path):
     if meta["slug"] != path.parent.name:
         raise BuildError(f"{path}: slug '{meta['slug']}' must equal its folder name")
 
-    sections = {}
-    current = None
+    order = []          # [(key, heading, lines)] in file order
     for line in m.group(2).splitlines():
         h = re.match(r"##\s+\[(\w+)\]\s*(.*)$", line)
         if h:
-            current = h.group(1)
-            if current not in SECTIONS:
-                raise BuildError(f"{path}: unknown section [{current}]")
-            sections[current] = {"heading": h.group(2).strip(), "lines": []}
-        elif current:
-            sections[current]["lines"].append(line)
+            key = h.group(1)
+            if key not in SECTIONS:
+                raise BuildError(f"{path}: unknown section [{key}]")
+            if key not in REPEATABLE and any(k == key for k, _, _ in order):
+                raise BuildError(f"{path}: section [{key}] appears twice")
+            order.append((key, h.group(2).strip(), []))
+        elif order:
+            order[-1][2].append(line)
         elif line.strip():
             raise BuildError(f"{path}: text before the first ## [section]")
-    for k in SECTIONS:
-        if k not in sections:
+    keys = [k for k, _, _ in order]
+    for k in REQUIRED_SECTIONS:
+        if k not in keys:
             raise BuildError(f"{path}: missing section ## [{k}]")
-        sections[k]["blocks"] = blocks(sections[k]["lines"])
+    sections = [{"key": k, "heading": hd, "blocks": blocks(ls)} for k, hd, ls in order]
+    for sec in sections:
+        if sec["key"] != "intro" and not sec["heading"]:
+            raise BuildError(f"{path}: section [{sec['key']}] needs a heading after the key")
     return meta, sections
 
 
@@ -276,23 +295,43 @@ def render_checklist(bl, slug):
     return "\n".join(out)
 
 
+def render_text(bl):
+    out = []
+    for kind, v in bl:
+        if kind == "p":
+            out.append(f'{IND}<p class="sec-lead">{inline(v)}</p>' if not out else f"{IND}<p>{inline(v)}</p>")
+        elif kind == "fact":
+            out.append(render_role([("fact", v)], indent=IND))
+        elif kind == "ul":
+            items = "\n".join(f"{IND}  <li>{inline(i)}</li>" for i in v)
+            out.append(f'{IND}<ul class="bullets">\n{items}\n{IND}</ul>')
+        else:
+            raise BuildError(f"unexpected {kind} block in a text section")
+    return '\n'.join(out).replace(f"{IND}<p>", f'{IND}<p class="prose-p">')
+
+
 def faq_items(bl):
     items = []
     for kind, v in bl:
         if kind == "q":
-            items.append([v, []])
+            tag = re.match(r"\[([\w-]+)\]\s*(.*)", v)
+            items.append([tag.group(2) if tag else v, [], tag.group(1) if tag else None])
         elif kind == "p" and items:
             items[-1][1].append(v)
         else:
             raise BuildError("faq: each answer needs a '### Question' above it")
     if not items:
         raise BuildError("faq: no questions")
+    tags = [t for _, _, t in items]
+    for t in ("ai-tell", "ai-check"):
+        if tags.count(t) != 1:
+            raise BuildError(f"faq: needs exactly one '### [{t}] ...' question (standard on every guide)")
     return items
 
 
 def render_faq(items):
     out = []
-    for q, answers in items:
+    for q, answers, _tag in items:
         out.append(f"        <div>\n          <h3>{inline(q)}</h3>")
         out += [f"          <p>{inline(a)}</p>" for a in answers]
         out.append("        </div>")
@@ -318,29 +357,89 @@ def jsonld(meta, faq, canonical, og_image):
     faqpage = {"@type": "FAQPage", "@id": canonical + "#faq", "mainEntity": [
         {"@type": "Question", "name": plain(q),
          "acceptedAnswer": {"@type": "Answer", "text": " ".join(plain(a) for a in answers)}}
-        for q, answers in faq]}
+        for q, answers, _tag in faq]}
     data = {"@context": "https://schema.org", "@graph": [article, faqpage]}
     s = json.dumps(data, ensure_ascii=False, indent=1)
     return s.replace("<", "\\u003c")
 
 
+def partials():
+    """guides/_template/sections.html, split on its "@@ name" lines."""
+    text = (TEMPLATE / "sections.html").read_text(encoding="utf-8")
+    parts = re.split(r"^@@ (\w+)\n", text, flags=re.M)
+    return {parts[i]: parts[i + 1] for i in range(1, len(parts), 2)}
+
+
+def fill(template, values):
+    def sub(m):
+        k = m.group(1)
+        if k not in values:
+            raise BuildError(f"template placeholder {{{{{k}}}}} has no value")
+        return values[k]
+    return re.sub(r"\{\{(\w+)\}\}", sub, template)
+
+
+def slugify(s):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:40] or "section"
+
+
 def build(slug):
     src = GUIDES / slug / "content.md"
-    meta, sec = parse(src)
+    meta, secs = parse(src)
+    by = {sec["key"]: sec for sec in secs}
     canonical = f"{SITE}/guides/{slug}/"
     og_image = meta["og_image"] if meta["og_image"].startswith("http") else SITE + meta["og_image"]
     organic = ("utm_source=rialiti.io&utm_medium=guide&utm_campaign=guides&utm_content="
                + meta["organic_content"])
     play_href = PLAY + quote(organic, safe="")
 
-    answer = [t for k, t in sec["answer"]["blocks"] if k == "p"]
-    if len(answer) != 2:
-        raise BuildError("answer: needs exactly two paragraphs (what a match means, what it does not)")
-    faq = faq_items(sec["faq"]["blocks"])
+    for k in ("title", "h1"):
+        if not AI_WORD.search(meta[k]):
+            raise BuildError(f"{k} must name AI (standard on every guide): {meta[k]!r}")
+    if len(typo(meta["title"])) > 60:
+        raise BuildError(f"title is {len(typo(meta['title']))} characters; keep it at 60 or under")
+
+    answer = [t for k, t in by["answer"]["blocks"] if k == "p"]
+    if len(answer) != 3:
+        raise BuildError("answer: needs exactly three paragraphs (what a match means, "
+                         "what an AI image or AI-edited photo gets, what it does not tell you)")
+    faq = faq_items(by["faq"]["blocks"])
+    parts = partials()
+
+    used_ids = {"how", "means", "faq", "get"}
+    rendered = []
+    for sec in secs:
+        k = sec["key"]
+        if k == "how":
+            rendered.append(fill(parts["how"], {
+                "how_heading": _text(sec["heading"]),
+                "how_body": render_paras(sec["blocks"], "sec-lead"),
+                "seller_heading": _text(by["seller"]["heading"]),
+                "seller_body": render_role(by["seller"]["blocks"]),
+                "seller_caption": inline(meta["seller_caption"]),
+                "handoff": inline(meta["handoff"]),
+                "buyer_heading": _text(by["buyer"]["heading"]),
+                "buyer_body": render_role(by["buyer"]["blocks"]),
+                "buyer_caption": inline(meta["buyer_caption"]),
+            }))
+        elif k == "answer":
+            rendered.append(fill(parts["answer"], {
+                "answer_heading": _text(sec["heading"]),
+                "answer_yes": inline(answer[0]), "answer_ai": inline(answer[1]), "answer_no": inline(answer[2]),
+            }))
+        elif k in ("checklist", "text"):
+            sid = slugify(sec["heading"])
+            while sid in used_ids:
+                sid += "-2"
+            used_ids.add(sid)
+            body = render_checklist(sec["blocks"], slug) if k == "checklist" else render_text(sec["blocks"])
+            rendered.append(fill(parts[k], {"id": sid, "heading": _text(sec["heading"]), "body": body}))
+        elif k == "faq":
+            rendered.append(fill(parts["faq"], {"heading": _text(sec["heading"]), "body": render_faq(faq)}))
+    hook_long = len(meta["hook_number"]) > 4
     hook_source = (attr_free(meta["hook_source_note"]) +
                    f'<a href="{html.escape(meta["hook_source_url"])}" target="_blank" rel="noopener">'
                    f'{_text(meta["hook_source_name"])}</a>')
-
     values = {
         "slug": slug,
         "title": attr(meta["title"]),
@@ -359,48 +458,23 @@ def build(slug):
         "paid_campaign": meta["paid_campaign"],
         "play_href": html.escape(play_href),
         "hook_number": _text(meta["hook_number"]),
+        "hook_class": " hook-long" if hook_long else "",
+        "hook_style": f' style="--hook-chars: {len(meta["hook_number"])}"' if hook_long else "",
         "hook_text": inline(meta["hook_text"]),
         "hook_source": hook_source,
+        "ai_line": inline(meta["ai_line"]),
         "h1": _text(meta["h1"]),
-        "intro": render_paras(sec["intro"]["blocks"], indent="        "),
+        "intro": render_paras(by["intro"]["blocks"], indent="        "),
         "hero_aside": inline(meta["hero_aside"]),
-        "how_heading": _text(sec["how"]["heading"]),
-        "how_body": render_paras(sec["how"]["blocks"], "sec-lead"),
-        "seller_heading": _text(sec["seller"]["heading"]),
-        "seller_body": render_role(sec["seller"]["blocks"]),
         "seller_caption": inline(meta["seller_caption"]),
-        "handoff": inline(meta["handoff"]),
-        "buyer_heading": _text(sec["buyer"]["heading"]),
-        "buyer_body": render_role(sec["buyer"]["blocks"]),
-        "buyer_caption": inline(meta["buyer_caption"]),
-        "answer_heading": _text(sec["answer"]["heading"]),
-        "answer_yes": inline(answer[0]),
-        "answer_no": inline(answer[1]),
-        "checklist_heading": _text(sec["checklist"]["heading"]),
-        "checklist_body": render_checklist(sec["checklist"]["blocks"], slug),
-        "faq_heading": _text(sec["faq"]["heading"]),
-        "faq_body": render_faq(faq),
-        "close_heading": _text(sec["close"]["heading"]),
-        "close_body": render_paras(sec["close"]["blocks"], "sec-lead"),
+        "sections": "".join(rendered).rstrip("\n") + "\n",
+        "close_heading": _text(by["close"]["heading"]),
+        "close_body": render_paras(by["close"]["blocks"], "sec-lead"),
         "close_aside": inline(meta["close_aside"]),
         "css": (TEMPLATE / "guides.css").read_text(encoding="utf-8"),
         "js": (TEMPLATE / "guides.js").read_text(encoding="utf-8"),
     }
-    for k in ("how", "seller", "buyer", "answer", "checklist", "faq", "close"):
-        if not sec[k]["heading"]:
-            raise BuildError(f"section [{k}] needs a heading after the key")
-
-    page = (TEMPLATE / "page.html").read_text(encoding="utf-8")
-
-    def fill(m):
-        k = m.group(1)
-        if k not in values:
-            raise BuildError(f"template placeholder {{{{{k}}}}} has no value")
-        return values[k]
-    page = re.sub(r"\{\{(\w+)\}\}", fill, page)
-
-    if len(typo(meta["title"])) > 60:
-        raise BuildError(f"title is {len(typo(meta['title']))} characters; keep it at 60 or under")
+    page = fill((TEMPLATE / "page.html").read_text(encoding="utf-8"), values)
     low = page.lower()
     hits = [w for w in LINT if w in low]
     if hits:

@@ -5,9 +5,9 @@
       otherwise the page's default cell (body data-cell) is used.
       No ?c= at all: an organic visit, and the link keeps the organic referrer
       the generator wrote into the HTML (also what no-JS visitors get).
-   2. Show the Play bar (#getbar) only once the reader has scrolled past the
-      first Play button, and hide it again while any in-page Play button
-      ([data-play-inline]) is on screen. */
+   2. Show the Play bar (#getbar) whenever no in-page Play button
+      ([data-play-inline]) is on screen: hidden while the hero button is
+      visible, shown once the reader scrolls past it. */
 (function () {
   var d = document, b = d.body;
   var PLAY = "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=";
@@ -27,16 +27,18 @@
     d.documentElement.classList.remove("js");
     return;
   }
-  var first = inline[0], seen = [], passed = false;
+  // Pure function of what is on screen: the bar shows exactly when no in-page
+  // Play button is visible. Above the first button (a short phone where the
+  // hero button starts below the fold) and between buttons, it is in reach;
+  // while a page button is on screen, it steps aside so there is never a
+  // duplicate. Nothing is latched, so jumps and restored scroll are correct.
+  var seen = [];
   var io = new IntersectionObserver(function (entries) {
-    for (var j = 0; j < entries.length; j++) {
-      var en = entries[j], k = Array.prototype.indexOf.call(inline, en.target);
-      seen[k] = en.isIntersecting;
-      if (en.target === first) passed = !en.isIntersecting && en.boundingClientRect.bottom < 0;
-    }
+    for (var j = 0; j < entries.length; j++)
+      seen[Array.prototype.indexOf.call(inline, entries[j].target)] = entries[j].intersectionRatio > 0.98;
     var anyOn = false;
-    for (var m = 0; m < seen.length; m++) if (seen[m]) anyOn = true;
-    bar.classList.toggle("is-on", passed && !anyOn);
-  });
+    for (var m = 0; m < inline.length; m++) if (seen[m]) anyOn = true;
+    bar.classList.toggle("is-on", !anyOn);
+  }, { threshold: [0, 0.99, 1] }); // "on screen" means fully visible, not peeking at the fold
   for (var n = 0; n < inline.length; n++) io.observe(inline[n]);
 })();

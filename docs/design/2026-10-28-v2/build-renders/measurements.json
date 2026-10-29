@@ -1,0 +1,1385 @@
+{
+ "date": "2026-10-29T02:23:10.526Z",
+ "base": "local http server; text gzipped (level 6) as GitHub Pages does; byte counts below are decoded body sizes",
+ "checks": [
+  {
+   "name": "console clean, reduced motion 360",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "no horizontal overflow at 360",
+   "ok": true,
+   "detail": {
+    "docW": 360,
+    "h1px": "42.16px",
+    "h1Lines": 2,
+    "playTop": 305,
+    "playBottom": 361,
+    "pageH": 10250
+   }
+  },
+  {
+   "name": "H1 on 2 lines at 360",
+   "ok": true,
+   "detail": {
+    "docW": 360,
+    "h1px": "42.16px",
+    "h1Lines": 2,
+    "playTop": 305,
+    "playBottom": 361,
+    "pageH": 10250
+   }
+  },
+  {
+   "name": "Play button inside the first screen at 360",
+   "ok": true,
+   "detail": {
+    "docW": 360,
+    "h1px": "42.16px",
+    "h1Lines": 2,
+    "playTop": 305,
+    "playBottom": 361,
+    "pageH": 10250
+   }
+  },
+  {
+   "name": "console clean, motion 360",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "console clean, reduced motion 768",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "no horizontal overflow at 768",
+   "ok": true,
+   "detail": {
+    "docW": 768,
+    "h1px": "60.928px",
+    "h1Lines": 2,
+    "playTop": 333,
+    "playBottom": 389,
+    "pageH": 11691
+   }
+  },
+  {
+   "name": "H1 on 2 lines at 768",
+   "ok": true,
+   "detail": {
+    "docW": 768,
+    "h1px": "60.928px",
+    "h1Lines": 2,
+    "playTop": 333,
+    "playBottom": 389,
+    "pageH": 11691
+   }
+  },
+  {
+   "name": "Play button inside the first screen at 768",
+   "ok": true,
+   "detail": {
+    "docW": 768,
+    "h1px": "60.928px",
+    "h1Lines": 2,
+    "playTop": 333,
+    "playBottom": 389,
+    "pageH": 11691
+   }
+  },
+  {
+   "name": "console clean, motion 768",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "console clean, reduced motion 1440",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "no horizontal overflow at 1440",
+   "ok": true,
+   "detail": {
+    "docW": 1440,
+    "h1px": "91.84px",
+    "h1Lines": 2,
+    "playTop": 560,
+    "playBottom": 616,
+    "pageH": 10282
+   }
+  },
+  {
+   "name": "H1 on 2 lines at 1440",
+   "ok": true,
+   "detail": {
+    "docW": 1440,
+    "h1px": "91.84px",
+    "h1Lines": 2,
+    "playTop": 560,
+    "playBottom": 616,
+    "pageH": 10282
+   }
+  },
+  {
+   "name": "Play button inside the first screen at 1440",
+   "ok": true,
+   "detail": {
+    "docW": 1440,
+    "h1px": "91.84px",
+    "h1Lines": 2,
+    "playTop": 560,
+    "playBottom": 616,
+    "pageH": 10282
+   }
+  },
+  {
+   "name": "console clean, motion 1440",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "no-JS 360: story static and fully visible",
+   "ok": true,
+   "detail": {
+    "anim": false,
+    "formShown": false,
+    "note": "The iPhone waitlist opens soon.",
+    "hiddenText": 0
+   }
+  },
+  {
+   "name": "no-JS 360: waitlist shows the \"opens soon\" line instead of a dead form",
+   "ok": true,
+   "detail": {
+    "anim": false,
+    "formShown": false,
+    "note": "The iPhone waitlist opens soon.",
+    "hiddenText": 0
+   }
+  },
+  {
+   "name": "no-JS console clean 360",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "no-JS 1440: story static and fully visible",
+   "ok": true,
+   "detail": {
+    "anim": false,
+    "formShown": false,
+    "note": "The iPhone waitlist opens soon.",
+    "hiddenText": 0
+   }
+  },
+  {
+   "name": "no-JS 1440: waitlist shows the \"opens soon\" line instead of a dead form",
+   "ok": true,
+   "detail": {
+    "anim": false,
+    "formShown": false,
+    "note": "The iPhone waitlist opens soon.",
+    "hiddenText": 0
+   }
+  },
+  {
+   "name": "no-JS console clean 1440",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "404 page renders with its assets at depth (360)",
+   "ok": true,
+   "detail": {
+    "status": 404,
+    "log": {
+     "errors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+     ],
+     "warnings": [],
+     "failed": []
+    }
+   }
+  },
+  {
+   "name": "404 page renders with its assets at depth (1440)",
+   "ok": true,
+   "detail": {
+    "status": 404,
+    "log": {
+     "errors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+     ],
+     "warnings": [],
+     "failed": []
+    }
+   }
+  },
+  {
+   "name": "phone: no story or proof image fetched before scrolling",
+   "ok": true,
+   "detail": [
+    "/assets/v2/hero/capture-786.webp",
+    "/assets/v2/hero/record-card-967.webp",
+    "/assets/v2/icons/rialiti-mark.svg",
+    "/assets/v2/problem/car-real-785.webp",
+    "/assets/v2/problem/car-edited-785.webp"
+   ]
+  },
+  {
+   "name": "phone: CLS is 0",
+   "ok": true,
+   "detail": {
+    "lcp": {
+     "t": 32,
+     "el": "IMG",
+     "url": "capture-786.webp"
+    },
+    "cls": 0,
+    "domContentLoaded": 19,
+    "load": 23
+   }
+  },
+  {
+   "name": "LCP element is the hero photograph or the headline (phone 360x780 @2.625x (mid-range Android))",
+   "ok": true,
+   "detail": {
+    "t": 32,
+    "el": "IMG",
+    "url": "capture-786.webp"
+   }
+  },
+  {
+   "name": "console clean while scrolling (phone 360x780 @2.625x (mid-range Android))",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "LCP element is the hero photograph or the headline (phone 360x780 @1x)",
+   "ok": true,
+   "detail": {
+    "t": 32,
+    "el": "IMG",
+    "url": "capture-560.webp"
+   }
+  },
+  {
+   "name": "console clean while scrolling (phone 360x780 @1x)",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "LCP element is the hero photograph or the headline (desktop 1440x900 @1x)",
+   "ok": true,
+   "detail": {
+    "t": 36,
+    "el": "IMG",
+    "url": "capture-560.webp"
+   }
+  },
+  {
+   "name": "console clean while scrolling (desktop 1440x900 @1x)",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "LCP element is the hero photograph or the headline (desktop 1440x900 @2x)",
+   "ok": true,
+   "detail": {
+    "t": 36,
+    "el": "IMG",
+    "url": "capture-786.webp"
+   }
+  },
+  {
+   "name": "console clean while scrolling (desktop 1440x900 @2x)",
+   "ok": true,
+   "detail": {
+    "errors": [],
+    "warnings": [],
+    "failed": []
+   }
+  },
+  {
+   "name": "one h1",
+   "ok": true,
+   "detail": [
+    {
+     "l": 1,
+     "t": "Prove your photo is real."
+    },
+    {
+     "l": 2,
+     "t": "Photos used to be proof. Now anyone can make one."
+    },
+    {
+     "l": 2,
+     "t": "For any photo that has to be believed."
+    },
+    {
+     "l": 3,
+     "t": "Selling a used car"
+    },
+    {
+     "l": 3,
+     "t": "Watches and phones"
+    },
+    {
+     "l": 3,
+     "t": "Shopify and marketplace sellers"
+    },
+    {
+     "l": 3,
+     "t": "Renting out or moving out"
+    },
+    {
+     "l": 3,
+     "t": "Pets and rehoming"
+    },
+    {
+     "l": 3,
+     "t": "Insurance, disputes, reporting"
+    },
+    {
+     "l": 2,
+     "t": "Three steps. No account."
+    },
+    {
+     "l": 2,
+     "t": "Don’t trust us. Check it yourself."
+    },
+    {
+     "l": 2,
+     "t": "Why RIALITI exists"
+    },
+    {
+     "l": 2,
+     "t": "Keep what’s real, real."
+    },
+    {
+     "l": 3,
+     "t": "Not on iPhone yet."
+    }
+   ]
+  },
+  {
+   "name": "heading levels never skip",
+   "ok": true,
+   "detail": [
+    {
+     "l": 1,
+     "t": "Prove your photo is real."
+    },
+    {
+     "l": 2,
+     "t": "Photos used to be proof. Now anyone can make one."
+    },
+    {
+     "l": 2,
+     "t": "For any photo that has to be believed."
+    },
+    {
+     "l": 3,
+     "t": "Selling a used car"
+    },
+    {
+     "l": 3,
+     "t": "Watches and phones"
+    },
+    {
+     "l": 3,
+     "t": "Shopify and marketplace sellers"
+    },
+    {
+     "l": 3,
+     "t": "Renting out or moving out"
+    },
+    {
+     "l": 3,
+     "t": "Pets and rehoming"
+    },
+    {
+     "l": 3,
+     "t": "Insurance, disputes, reporting"
+    },
+    {
+     "l": 2,
+     "t": "Three steps. No account."
+    },
+    {
+     "l": 2,
+     "t": "Don’t trust us. Check it yourself."
+    },
+    {
+     "l": 2,
+     "t": "Why RIALITI exists"
+    },
+    {
+     "l": 2,
+     "t": "Keep what’s real, real."
+    },
+    {
+     "l": 3,
+     "t": "Not on iPhone yet."
+    }
+   ]
+  },
+  {
+   "name": "lang is en",
+   "ok": true
+  },
+  {
+   "name": "no duplicate ids",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "every img has width, height and alt",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "every img below the first screen is lazy",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "every local link and image resolves to a file",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "external links are exactly the brief's URLs",
+   "ok": true,
+   "detail": [
+    "https://check.rialiti.io",
+    "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+    "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+    "mailto:founders@rialiti.io"
+   ]
+  },
+  {
+   "name": "in-page anchors exist",
+   "ok": true,
+   "detail": [
+    "#how",
+    "#iphone"
+   ]
+  },
+  {
+   "name": "Play links open a new tab with rel noopener",
+   "ok": true,
+   "detail": [
+    {
+     "href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+     "text": "Get it on Google Play",
+     "target": "_blank",
+     "rel": "noopener"
+    },
+    {
+     "href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+     "text": "Get it on Google Play",
+     "target": "_blank",
+     "rel": "noopener"
+    }
+   ]
+  },
+  {
+   "name": "text contrast meets WCAG AA everywhere on the static page",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "every keyboard stop shows a focus indicator",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "honeypot is not a keyboard stop",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "waitlist invalid (360)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": "true",
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@"
+   }
+  },
+  {
+   "name": "waitlist clears the error flag on input (360)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist preview mode sends nothing and says so (360)",
+   "ok": true,
+   "detail": {
+    "s": {
+     "status": "The waitlist isn’t connected yet, so nothing was sent. Your email stayed on this page.",
+     "cls": "status preview",
+     "invalid": null,
+     "btn": "Join the iPhone waitlist",
+     "disabled": false,
+     "busy": null,
+     "done": false,
+     "focus": "",
+     "rows": "grid",
+     "email": "name@example.com"
+    },
+    "sent": []
+   }
+  },
+  {
+   "name": "waitlist submitting (360)",
+   "ok": true,
+   "detail": {
+    "s": {
+     "status": "",
+     "cls": "status",
+     "invalid": null,
+     "btn": "Joining…",
+     "disabled": true,
+     "busy": "true",
+     "done": false,
+     "focus": "",
+     "rows": "grid",
+     "email": "name@example.com"
+    },
+    "sent": [
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A52795%2F&website="
+    ]
+   }
+  },
+  {
+   "name": "waitlist request is form-urlencoded with the agreed fields (360)",
+   "ok": true,
+   "detail": {
+    "email": "name@example.com",
+    "use_for": "",
+    "source": "rialiti.io-home",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "page": "http://127.0.0.1:52795/",
+    "website": ""
+   }
+  },
+  {
+   "name": "waitlist success (360)",
+   "ok": true,
+   "detail": {
+    "status": "You’re on the iPhone waitlist. We’ll email you when RIALITI Capture is on the App Store.",
+    "cls": "status ok",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": true,
+    "focus": "wl-status",
+    "rows": "none",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist network or server error (360)",
+   "ok": true,
+   "detail": {
+    "status": "That didn’t go through. Check your connection and try again.",
+    "cls": "status err",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist maps server invalid_email to the email message (360)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": "true",
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist invalid (1440)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": "true",
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@"
+   }
+  },
+  {
+   "name": "waitlist clears the error flag on input (1440)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist preview mode sends nothing and says so (1440)",
+   "ok": true,
+   "detail": {
+    "s": {
+     "status": "The waitlist isn’t connected yet, so nothing was sent. Your email stayed on this page.",
+     "cls": "status preview",
+     "invalid": null,
+     "btn": "Join the iPhone waitlist",
+     "disabled": false,
+     "busy": null,
+     "done": false,
+     "focus": "",
+     "rows": "grid",
+     "email": "name@example.com"
+    },
+    "sent": []
+   }
+  },
+  {
+   "name": "waitlist submitting (1440)",
+   "ok": true,
+   "detail": {
+    "s": {
+     "status": "",
+     "cls": "status",
+     "invalid": null,
+     "btn": "Joining…",
+     "disabled": true,
+     "busy": "true",
+     "done": false,
+     "focus": "",
+     "rows": "grid",
+     "email": "name@example.com"
+    },
+    "sent": [
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A52795%2F&website="
+    ]
+   }
+  },
+  {
+   "name": "waitlist request is form-urlencoded with the agreed fields (1440)",
+   "ok": true,
+   "detail": {
+    "email": "name@example.com",
+    "use_for": "",
+    "source": "rialiti.io-home",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "page": "http://127.0.0.1:52795/",
+    "website": ""
+   }
+  },
+  {
+   "name": "waitlist success (1440)",
+   "ok": true,
+   "detail": {
+    "status": "You’re on the iPhone waitlist. We’ll email you when RIALITI Capture is on the App Store.",
+    "cls": "status ok",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": true,
+    "focus": "wl-status",
+    "rows": "none",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist network or server error (1440)",
+   "ok": true,
+   "detail": {
+    "status": "That didn’t go through. Check your connection and try again.",
+    "cls": "status err",
+    "invalid": null,
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  },
+  {
+   "name": "waitlist maps server invalid_email to the email message (1440)",
+   "ok": true,
+   "detail": {
+    "status": "Enter an email address, like name@example.com.",
+    "cls": "status err",
+    "invalid": "true",
+    "btn": "Join the iPhone waitlist",
+    "disabled": false,
+    "busy": null,
+    "done": false,
+    "focus": "wl-email",
+    "rows": "grid",
+    "email": "name@example.com"
+   }
+  }
+ ],
+ "hero_360": {
+  "docW": 360,
+  "h1px": "42.16px",
+  "h1Lines": 2,
+  "playTop": 305,
+  "playBottom": 361,
+  "pageH": 10250
+ },
+ "hero_768": {
+  "docW": 768,
+  "h1px": "60.928px",
+  "h1Lines": 2,
+  "playTop": 333,
+  "playBottom": 389,
+  "pageH": 11691
+ },
+ "hero_1440": {
+  "docW": 1440,
+  "h1px": "91.84px",
+  "h1Lines": 2,
+  "playTop": 560,
+  "playBottom": 616,
+  "pageH": 10282
+ },
+ "hero_360x740": {
+  "playTop": 305
+ },
+ "nojs_360": {
+  "anim": false,
+  "formShown": false,
+  "note": "The iPhone waitlist opens soon.",
+  "hiddenText": 0
+ },
+ "nojs_1440": {
+  "anim": false,
+  "formShown": false,
+  "note": "The iPhone waitlist opens soon.",
+  "hiddenText": 0
+ },
+ "html": {
+  "raw": 53179,
+  "gzip6": 15581,
+  "brotli": 13146
+ },
+ "bytes_phone 360x780 @2.625x (mid-range Android)": {
+  "firstScreen": {
+   "total": 204833,
+   "images": 108956,
+   "fonts": 39924,
+   "list": [
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/ 53179",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-edited-785.webp 18274"
+   ]
+  },
+  "wholePage": {
+   "total": 415767,
+   "images": 319890,
+   "fonts": 39924,
+   "requests": 13,
+   "list": [
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/ 53179",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/proof/check-record-724.webp 36180",
+    "/assets/v2/story/first-steps-681.webp 37216",
+    "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/blue-marble-1200.webp 106336"
+   ]
+  },
+  "vitals_local_unthrottled": {
+   "lcp": {
+    "t": 32,
+    "el": "IMG",
+    "url": "capture-786.webp"
+   },
+   "cls": 0,
+   "domContentLoaded": 19,
+   "load": 23
+  }
+ },
+ "bytes_phone 360x780 @1x": {
+  "firstScreen": {
+   "total": 153391,
+   "images": 57514,
+   "fonts": 39924,
+   "list": [
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/ 53179",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/hero/record-card-640.webp 15292",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/v2/problem/car-edited-400.webp 7112",
+    "/assets/v2/problem/car-real-400.webp 7452",
+    "/assets/favicon.svg 2774"
+   ]
+  },
+  "wholePage": {
+   "total": 288865,
+   "images": 192988,
+   "fonts": 39924,
+   "requests": 13,
+   "list": [
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/ 53179",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/hero/record-card-640.webp 15292",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/v2/problem/car-edited-400.webp 7112",
+    "/assets/v2/problem/car-real-400.webp 7452",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/proof/check-record-362.webp 16062",
+    "/assets/v2/story/first-steps-681.webp 37216",
+    "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/blue-marble-760.webp 50994"
+   ]
+  },
+  "vitals_local_unthrottled": {
+   "lcp": {
+    "t": 32,
+    "el": "IMG",
+    "url": "capture-560.webp"
+   },
+   "cls": 0,
+   "domContentLoaded": 17,
+   "load": 21
+  }
+ },
+ "bytes_desktop 1440x900 @1x": {
+  "firstScreen": {
+   "total": 176675,
+   "images": 80798,
+   "fonts": 39924,
+   "list": [
+    "/ 53179",
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/hero/record-card-640.webp 15292",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-edited-785.webp 18274"
+   ]
+  },
+  "wholePage": {
+   "total": 312149,
+   "images": 216272,
+   "fonts": 39924,
+   "requests": 13,
+   "list": [
+    "/ 53179",
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/hero/record-card-640.webp 15292",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/proof/check-record-362.webp 16062",
+    "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/first-steps-681.webp 37216",
+    "/assets/v2/story/blue-marble-760.webp 50994"
+   ]
+  },
+  "vitals_local_unthrottled": {
+   "lcp": {
+    "t": 36,
+    "el": "IMG",
+    "url": "capture-560.webp"
+   },
+   "cls": 0,
+   "domContentLoaded": 16,
+   "load": 20
+  }
+ },
+ "bytes_desktop 1440x900 @2x": {
+  "firstScreen": {
+   "total": 204833,
+   "images": 108956,
+   "fonts": 39924,
+   "list": [
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/ 53179",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574"
+   ]
+  },
+  "wholePage": {
+   "total": 415767,
+   "images": 319890,
+   "fonts": 39924,
+   "requests": 13,
+   "list": [
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/ 53179",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/proof/check-record-724.webp 36180",
+    "/assets/v2/story/first-steps-681.webp 37216",
+    "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/blue-marble-1200.webp 106336"
+   ]
+  },
+  "vitals_local_unthrottled": {
+   "lcp": {
+    "t": 36,
+    "el": "IMG",
+    "url": "capture-786.webp"
+   },
+   "cls": 0,
+   "domContentLoaded": 16,
+   "load": 20
+  }
+ },
+ "throttled_phone": {
+  "conditions": "360x780 @2.625x, 150 ms RTT, 1.6 Mbps, CPU 4x, cache disabled, local server",
+  "fcp": 304,
+  "load": 1060,
+  "h1Font": true,
+  "lcp": {
+   "t": 1068,
+   "url": "capture-786.webp",
+   "el": "IMG"
+  }
+ },
+ "structure": {
+  "headings": [
+   {
+    "l": 1,
+    "t": "Prove your photo is real."
+   },
+   {
+    "l": 2,
+    "t": "Photos used to be proof. Now anyone can make one."
+   },
+   {
+    "l": 2,
+    "t": "For any photo that has to be believed."
+   },
+   {
+    "l": 3,
+    "t": "Selling a used car"
+   },
+   {
+    "l": 3,
+    "t": "Watches and phones"
+   },
+   {
+    "l": 3,
+    "t": "Shopify and marketplace sellers"
+   },
+   {
+    "l": 3,
+    "t": "Renting out or moving out"
+   },
+   {
+    "l": 3,
+    "t": "Pets and rehoming"
+   },
+   {
+    "l": 3,
+    "t": "Insurance, disputes, reporting"
+   },
+   {
+    "l": 2,
+    "t": "Three steps. No account."
+   },
+   {
+    "l": 2,
+    "t": "Don’t trust us. Check it yourself."
+   },
+   {
+    "l": 2,
+    "t": "Why RIALITI exists"
+   },
+   {
+    "l": 2,
+    "t": "Keep what’s real, real."
+   },
+   {
+    "l": 3,
+    "t": "Not on iPhone yet."
+   }
+  ],
+  "title": "Prove a photo is real | RIALITI Capture for Android",
+  "description": "Take a photo in the free RIALITI Capture app and anyone can check it’s real and unedited at check.rialiti.io, even after WhatsApp. Free on Android.",
+  "canonical": "https://www.rialiti.io/",
+  "lang": "en",
+  "og": {
+   "og:type": "website",
+   "og:site_name": "RIALITI",
+   "og:title": "Prove your photo is real.",
+   "og:description": "Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.",
+   "og:url": "https://www.rialiti.io/",
+   "og:image": "https://www.rialiti.io/assets/v2/og/og-1200x630.jpg",
+   "og:image:type": "image/jpeg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:image:alt": "Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Prove your photo is real.",
+   "twitter:description": "Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.",
+   "twitter:image": "https://www.rialiti.io/assets/v2/og/og-1200x630.jpg",
+   "twitter:image:alt": "Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9."
+  },
+  "jsonld": [
+   {
+    "@context": "https://schema.org",
+    "@graph": [
+     {
+      "@type": "Organization",
+      "@id": "https://www.rialiti.io/#org",
+      "name": "RIALITI",
+      "url": "https://www.rialiti.io/",
+      "logo": "https://www.rialiti.io/assets/play/icon-512.png",
+      "email": "founders@rialiti.io"
+     },
+     {
+      "@type": "SoftwareApplication",
+      "name": "RIALITI Capture",
+      "operatingSystem": "Android",
+      "applicationCategory": "MultimediaApplication",
+      "description": "Take photos that anyone can later check are real and unedited, for free at check.rialiti.io.",
+      "url": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+      "installUrl": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+      "offers": {
+       "@type": "Offer",
+       "price": "0",
+       "priceCurrency": "USD"
+      },
+      "publisher": {
+       "@id": "https://www.rialiti.io/#org"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "links": [
+  {
+   "href": "./",
+   "text": "RIALITI",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "#how",
+   "text": "How it works",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io",
+   "text": "Check a photo",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+   "text": "Get it on Google Play",
+   "target": "_blank",
+   "rel": "noopener"
+  },
+  {
+   "href": "https://check.rialiti.io",
+   "text": "Check a photo for free",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "#iphone",
+   "text": "Join the waitlist",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+   "text": "Open its public record",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io",
+   "text": "check.rialiti.io",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+   "text": "Open the car’s record",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io",
+   "text": "Check a photo of your own",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "CREDITS.md",
+   "text": "Photograph credits",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
+   "text": "Get it on Google Play",
+   "target": "_blank",
+   "rel": "noopener"
+  },
+  {
+   "href": "./",
+   "text": "RIALITI",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://check.rialiti.io",
+   "text": "RIALITI Check",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "privacy/",
+   "text": "Privacy",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "CREDITS.md",
+   "text": "Photograph credits",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "mailto:founders@rialiti.io",
+   "text": "founders@rialiti.io",
+   "target": "",
+   "rel": ""
+  }
+ ],
+ "contrast": {
+  "checked": 70,
+  "min": 7.49,
+  "failures": []
+ },
+ "keyboard": [
+  {
+   "tag": "a",
+   "text": "RIALITI",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "How it works",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Check a photo",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Get it on Google Play",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Check a photo for free",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Join the waitlist",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Open its public record",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "check.rialiti.io",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Open the car’s record",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Check a photo of your own",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Photograph credits",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "Get it on Google Play",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "input",
+   "text": "email",
+   "outline": false,
+   "ring": true
+  },
+  {
+   "tag": "textarea",
+   "text": "use_for",
+   "outline": false,
+   "ring": true
+  },
+  {
+   "tag": "button",
+   "text": "Join the iPhone waitlist",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "RIALITI",
+   "outline": true,
+   "ring": false
+  }
+ ]
+}

@@ -174,7 +174,11 @@ a { color: inherit; }
 .stack { position: relative; width: 100%; max-width: 520px; aspect-ratio: 520 / 632; }
 .stack .cap { position: absolute; right: 0; top: 0; width: 84.6%; height: 82.3%; }
 .stack .cap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; border-radius: var(--r-photo); background: #2B2117; }
-.stack .rec { position: absolute; left: 0; bottom: 0; width: 76.9%; filter: drop-shadow(0 18px 36px rgba(0, 0, 0, .6)); }
+/* The panel's rounded corners are baked into the file (44 px at 967 x 560); the shadow follows them.
+   box-shadow rather than filter: drop-shadow, which inflates the panel's paint rect to the shadow's
+   reach and made the late-arriving panel the page's LCP element on desktop. */
+.stack .rec { position: absolute; left: 0; bottom: 0; width: 76.9%; }
+.stack .rec img { border-radius: 4.55% / 7.86%; box-shadow: 0 18px 36px rgba(0, 0, 0, .6); }
 .hero-fig figcaption { margin: 18px 0 0 15.4%; font-size: var(--t-small); line-height: 1.5; color: var(--muted); font-weight: 400; max-width: 30em; }
 /* The page's one orchestrated moment: the record attaches to the photo. Runs once, CSS only.
    Fill is backwards, not both: a forwards-filled animation keeps its layer promoted forever. */

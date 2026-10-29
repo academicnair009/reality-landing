@@ -3,5 +3,6 @@ Allow: /
 # Working files, not pages
 Disallow: /docs/
 Disallow: /scripts/
+Disallow: /guides/_template/
 
 Sitemap: https://www.rialiti.io/sitemap.xml

@@ -1,0 +1,68 @@
+<!-- Section partials for scripts/build_guide.py. Each block runs from a
+     "@@ name" line to the next one. Sections appear on the page in the order
+     they appear in the content file; [close] is always last (page.html). -->
+@@ how
+    <section class="sec" aria-labelledby="how">
+      <h2 id="how">{{how_heading}}</h2>
+{{how_body}}
+      <div class="role role-seller">
+        <div class="role-copy">
+          <h3>{{seller_heading}}</h3>
+{{seller_body}}
+        </div>
+        <figure class="shot">
+          <picture>
+            <source type="image/webp" srcset="/assets/guides/verified-screen-300.webp 300w, /assets/guides/verified-screen-600.webp 600w" sizes="(min-width: 1024px) 280px, (min-width: 700px) 240px, 300px">
+            <img src="/assets/guides/verified-screen-600.jpg" width="600" height="933" loading="lazy" decoding="async"
+              alt="RIALITI Capture right after taking a photo of a small blue toy car on a wooden table. Under the photo, a panel reads Verified capture, entry ra-e58e1b6d5bed4de9, and says anyone can check this capture at check.rialiti.io.">
+          </picture>
+          <figcaption>{{seller_caption}}</figcaption>
+        </figure>
+      </div>
+      <p class="handoff">{{handoff}}</p>
+      <div class="role">
+        <div class="role-copy">
+          <h3>{{buyer_heading}}</h3>
+{{buyer_body}}
+        </div>
+        <figure class="shot">
+          <picture>
+            <source type="image/webp" srcset="/assets/guides/check-record-362.webp 362w, /assets/guides/check-record-724.webp 724w" sizes="(min-width: 1024px) 280px, (min-width: 700px) 240px, 300px">
+            <img src="/assets/guides/check-record-724.jpg" width="724" height="732" loading="lazy" decoding="async"
+              alt="RIALITI Check showing the answer for that toy car photo: Verified, captured 21 September 2026 at 04:20 UTC.">
+          </picture>
+          <figcaption>{{buyer_caption}}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+@@ answer
+    <section class="sec" aria-labelledby="means">
+      <h2 id="means">{{answer_heading}}</h2>
+      <ul class="means">
+        <li class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>{{answer_yes}}</span></li>
+        <li class="no ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>{{answer_ai}}</span></li>
+        <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>{{answer_no}}</span></li>
+      </ul>
+    </section>
+
+@@ checklist
+    <section class="sec" aria-labelledby="{{id}}">
+      <h2 id="{{id}}">{{heading}}</h2>
+{{body}}
+    </section>
+
+@@ text
+    <section class="sec" aria-labelledby="{{id}}">
+      <h2 id="{{id}}">{{heading}}</h2>
+{{body}}
+    </section>
+
+@@ faq
+    <section class="sec" aria-labelledby="faq">
+      <h2 id="faq">{{heading}}</h2>
+      <div class="faq">
+{{body}}
+      </div>
+    </section>
+

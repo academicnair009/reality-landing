@@ -1,0 +1,577 @@
+{
+ "used-cars": {
+  "url": "http://127.0.0.1:8765/guides/used-cars/",
+  "phone_first_load": {
+   "requests": 4,
+   "total_bytes": 110271,
+   "images_loaded_at_load": [
+    {
+     "u": "/assets/guides/verified-screen-600.webp",
+     "bytes": 30138
+    }
+   ],
+   "files": [
+    "200 37667 /guides/used-cars/",
+    "200 2774 /assets/favicon.svg",
+    "200 39692 /assets/v2/fonts/lexend-latin-var.woff2",
+    "200 30138 /assets/guides/verified-screen-600.webp"
+   ]
+  },
+  "phone_top": {
+   "docW": 360,
+   "pageH": 7488,
+   "hook_px": "92.16px",
+   "h1": [
+    20,
+    473,
+    320,
+    100
+   ],
+   "hero_play": [
+    20,
+    753,
+    320,
+    56
+   ],
+   "h1_count": 1,
+   "headings": [
+    "H1 Car photos you can prove are real, not edited with",
+    "H2 How it works between a seller and a buyer",
+    "H3 If you’re selling",
+    "H3 If you’re buying",
+    "H2 What the answer means",
+    "H2 What to photograph",
+    "H2 Questions",
+    "H3 How can I tell if a car photo is AI?",
+    "H3 Can RIALITI tell whether an image is AI?",
+    "H3 Does the buyer need to install anything?",
+    "H3 Can I check a photo that came through WhatsApp?",
+    "H3 I’m on iPhone. Can I use it?",
+    "H2 Sell it with photos buyers can check."
+   ]
+  },
+  "phone_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_mid": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_checklist": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_bottom": {
+   "visible": false,
+   "top": 804,
+   "h": 76,
+   "w": 360,
+   "transition": "0.2s, 0.2s"
+  },
+  "phone_bar_clear_of_footer": {
+   "legal_bottom": 656,
+   "bar_top": 704,
+   "clear": true
+  },
+  "total_after_all_images": 153333,
+  "console": [],
+  "failed_requests": [],
+  "links": [
+   "http://127.0.0.1:8765/",
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dused-cars",
+   "https://www.am-online.com/news/only-a-third-of-used-car-buyers-trust-dealers-cazoo-finds",
+   "https://check.rialiti.io/",
+   "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+   "https://www.santander.co.uk/about-santander/media-centre/press-releases/the-santander-quarterly-scamtracker-reveals-soaring-pet/",
+   "https://conjointly.com/blog/real-vs-ai-images-2025/",
+   "http://127.0.0.1:8765/privacy/",
+   "http://127.0.0.1:8765/CREDITS.md",
+   "mailto:founders@rialiti.io"
+  ],
+  "play_hrefs_no_param": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dused-cars"
+  ],
+  "play_count": 4,
+  "play_hrefs?c=uk-a": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Duk-a"
+  ],
+  "play_hrefs?c=Bad%20Cell": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Dguide-used-cars"
+  ],
+  "play_hrefs?c=": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Dguide-used-cars"
+  ],
+  "top_768": {
+   "docW": 768,
+   "pageH": 5205,
+   "hook_px": "131.328px",
+   "h1_px": "42.016px"
+  },
+  "bar_mid_768": {
+   "visible": true,
+   "top": 948,
+   "h": 76,
+   "w": 768,
+   "transition": "0.26s, 0.26s"
+  },
+  "top_1440": {
+   "docW": 1440,
+   "pageH": 5216,
+   "hook_px": "192px",
+   "h1_px": "58.48px"
+  },
+  "bar_mid_1440": {
+   "visible": true,
+   "top": 737,
+   "h": 139,
+   "w": 302,
+   "transition": "0.26s, 0.26s"
+  },
+  "card_overlaps_article": {
+   "card_left": 1058,
+   "col_right": 925,
+   "overlap": false
+  },
+  "nojs_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0s"
+  },
+  "nojs_text_len": 4838,
+  "nojs_play_href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dused-cars",
+  "js_text_len": 4838,
+  "reduced_motion": {
+   "visible_after_50ms": true,
+   "transitionDuration": "0s",
+   "transform": "none",
+   "animations": 0
+  },
+  "keyboard": {
+   "tab_sequence": [
+    "RIALITI",
+    "Get the app",
+    "AM Online",
+    "Get it on Google Play",
+    "Check a photo for free",
+    "Open its public record",
+    "Santander UK Scamtracker",
+    "check.rialiti.io",
+    "used-cars-1",
+    "used-cars-2",
+    "used-cars-3",
+    "used-cars-4",
+    "used-cars-5",
+    "used-cars-6",
+    "Conjointly",
+    "check.rialiti.io",
+    "Get it on Google Play",
+    "check.rialiti.io",
+    "BAR:Get it on Google Play",
+    "RIALITI",
+    "RIALITI Check",
+    "Privacy",
+    "Photograph credits",
+    "founders@rialiti.io",
+    "BODY"
+   ],
+   "bar_reached": true,
+   "obscured": []
+  }
+ },
+ "india": {
+  "url": "http://127.0.0.1:8765/guides/india/",
+  "phone_first_load": {
+   "requests": 4,
+   "total_bytes": 111809,
+   "images_loaded_at_load": [
+    {
+     "u": "/assets/guides/verified-screen-600.webp",
+     "bytes": 30138
+    }
+   ],
+   "files": [
+    "200 39205 /guides/india/",
+    "200 2774 /assets/favicon.svg",
+    "200 39692 /assets/v2/fonts/lexend-latin-var.woff2",
+    "200 30138 /assets/guides/verified-screen-600.webp"
+   ]
+  },
+  "phone_top": {
+   "docW": 360,
+   "pageH": 8132,
+   "hook_px": "57.3477px",
+   "h1": [
+    20,
+    464,
+    320,
+    100
+   ],
+   "hero_play": [
+    20,
+    799,
+    320,
+    56
+   ],
+   "h1_count": 1,
+   "headings": [
+    "H1 Buying used? Ask for photos proven real, not AI.",
+    "H2 How it works between a seller and a buyer",
+    "H3 If you’re selling",
+    "H3 If you’re buying",
+    "H2 What the answer means",
+    "H2 Before you pay",
+    "H2 Questions",
+    "H3 How can I tell if a phone or bike photo is AI?",
+    "H3 Can RIALITI tell whether an image is AI?",
+    "H3 Does RIALITI stop UPI fraud or prove the seller is",
+    "H3 Does the buyer need to install anything?",
+    "H3 Can I check a photo that came through WhatsApp?",
+    "H2 Sell with photos buyers can check."
+   ]
+  },
+  "phone_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_mid": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_checklist": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_bottom": {
+   "visible": false,
+   "top": 804,
+   "h": 76,
+   "w": 360,
+   "transition": "0.2s, 0.2s"
+  },
+  "phone_bar_clear_of_footer": {
+   "legal_bottom": 656,
+   "bar_top": 704,
+   "clear": true
+  },
+  "total_after_all_images": 154871,
+  "console": [],
+  "failed_requests": [],
+  "links": [
+   "http://127.0.0.1:8765/",
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dindia",
+   "https://newsable.asianetnews.com/india/delhi-police-bust-fake-instagram-iphone-selling-gang-mastermind-arrested-articleshow-azlfryd",
+   "https://check.rialiti.io/",
+   "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+   "https://www.etvbharat.com/en/bharat/jaipur-police-busted-an-interstate-network-of-cyber-fraudsters-and-arrested-21-accused-enn26101704095",
+   "https://www.thenewsminute.com/article/duping-buyers-across-india-posing-army-officers-olx-tn-cops-crack-scam-119709",
+   "https://www.freepressjournal.in/amp/mumbai/mumbai-news-cyber-police-issue-alert-on-online-rental-scam-citizens-warned-against-fake-property-listings",
+   "https://cyber.delhipolice.gov.in/OLX.html",
+   "https://rbikehtahai.rbi.org.in/qr.html",
+   "https://conjointly.com/blog/real-vs-ai-images-2025/",
+   "http://127.0.0.1:8765/privacy/",
+   "http://127.0.0.1:8765/CREDITS.md",
+   "mailto:founders@rialiti.io"
+  ],
+  "play_hrefs_no_param": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dindia"
+  ],
+  "play_count": 4,
+  "play_hrefs?c=uk-a": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Duk-a"
+  ],
+  "play_hrefs?c=Bad%20Cell": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Din-a"
+  ],
+  "play_hrefs?c=": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Din-a"
+  ],
+  "top_768": {
+   "docW": 768,
+   "pageH": 5662,
+   "hook_px": "122.495px",
+   "h1_px": "42.016px"
+  },
+  "bar_mid_768": {
+   "visible": true,
+   "top": 948,
+   "h": 76,
+   "w": 768,
+   "transition": "0.26s, 0.26s"
+  },
+  "top_1440": {
+   "docW": 1440,
+   "pageH": 5674,
+   "hook_px": "144px",
+   "h1_px": "58.48px"
+  },
+  "bar_mid_1440": {
+   "visible": true,
+   "top": 737,
+   "h": 139,
+   "w": 302,
+   "transition": "0.26s, 0.26s"
+  },
+  "card_overlaps_article": {
+   "card_left": 1058,
+   "col_right": 925,
+   "overlap": false
+  },
+  "nojs_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0s"
+  },
+  "nojs_text_len": 5639,
+  "nojs_play_href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dindia",
+  "js_text_len": 5639,
+  "reduced_motion": {
+   "visible_after_50ms": true,
+   "transitionDuration": "0s",
+   "transform": "none",
+   "animations": 0
+  },
+  "keyboard": {
+   "tab_sequence": [
+    "RIALITI",
+    "Get the app",
+    "Asianet Newsable",
+    "Get it on Google Play",
+    "Check a photo for free",
+    "Open its public record",
+    "ETV Bharat",
+    "The News Minute",
+    "check.rialiti.io",
+    "india-1",
+    "check.rialiti.io",
+    "india-2",
+    "Free Press Journal",
+    "india-3",
+    "Delhi Police",
+    "india-4",
+    "RBI Kehta Hai",
+    "india-5",
+    "india-6",
+    "Conjointly",
+    "check.rialiti.io",
+    "Get it on Google Play",
+    "check.rialiti.io",
+    "BAR:Get it on Google Play",
+    "RIALITI",
+    "RIALITI Check",
+    "Privacy",
+    "Photograph credits",
+    "founders@rialiti.io",
+    "BODY"
+   ],
+   "bar_reached": true,
+   "obscured": []
+  }
+ },
+ "how-to-tell-if-a-photo-is-ai": {
+  "url": "http://127.0.0.1:8765/guides/how-to-tell-if-a-photo-is-ai/",
+  "phone_first_load": {
+   "requests": 3,
+   "total_bytes": 79960,
+   "images_loaded_at_load": [],
+   "files": [
+    "200 37494 /guides/how-to-tell-if-a-photo-is-ai/",
+    "200 2774 /assets/favicon.svg",
+    "200 39692 /assets/v2/fonts/lexend-latin-var.woff2"
+   ]
+  },
+  "phone_top": {
+   "docW": 360,
+   "pageH": 7307,
+   "hook_px": "92.16px",
+   "h1": [
+    20,
+    471,
+    320,
+    100
+   ],
+   "hero_play": [
+    20,
+    751,
+    320,
+    56
+   ],
+   "h1_count": 1,
+   "headings": [
+    "H1 How to tell if a photo is AI, and how to prove you",
+    "H2 What people look for",
+    "H2 The other way: proof instead of guessing",
+    "H2 How it works between two people",
+    "H3 If you’re sending the photo",
+    "H3 If you’re receiving it",
+    "H2 What the answer means",
+    "H2 When this matters",
+    "H2 Questions",
+    "H3 How can I tell if a photo is AI?",
+    "H3 Can RIALITI tell whether an image is AI?",
+    "H3 Does it work on screenshots?",
+    "H3 Does compression break it?",
+    "H2 Prove your photos are real."
+   ]
+  },
+  "phone_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_mid": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_checklist": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0.26s, 0.26s"
+  },
+  "phone_bar_bottom": {
+   "visible": false,
+   "top": 804,
+   "h": 76,
+   "w": 360,
+   "transition": "0.2s, 0.2s"
+  },
+  "phone_bar_clear_of_footer": {
+   "legal_bottom": 656,
+   "bar_top": 704,
+   "clear": true
+  },
+  "total_after_all_images": 153160,
+  "console": [],
+  "failed_requests": [],
+  "links": [
+   "http://127.0.0.1:8765/",
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dai-pillar",
+   "https://conjointly.com/blog/real-vs-ai-images-2025/",
+   "https://www.helpnetsecurity.com/2026/06/11/ai-scams-deepfakes-survey/",
+   "https://check.rialiti.io/",
+   "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+   "http://127.0.0.1:8765/guides/used-cars/",
+   "http://127.0.0.1:8765/guides/india/",
+   "http://127.0.0.1:8765/privacy/",
+   "http://127.0.0.1:8765/CREDITS.md",
+   "mailto:founders@rialiti.io"
+  ],
+  "play_hrefs_no_param": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dai-pillar"
+  ],
+  "play_count": 4,
+  "play_hrefs?c=uk-a": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Duk-a"
+  ],
+  "play_hrefs?c=Bad%20Cell": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Dai-a"
+  ],
+  "play_hrefs?c=": [
+   "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Dmeta%26utm_medium%3Dpaid%26utm_campaign%3Dmarketplace-oct26%26utm_content%3Dai-a"
+  ],
+  "top_768": {
+   "docW": 768,
+   "pageH": 5456,
+   "hook_px": "131.328px",
+   "h1_px": "42.016px"
+  },
+  "bar_mid_768": {
+   "visible": true,
+   "top": 948,
+   "h": 76,
+   "w": 768,
+   "transition": "0.26s, 0.26s"
+  },
+  "top_1440": {
+   "docW": 1440,
+   "pageH": 5567,
+   "hook_px": "192px",
+   "h1_px": "58.48px"
+  },
+  "bar_mid_1440": {
+   "visible": true,
+   "top": 737,
+   "h": 139,
+   "w": 302,
+   "transition": "0.26s, 0.26s"
+  },
+  "card_overlaps_article": {
+   "card_left": 1058,
+   "col_right": 925,
+   "overlap": false
+  },
+  "nojs_bar_at_top": {
+   "visible": true,
+   "top": 704,
+   "h": 76,
+   "w": 360,
+   "transition": "0s"
+  },
+  "nojs_text_len": 4850,
+  "nojs_play_href": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io%26utm_medium%3Dguide%26utm_campaign%3Dguides%26utm_content%3Dai-pillar",
+  "js_text_len": 4850,
+  "reduced_motion": {
+   "visible_after_50ms": true,
+   "transitionDuration": "0s",
+   "transform": "none",
+   "animations": 0
+  },
+  "keyboard": {
+   "tab_sequence": [
+    "RIALITI",
+    "Get the app",
+    "Conjointly",
+    "Malwarebytes survey, via Hel",
+    "Get it on Google Play",
+    "Check a photo for free",
+    "check.rialiti.io",
+    "Open its public record",
+    "check.rialiti.io",
+    "Read the used car guide",
+    "Read the India guide",
+    "See RIALITI",
+    "Conjointly",
+    "Get it on Google Play",
+    "check.rialiti.io",
+    "BAR:Get it on Google Play",
+    "RIALITI",
+    "RIALITI Check",
+    "Privacy",
+    "Photograph credits",
+    "founders@rialiti.io",
+    "BODY"
+   ],
+   "bar_reached": true,
+   "obscured": []
+  }
+ }
+}

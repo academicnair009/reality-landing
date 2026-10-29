@@ -1,5 +1,5 @@
 {
- "date": "2026-10-29T02:29:00.818Z",
+ "date": "2026-10-29T02:48:30.637Z",
  "base": "local http server; text gzipped (level 6) as GitHub Pages does; byte counts below are decoded body sizes",
  "checks": [
   {
@@ -55,6 +55,40 @@
     "warnings": [],
     "failed": []
    }
+  },
+  {
+   "name": "phone link hit areas are at least 44px tall (360)",
+   "ok": true,
+   "detail": [
+    {
+     "text": "Check a photo",
+     "h": 44
+    },
+    {
+     "text": "Check a photo for free",
+     "h": 45.2
+    },
+    {
+     "text": "Check a photo of your own",
+     "h": 45.2
+    },
+    {
+     "text": "RIALITI Check",
+     "h": 44.4
+    },
+    {
+     "text": "Privacy",
+     "h": 44.4
+    },
+    {
+     "text": "Photograph credits",
+     "h": 44.4
+    },
+    {
+     "text": "founders@rialiti.io",
+     "h": 44.4
+    }
+   ]
   },
   {
    "name": "console clean, reduced motion 768",
@@ -254,11 +288,11 @@
    "name": "phone: no story or proof image fetched before scrolling",
    "ok": true,
    "detail": [
-    "/assets/v2/icons/rialiti-mark.svg",
     "/assets/v2/hero/capture-786.webp",
+    "/assets/v2/icons/rialiti-mark.svg",
     "/assets/v2/hero/record-card-967.webp",
-    "/assets/v2/problem/car-edited-785.webp",
-    "/assets/v2/problem/car-real-785.webp"
+    "/assets/v2/problem/car-real-785.webp",
+    "/assets/v2/problem/car-edited-785.webp"
    ]
   },
   {
@@ -266,20 +300,20 @@
    "ok": true,
    "detail": {
     "lcp": {
-     "t": 48,
+     "t": 92,
      "el": "IMG",
      "url": "capture-786.webp"
     },
     "cls": 0,
-    "domContentLoaded": 25,
-    "load": 29
+    "domContentLoaded": 22,
+    "load": 43
    }
   },
   {
    "name": "LCP element is the hero photograph or the headline (phone 360x780 @2.625x (mid-range Android))",
    "ok": true,
    "detail": {
-    "t": 48,
+    "t": 92,
     "el": "IMG",
     "url": "capture-786.webp"
    }
@@ -297,7 +331,7 @@
    "name": "LCP element is the hero photograph or the headline (phone 360x780 @1x)",
    "ok": true,
    "detail": {
-    "t": 48,
+    "t": 36,
     "el": "IMG",
     "url": "capture-560.webp"
    }
@@ -315,7 +349,7 @@
    "name": "LCP element is the hero photograph or the headline (desktop 1440x900 @1x)",
    "ok": true,
    "detail": {
-    "t": 36,
+    "t": 32,
     "el": "IMG",
     "url": "capture-560.webp"
    }
@@ -333,7 +367,7 @@
    "name": "LCP element is the hero photograph or the headline (desktop 1440x900 @2x)",
    "ok": true,
    "detail": {
-    "t": 52,
+    "t": 36,
     "el": "IMG",
     "url": "capture-786.webp"
    }
@@ -614,7 +648,7 @@
      "email": "name@example.com"
     },
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53390%2F&website="
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website="
     ]
    }
   },
@@ -626,7 +660,7 @@
     "use_for": "",
     "source": "rialiti.io-home",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
-    "page": "http://127.0.0.1:53390/",
+    "page": "http://127.0.0.1:53925/",
     "website": ""
    }
   },
@@ -661,6 +695,22 @@
     "rows": "grid",
     "email": "name@example.com"
    }
+  },
+  {
+   "name": "waitlist falls back to a plain form post when the fetch fails (360)",
+   "ok": true,
+   "detail": {
+    "url": "https://waitlist.invalid/exec",
+    "sent": [
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website=",
+     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F"
+    ]
+   }
+  },
+  {
+   "name": "waitlist form has no action while WAITLIST_URL is empty (360)",
+   "ok": true,
+   "detail": null
   },
   {
    "name": "waitlist maps server invalid_email to the email message (360)",
@@ -746,7 +796,7 @@
      "email": "name@example.com"
     },
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53390%2F&website="
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website="
     ]
    }
   },
@@ -758,7 +808,7 @@
     "use_for": "",
     "source": "rialiti.io-home",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
-    "page": "http://127.0.0.1:53390/",
+    "page": "http://127.0.0.1:53925/",
     "website": ""
    }
   },
@@ -795,6 +845,22 @@
    }
   },
   {
+   "name": "waitlist falls back to a plain form post when the fetch fails (1440)",
+   "ok": true,
+   "detail": {
+    "url": "https://waitlist.invalid/exec",
+    "sent": [
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website=",
+     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F"
+    ]
+   }
+  },
+  {
+   "name": "waitlist form has no action while WAITLIST_URL is empty (1440)",
+   "ok": true,
+   "detail": null
+  },
+  {
    "name": "waitlist maps server invalid_email to the email message (1440)",
    "ok": true,
    "detail": {
@@ -819,6 +885,36 @@
   "playBottom": 361,
   "pageH": 10250
  },
+ "touch_targets_360": [
+  {
+   "text": "Check a photo",
+   "h": 44
+  },
+  {
+   "text": "Check a photo for free",
+   "h": 45.2
+  },
+  {
+   "text": "Check a photo of your own",
+   "h": 45.2
+  },
+  {
+   "text": "RIALITI Check",
+   "h": 44.4
+  },
+  {
+   "text": "Privacy",
+   "h": 44.4
+  },
+  {
+   "text": "Photograph credits",
+   "h": 44.4
+  },
+  {
+   "text": "founders@rialiti.io",
+   "h": 44.4
+  }
+ ],
  "hero_768": {
   "docW": 768,
   "h1px": "60.928px",
@@ -851,42 +947,42 @@
   "hiddenText": 0
  },
  "html": {
-  "raw": 53071,
-  "gzip6": 15609,
-  "brotli": 13206
+  "raw": 54104,
+  "gzip6": 15998,
+  "brotli": 13515
  },
  "bytes_phone 360x780 @2.625x (mid-range Android)": {
   "firstScreen": {
-   "total": 204725,
+   "total": 205758,
    "images": 108956,
    "fonts": 39924,
    "list": [
-    "/ 53071",
-    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 54104",
     "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/record-card-967.webp 27714",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/v2/problem/car-edited-785.webp 18274",
-    "/assets/v2/problem/car-real-785.webp 19574"
+    "/assets/favicon.svg 2774"
    ]
   },
   "wholePage": {
-   "total": 360317,
+   "total": 361350,
    "images": 264548,
    "fonts": 39924,
    "requests": 13,
    "list": [
-    "/ 53071",
-    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 54104",
     "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/record-card-967.webp 27714",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/favicon.svg 2774",
-    "/assets/v2/problem/car-edited-785.webp 18274",
     "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/favicon.svg 2774",
     "/assets/v2/proof/check-record-724.webp 36180",
     "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/turn-681.webp 31202",
@@ -895,95 +991,46 @@
   },
   "vitals_local_unthrottled": {
    "lcp": {
-    "t": 48,
+    "t": 92,
     "el": "IMG",
     "url": "capture-786.webp"
    },
    "cls": 0,
-   "domContentLoaded": 25,
-   "load": 29
+   "domContentLoaded": 22,
+   "load": 43
   }
  },
  "bytes_phone 360x780 @1x": {
   "firstScreen": {
-   "total": 153283,
+   "total": 154316,
    "images": 57514,
    "fonts": 39924,
    "list": [
-    "/ 53071",
+    "/ 54104",
     "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/capture-560.webp 24884",
     "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/favicon.svg 2774",
-    "/assets/v2/problem/car-real-400.webp 7452",
-    "/assets/v2/problem/car-edited-400.webp 7112"
-   ]
-  },
-  "wholePage": {
-   "total": 288757,
-   "images": 192988,
-   "fonts": 39924,
-   "requests": 13,
-   "list": [
-    "/ 53071",
-    "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/assets/v2/hero/capture-560.webp 24884",
-    "/assets/v2/hero/record-card-640.webp 15292",
-    "/assets/v2/fonts/lexend-sub.woff2 23384",
-    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/favicon.svg 2774",
     "/assets/v2/problem/car-real-400.webp 7452",
     "/assets/v2/problem/car-edited-400.webp 7112",
-    "/assets/v2/proof/check-record-362.webp 16062",
-    "/assets/v2/story/turn-681.webp 31202",
-    "/assets/v2/story/first-steps-681.webp 37216",
-    "/assets/v2/story/blue-marble-760.webp 50994"
-   ]
-  },
-  "vitals_local_unthrottled": {
-   "lcp": {
-    "t": 48,
-    "el": "IMG",
-    "url": "capture-560.webp"
-   },
-   "cls": 0,
-   "domContentLoaded": 20,
-   "load": 27
-  }
- },
- "bytes_desktop 1440x900 @1x": {
-  "firstScreen": {
-   "total": 176567,
-   "images": 80798,
-   "fonts": 39924,
-   "list": [
-    "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/assets/v2/hero/capture-560.webp 24884",
-    "/assets/v2/hero/record-card-640.webp 15292",
-    "/ 53071",
-    "/assets/v2/fonts/lexend-sub.woff2 23384",
-    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-edited-785.webp 18274",
-    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/favicon.svg 2774"
    ]
   },
   "wholePage": {
-   "total": 312041,
-   "images": 216272,
+   "total": 289790,
+   "images": 192988,
    "fonts": 39924,
    "requests": 13,
    "list": [
+    "/ 54104",
     "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/capture-560.webp 24884",
     "/assets/v2/hero/record-card-640.webp 15292",
-    "/ 53071",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-edited-785.webp 18274",
-    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/problem/car-real-400.webp 7452",
+    "/assets/v2/problem/car-edited-400.webp 7112",
     "/assets/favicon.svg 2774",
     "/assets/v2/proof/check-record-362.webp 16062",
     "/assets/v2/story/first-steps-681.webp 37216",
@@ -998,20 +1045,20 @@
     "url": "capture-560.webp"
    },
    "cls": 0,
-   "domContentLoaded": 16,
-   "load": 23
+   "domContentLoaded": 18,
+   "load": 26
   }
  },
- "bytes_desktop 1440x900 @2x": {
+ "bytes_desktop 1440x900 @1x": {
   "firstScreen": {
-   "total": 204725,
-   "images": 108956,
+   "total": 177600,
+   "images": 80798,
    "fonts": 39924,
    "list": [
-    "/ 53071",
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/assets/v2/hero/capture-786.webp 40620",
-    "/assets/v2/hero/record-card-967.webp 27714",
+    "/ 54104",
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
     "/assets/favicon.svg 2774",
@@ -1020,20 +1067,69 @@
    ]
   },
   "wholePage": {
-   "total": 415659,
-   "images": 319890,
+   "total": 313074,
+   "images": 216272,
    "fonts": 39924,
    "requests": 13,
    "list": [
-    "/ 53071",
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/assets/v2/hero/capture-786.webp 40620",
-    "/assets/v2/hero/record-card-967.webp 27714",
+    "/ 54104",
+    "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
     "/assets/favicon.svg 2774",
     "/assets/v2/problem/car-edited-785.webp 18274",
     "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/v2/proof/check-record-362.webp 16062",
+    "/assets/v2/story/first-steps-681.webp 37216",
+    "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/blue-marble-760.webp 50994"
+   ]
+  },
+  "vitals_local_unthrottled": {
+   "lcp": {
+    "t": 32,
+    "el": "IMG",
+    "url": "capture-560.webp"
+   },
+   "cls": 0,
+   "domContentLoaded": 17,
+   "load": 21
+  }
+ },
+ "bytes_desktop 1440x900 @2x": {
+  "firstScreen": {
+   "total": 205758,
+   "images": 108956,
+   "fonts": 39924,
+   "list": [
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 54104",
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/favicon.svg 2774"
+   ]
+  },
+  "wholePage": {
+   "total": 416692,
+   "images": 319890,
+   "fonts": 39924,
+   "requests": 13,
+   "list": [
+    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 54104",
+    "/assets/v2/hero/capture-786.webp 40620",
+    "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
+    "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574",
+    "/assets/favicon.svg 2774",
     "/assets/v2/proof/check-record-724.webp 36180",
     "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/turn-681.webp 31202",
@@ -1042,22 +1138,22 @@
   },
   "vitals_local_unthrottled": {
    "lcp": {
-    "t": 52,
+    "t": 36,
     "el": "IMG",
     "url": "capture-786.webp"
    },
    "cls": 0,
-   "domContentLoaded": 23,
-   "load": 27
+   "domContentLoaded": 16,
+   "load": 20
   }
  },
  "throttled_phone": {
   "conditions": "360x780 @2.625x, 150 ms RTT, 1.6 Mbps, CPU 4x, cache disabled, local server",
-  "fcp": 312,
-  "load": 1056,
+  "fcp": 308,
+  "load": 1053,
   "h1Font": true,
   "lcp": {
-   "t": 1072,
+   "t": 1060,
    "url": "capture-786.webp",
    "el": "IMG"
   }

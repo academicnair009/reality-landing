@@ -98,6 +98,11 @@ for (const [w, h] of W) {
     check(`H1 on 2 lines at ${w}`, info.h1Lines === 2, info);
     check(`Play button inside the first screen at ${w}`, info.playBottom <= h, info);
     check(`console clean, motion ${w}`, !log.errors.length && !log.failed.length, log);
+    if (w < 700) {
+      const t = await page.evaluate(() => [...document.querySelectorAll(".textlink, .foot nav a, .top nav a")].map(e => ({ text: e.textContent.trim(), h: Math.round(e.getBoundingClientRect().height * 10) / 10 })).filter(x => x.h > 0));
+      M.touch_targets_360 = t;
+      check(`phone link hit areas are at least 44px tall (${w})`, t.length >= 6 && t.every(x => x.h >= 44), t);
+    }
     await ctx.close(); }
 }
 // 360x740: the design's first-screen reference size
@@ -292,6 +297,10 @@ async function waitlistPage(w, mode) {
     await o.page.route(STUB, async route => {
       sent.push(route.request().postData());
       if (mode === "submitting") return; // never answers: the busy state stays on screen
+      if (mode === "fallback") {   // the fetch fails before any response; the form then posts itself
+        if (sent.length === 1) return route.abort("failed");
+        return route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>waitlist reply</title><p>ok</p>" });
+      }
       if (mode === "err") return route.fulfill({ status: 500, body: "" });
       if (mode === "server-invalid") return route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: JSON.stringify({ ok: false, error: "invalid_email" }) });
       return route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: JSON.stringify({ ok: true }) });
@@ -336,6 +345,16 @@ for (const w of [360, 1440]) {
     await page.fill("#wl-email", "name@example.com"); await page.click(".submit"); await page.waitForTimeout(400);
     const s = await state(page); await snapState(page, w, "err");
     check(`waitlist network or server error (${w})`, !s.disabled && /^That didn’t go through/.test(s.status) && s.btn === "Join the iPhone waitlist" && s.busy === null, s);
+    await ctx.close(); }
+  { const { ctx, page, sent } = await waitlistPage(w, "fallback");
+    await page.fill("#wl-email", "name@example.com"); await page.click(".submit");
+    await page.waitForURL(STUB, { timeout: 5000 }).catch(() => {});
+    const second = new URLSearchParams(sent[1] || "");
+    check(`waitlist falls back to a plain form post when the fetch fails (${w})`, sent.length === 2 && page.url() === STUB && second.get("reply") === "html" && second.get("email") === "name@example.com" && second.has("user_agent") && second.has("page"), { url: page.url(), sent });
+    await ctx.close(); }
+  { const { ctx, page } = await waitlistPage(w, "preview");
+    const action = await page.evaluate(() => document.getElementById("wl").getAttribute("action"));
+    check(`waitlist form has no action while WAITLIST_URL is empty (${w})`, action === null, action);
     await ctx.close(); }
   { const { ctx, page } = await waitlistPage(w, "server-invalid");
     await page.fill("#wl-email", "name@example.com"); await page.click(".submit"); await page.waitForTimeout(400);

@@ -338,7 +338,9 @@ textarea.field { resize: vertical; min-height: 84px; }
   .top nav .nav-how { display: none; }
   .actions { flex-direction: column; align-items: stretch; gap: 18px; }
   .actions .play, .close .play { width: 100%; }
-  .actions .textlink { align-self: flex-start; padding: 4px 0; }
+  /* 44px hit areas on phones; the negative margin keeps the visual rhythm unchanged */
+  .actions .textlink { align-self: flex-start; padding: 9px 0; margin: -5px 0; }
+  .foot nav a { padding: 11px 0; margin: -5px 0; }
   .actions .ghost { align-self: flex-start; }
   .hero { padding-bottom: 72px; }
   .stack { aspect-ratio: 320 / 421; }
@@ -807,6 +809,17 @@ function storyFrame(y, g) {
   };
   var CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var busy = false;
+  /* With a URL set, the form's own action points at it too, so a fetch that fails before any
+     response (network error, timeout, unreadable cross-origin reply) falls back to a plain
+     form post; the Apps Script answers that with a small HTML page (reply=html). */
+  if (WAITLIST_URL) form.action = WAITLIST_URL;
+
+  function nativeSubmit() {
+    [["user_agent", navigator.userAgent], ["page", location.href]].forEach(function (kv) {
+      var i = document.createElement("input"); i.type = "hidden"; i.name = kv[0]; i.value = kv[1]; form.appendChild(i);
+    });
+    HTMLFormElement.prototype.submit.call(form);
+  }
 
   function show(kind, text) {
     status.className = "status " + kind;
@@ -846,15 +859,22 @@ function storyFrame(y, g) {
     /* Form-urlencoded keeps this a CORS simple request (no preflight). If a browser cannot read
        Apps Script's JSON, add mode: "no-cors"; the opaque response is then treated as success. */
     var ctrl = window.AbortController ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); else if (busy) finish(false); }, 12000);
+    var reached = false;   /* true once any HTTP response arrives: then it is a real answer, not a fallback case */
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); else if (busy) { busy = false; nativeSubmit(); } }, 12000);
     fetch(WAITLIST_URL, { method: "POST", body: body, signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) {
+        reached = true;
         if (r.type === "opaque") return { ok: true };
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(function (j) { clearTimeout(timer); if (busy) finish(!!(j && j.ok), j && j.error); })
-      .catch(function () { clearTimeout(timer); if (busy) finish(false); });
+      .catch(function () {
+        clearTimeout(timer);
+        if (!busy) return;
+        if (reached) finish(false);
+        else { busy = false; nativeSubmit(); }
+      });
   });
 })();
 </script>

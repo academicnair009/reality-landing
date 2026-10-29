@@ -1,6 +1,6 @@
 # RIALITI home page v2: every string, final
 
-Date 2026-10-28. This file is the copy source of truth. If a string here and a string in `design.md` or the reference build ever disagree, this file wins. No em dashes anywhere (checked by grepping for U+2014). Typographic apostrophes (’) in visible copy; straight quotes are fine in attributes.
+Date 2026-10-28, revised the same day by the AI copy wave (founder: the page must say a photo can be proven real even when anyone can edit or invent photos with AI; that is the search angle). This file is the copy source of truth. If a string here and a string in `design.md` or the reference build ever disagree, this file wins. No em dashes anywhere (checked by grepping for U+2014). Typographic apostrophes (’) in visible copy; straight quotes are fine in attributes.
 
 Spelling is US English ("color").
 
@@ -8,13 +8,13 @@ Spelling is US English ("color").
 
 | Field | Text |
 |---|---|
-| `<title>` | Prove a photo is real \| RIALITI Capture for Android |
-| meta description | Take a photo in the free RIALITI Capture app and anyone can check it’s real and unedited at check.rialiti.io, even after WhatsApp. Free on Android. |
+| `<title>` | Prove a photo is real, not AI \| RIALITI Capture |
+| meta description | Anyone can edit or invent a photo with AI now. Take yours in the free RIALITI Capture app and anyone can check it is a real, unedited capture, not AI, even after WhatsApp. |
 | canonical | https://www.rialiti.io/ |
 | og:type | website |
 | og:site_name | RIALITI |
-| og:title | Prove your photo is real. |
-| og:description | Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp. |
+| og:title | Prove your photo is real. Not AI. |
+| og:description | AI can edit or invent any photo. Take yours in RIALITI Capture and anyone can check it is real, for free. |
 | og:url | https://www.rialiti.io/ |
 | og:image | https://www.rialiti.io/assets/v2/og/og-1200x630.jpg (1200x630) |
 | og:image:alt | Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9. |
@@ -22,7 +22,7 @@ Spelling is US English ("color").
 | twitter:title / description / image / image:alt | same as og |
 | theme-color | #0C0D11 |
 
-JSON-LD strings. Organization: name "RIALITI", url "https://www.rialiti.io/", logo "https://www.rialiti.io/assets/play/icon-512.png", email "founders@rialiti.io". SoftwareApplication: name "RIALITI Capture", operatingSystem "Android", applicationCategory "MultimediaApplication", description "Take photos that anyone can later check are real and unedited, for free at check.rialiti.io.", offers price "0" priceCurrency "USD", url = the Play URL below. No rating and no review count: none exist that we can show.
+JSON-LD strings. Organization: name "RIALITI", url "https://www.rialiti.io/", logo "https://www.rialiti.io/assets/play/icon-512.png", email "founders@rialiti.io". SoftwareApplication: name "RIALITI Capture", operatingSystem "Android", applicationCategory "MultimediaApplication", description "Take photos that anyone can check are real, unedited captures and not AI, for free at check.rialiti.io.", offers price "0" priceCurrency "USD", url = the Play URL below. No rating and no review count: none exist that we can show.
 
 Play URL (every Play button): `https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io` (write `&amp;` inside HTML attributes).
 
@@ -35,14 +35,15 @@ Play URL (every Play button): `https://play.google.com/store/apps/details?id=app
 | Wordmark | RIALITI |
 | Nav `aria-label` | Main |
 | Nav link 1 (hidden below 700px) | How it works |
-| Nav link 2 | Check a photo |
+| Nav link 2 (hidden below 700px) | AI photos (to `#ai`) |
+| Nav link 3 | Check a photo |
 
 ## 1. Hero
 
 | Element | Text |
 |---|---|
-| H1 | Prove your photo is real. |
-| Lead | Take it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp. |
+| H1 | Prove your photo is real. Not AI. ("Not AI." always on its own line) |
+| Lead | AI can edit or invent any photo now. Take yours in the free RIALITI Capture app and anyone can check it is a real, unedited capture, even after WhatsApp. |
 | Primary button | Get it on Google Play |
 | Text link | Check a photo for free |
 | Aside | Free on Android. On iPhone? Join the waitlist. (link text: "Join the waitlist") |
@@ -54,11 +55,11 @@ Play URL (every Play button): `https://play.google.com/store/apps/details?id=app
 
 | Element | Text |
 |---|---|
-| H2 | Photos used to be proof. Now anyone can make one. |
-| Body | A listing photo. A damage photo. A photo of the watch you’re about to pay for. Looking real no longer means it is. |
+| H2 | Anyone can make a photo with AI now. Looking real proves nothing. |
+| Body | A listing photo. A damage photo. A photo of the watch you’re about to pay for. AI can erase the dent, change the mileage or invent the whole scene in seconds, and nobody can tell by looking. Proof has to come from somewhere else. |
 | Edited image `alt` | The same toy car photo, edited by us so it looks newer: the racing decals, number and scuffs are gone. |
 | Edited tag | Edited |
-| Edited note | Made by us, by hand, from the original below. |
+| Edited note | Made by us, by hand, from the original. AI does this in seconds. |
 | Real image `alt` | The original capture of the toy car, with its racing decals, number and scuffs. |
 | Real tag | Real capture |
 | Real note | The original. It has a public record. |
@@ -87,8 +88,20 @@ Reserved guide paths (not linked until the guide exists): `/guides/used-cars/`, 
 | Step 1 | Take the photo in the free RIALITI Capture app. |
 | Step 2 | Send it anywhere. WhatsApp, a listing, an email. |
 | Step 3 | Anyone checks it free at check.rialiti.io. (link text: "check.rialiti.io") |
-| Note | An edited photo or an AI image traces back to nothing. |
+| Note | An AI image, or a real photo edited with AI, traces back to nothing. |
 | Small | (removed 2026-10-28 by the founder's instruction: the video line is an unverified claim; the founder decides later) |
+
+## 4b. AI photos (`id="ai"`, between How it works and Proof)
+
+| Element | Text |
+|---|---|
+| H2 | How do you tell if a photo is AI? |
+| Body 1 | Mostly, you can’t. In a 2025 test, people told real photos from AI images at about the rate of a coin flip: 49 percent right on real images, 52 percent on AI ones. (link text "a 2025 test" to https://conjointly.com/blog/real-vs-ai-images-2025/ : Conjointly, published 25 September 2025, 301 US adults, 49% / 52%, "no better than random guessing"; checked 2026-10-28) |
+| Body 2 | RIALITI doesn’t guess. A photo taken in the app carries a public record of the moment it was captured, and anyone can check it free. An AI image has no record. A real photo edited with AI no longer matches its record. Either way the check finds nothing to match, and that is the difference between looking real and being real. |
+| H3 left | What RIALITI does |
+| Items | Proves a photo is a real, unedited capture / Shows when it was taken / Works on any copy, even after WhatsApp / Free to check |
+| H3 right | What it doesn’t |
+| Items | Guess whether a random image is AI / Grade the car, the watch or the seller / Prove who owns the thing in the photo |
 
 ## 5. Proof (`id="proof"`)
 
@@ -138,6 +151,16 @@ Verdict lines must be confirmed against check.rialiti.io with the real files bef
 | Photo 3 caption | The Blue Marble. Apollo 17, 7 December 1972. NASA. |
 | Coda (approved, beat 6 line) | Real moments deserve proof. |
 | Ethos | Every photograph on this page is real. The two we altered say so. Photograph credits (link text: "Photograph credits") |
+
+## 6b. FAQ (`id="faq"`, between the story and the close; also FAQPage JSON-LD, word for word)
+
+| Element | Text |
+|---|---|
+| H2 | Questions about AI photos |
+| Q1 / A1 | How can I tell if a photo is AI-generated? / Mostly, you can’t by looking. In a 2025 test, people told real photos from AI images at about the rate of a coin flip. Ask for a photo taken in RIALITI Capture and check it free at check.rialiti.io. (visible answer links "a 2025 test" to the same study) |
+| Q2 / A2 | Can RIALITI detect AI images? / No. It proves real ones. Anything without a record, including AI images and AI-edited photos, cannot be proven, and the check says so. |
+| Q3 / A3 | What if someone edits my photo with AI after I send it? / The edited copy no longer matches your record, so it fails the check. Your original still proves real. |
+| Q4 / A4 | Does it still work after WhatsApp or Instagram compression? / Yes. Resizing and compression keep the match; editing the content breaks it. |
 
 ## 7. Close (`id="get"`)
 

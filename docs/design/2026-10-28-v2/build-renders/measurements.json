@@ -1,5 +1,5 @@
 {
- "date": "2026-10-29T02:48:30.637Z",
+ "date": "2026-10-29T03:14:05.105Z",
  "base": "local http server; text gzipped (level 6) as GitHub Pages does; byte counts below are decoded body sizes",
  "checks": [
   {
@@ -17,22 +17,22 @@
    "detail": {
     "docW": 360,
     "h1px": "42.16px",
-    "h1Lines": 2,
-    "playTop": 305,
-    "playBottom": 361,
-    "pageH": 10250
+    "h1Lines": 3,
+    "playTop": 401,
+    "playBottom": 457,
+    "pageH": 12226
    }
   },
   {
-   "name": "H1 on 2 lines at 360",
+   "name": "H1 on 2 or 3 lines at 360",
    "ok": true,
    "detail": {
     "docW": 360,
     "h1px": "42.16px",
-    "h1Lines": 2,
-    "playTop": 305,
-    "playBottom": 361,
-    "pageH": 10250
+    "h1Lines": 3,
+    "playTop": 401,
+    "playBottom": 457,
+    "pageH": 12226
    }
   },
   {
@@ -41,10 +41,10 @@
    "detail": {
     "docW": 360,
     "h1px": "42.16px",
-    "h1Lines": 2,
-    "playTop": 305,
-    "playBottom": 361,
-    "pageH": 10250
+    "h1Lines": 3,
+    "playTop": 401,
+    "playBottom": 457,
+    "pageH": 12226
    }
   },
   {
@@ -105,22 +105,22 @@
    "detail": {
     "docW": 768,
     "h1px": "60.928px",
-    "h1Lines": 2,
-    "playTop": 333,
-    "playBottom": 389,
-    "pageH": 11691
+    "h1Lines": 3,
+    "playTop": 423,
+    "playBottom": 479,
+    "pageH": 13101
    }
   },
   {
-   "name": "H1 on 2 lines at 768",
+   "name": "H1 on 2 or 3 lines at 768",
    "ok": true,
    "detail": {
     "docW": 768,
     "h1px": "60.928px",
-    "h1Lines": 2,
-    "playTop": 333,
-    "playBottom": 389,
-    "pageH": 11691
+    "h1Lines": 3,
+    "playTop": 423,
+    "playBottom": 479,
+    "pageH": 13101
    }
   },
   {
@@ -129,10 +129,10 @@
    "detail": {
     "docW": 768,
     "h1px": "60.928px",
-    "h1Lines": 2,
-    "playTop": 333,
-    "playBottom": 389,
-    "pageH": 11691
+    "h1Lines": 3,
+    "playTop": 423,
+    "playBottom": 479,
+    "pageH": 13101
    }
   },
   {
@@ -159,22 +159,22 @@
    "detail": {
     "docW": 1440,
     "h1px": "91.84px",
-    "h1Lines": 2,
-    "playTop": 560,
-    "playBottom": 616,
-    "pageH": 10282
+    "h1Lines": 3,
+    "playTop": 623,
+    "playBottom": 679,
+    "pageH": 11730
    }
   },
   {
-   "name": "H1 on 2 lines at 1440",
+   "name": "H1 on 2 or 3 lines at 1440",
    "ok": true,
    "detail": {
     "docW": 1440,
     "h1px": "91.84px",
-    "h1Lines": 2,
-    "playTop": 560,
-    "playBottom": 616,
-    "pageH": 10282
+    "h1Lines": 3,
+    "playTop": 623,
+    "playBottom": 679,
+    "pageH": 11730
    }
   },
   {
@@ -183,10 +183,10 @@
    "detail": {
     "docW": 1440,
     "h1px": "91.84px",
-    "h1Lines": 2,
-    "playTop": 560,
-    "playBottom": 616,
-    "pageH": 10282
+    "h1Lines": 3,
+    "playTop": 623,
+    "playBottom": 679,
+    "pageH": 11730
    }
   },
   {
@@ -288,11 +288,11 @@
    "name": "phone: no story or proof image fetched before scrolling",
    "ok": true,
    "detail": [
-    "/assets/v2/hero/capture-786.webp",
     "/assets/v2/icons/rialiti-mark.svg",
+    "/assets/v2/hero/capture-786.webp",
     "/assets/v2/hero/record-card-967.webp",
-    "/assets/v2/problem/car-real-785.webp",
-    "/assets/v2/problem/car-edited-785.webp"
+    "/assets/v2/problem/car-edited-785.webp",
+    "/assets/v2/problem/car-real-785.webp"
    ]
   },
   {
@@ -300,20 +300,20 @@
    "ok": true,
    "detail": {
     "lcp": {
-     "t": 92,
+     "t": 36,
      "el": "IMG",
      "url": "capture-786.webp"
     },
     "cls": 0,
-    "domContentLoaded": 22,
-    "load": 43
+    "domContentLoaded": 19,
+    "load": 24
    }
   },
   {
    "name": "LCP element is the hero photograph or the headline (phone 360x780 @2.625x (mid-range Android))",
    "ok": true,
    "detail": {
-    "t": 92,
+    "t": 36,
     "el": "IMG",
     "url": "capture-786.webp"
    }
@@ -349,7 +349,7 @@
    "name": "LCP element is the hero photograph or the headline (desktop 1440x900 @1x)",
    "ok": true,
    "detail": {
-    "t": 32,
+    "t": 44,
     "el": "IMG",
     "url": "capture-560.webp"
    }
@@ -387,11 +387,11 @@
    "detail": [
     {
      "l": 1,
-     "t": "Prove your photo is real."
+     "t": "Prove your photo is real. Not AI."
     },
     {
      "l": 2,
-     "t": "Photos used to be proof. Now anyone can make one."
+     "t": "Anyone can make a photo with AI now. Looking real proves nothing."
     },
     {
      "l": 2,
@@ -427,11 +427,27 @@
     },
     {
      "l": 2,
+     "t": "How do you tell if a photo is AI?"
+    },
+    {
+     "l": 3,
+     "t": "What RIALITI does"
+    },
+    {
+     "l": 3,
+     "t": "What it doesn’t"
+    },
+    {
+     "l": 2,
      "t": "Don’t trust us. Check it yourself."
     },
     {
      "l": 2,
      "t": "Why RIALITI exists"
+    },
+    {
+     "l": 2,
+     "t": "Questions about AI photos"
     },
     {
      "l": 2,
@@ -449,11 +465,11 @@
    "detail": [
     {
      "l": 1,
-     "t": "Prove your photo is real."
+     "t": "Prove your photo is real. Not AI."
     },
     {
      "l": 2,
-     "t": "Photos used to be proof. Now anyone can make one."
+     "t": "Anyone can make a photo with AI now. Looking real proves nothing."
     },
     {
      "l": 2,
@@ -489,11 +505,27 @@
     },
     {
      "l": 2,
+     "t": "How do you tell if a photo is AI?"
+    },
+    {
+     "l": 3,
+     "t": "What RIALITI does"
+    },
+    {
+     "l": 3,
+     "t": "What it doesn’t"
+    },
+    {
+     "l": 2,
      "t": "Don’t trust us. Check it yourself."
     },
     {
      "l": 2,
      "t": "Why RIALITI exists"
+    },
+    {
+     "l": 2,
+     "t": "Questions about AI photos"
     },
     {
      "l": 2,
@@ -530,12 +562,13 @@
    "detail": []
   },
   {
-   "name": "external links are exactly the brief's URLs",
+   "name": "external links are exactly the approved URLs",
    "ok": true,
    "detail": [
     "https://check.rialiti.io",
     "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
     "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
+    "https://conjointly.com/blog/real-vs-ai-images-2025/",
     "mailto:founders@rialiti.io"
    ]
   },
@@ -544,6 +577,7 @@
    "ok": true,
    "detail": [
     "#how",
+    "#ai",
     "#iphone"
    ]
   },
@@ -564,6 +598,14 @@
      "rel": "noopener"
     }
    ]
+  },
+  {
+   "name": "FAQPage JSON-LD matches the visible FAQ word for word",
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "n": 4
+   }
   },
   {
    "name": "text contrast meets WCAG AA everywhere on the static page",
@@ -648,7 +690,7 @@
      "email": "name@example.com"
     },
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website="
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F&website="
     ]
    }
   },
@@ -660,7 +702,7 @@
     "use_for": "",
     "source": "rialiti.io-home",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
-    "page": "http://127.0.0.1:53925/",
+    "page": "http://127.0.0.1:56917/",
     "website": ""
    }
   },
@@ -702,8 +744,8 @@
    "detail": {
     "url": "https://waitlist.invalid/exec",
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website=",
-     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F"
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F&website=",
+     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F"
     ]
    }
   },
@@ -796,7 +838,7 @@
      "email": "name@example.com"
     },
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website="
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F&website="
     ]
    }
   },
@@ -808,7 +850,7 @@
     "use_for": "",
     "source": "rialiti.io-home",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
-    "page": "http://127.0.0.1:53925/",
+    "page": "http://127.0.0.1:56917/",
     "website": ""
    }
   },
@@ -850,8 +892,8 @@
    "detail": {
     "url": "https://waitlist.invalid/exec",
     "sent": [
-     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F&website=",
-     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A53925%2F"
+     "email=name%40example.com&use_for=&source=rialiti.io-home&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F&website=",
+     "email=name%40example.com&use_for=&website=&source=rialiti.io-home&reply=html&user_agent=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+HeadlessChrome%2F156.0.0.0+Safari%2F537.36&page=http%3A%2F%2F127.0.0.1%3A56917%2F"
     ]
    }
   },
@@ -880,10 +922,10 @@
  "hero_360": {
   "docW": 360,
   "h1px": "42.16px",
-  "h1Lines": 2,
-  "playTop": 305,
-  "playBottom": 361,
-  "pageH": 10250
+  "h1Lines": 3,
+  "playTop": 401,
+  "playBottom": 457,
+  "pageH": 12226
  },
  "touch_targets_360": [
   {
@@ -918,21 +960,21 @@
  "hero_768": {
   "docW": 768,
   "h1px": "60.928px",
-  "h1Lines": 2,
-  "playTop": 333,
-  "playBottom": 389,
-  "pageH": 11691
+  "h1Lines": 3,
+  "playTop": 423,
+  "playBottom": 479,
+  "pageH": 13101
  },
  "hero_1440": {
   "docW": 1440,
   "h1px": "91.84px",
-  "h1Lines": 2,
-  "playTop": 560,
-  "playBottom": 616,
-  "pageH": 10282
+  "h1Lines": 3,
+  "playTop": 623,
+  "playBottom": 679,
+  "pageH": 11730
  },
  "hero_360x740": {
-  "playTop": 305
+  "playTop": 401
  },
  "nojs_360": {
   "anim": false,
@@ -947,94 +989,94 @@
   "hiddenText": 0
  },
  "html": {
-  "raw": 54104,
-  "gzip6": 15998,
-  "brotli": 13515
+  "raw": 62077,
+  "gzip6": 17707,
+  "brotli": 14776
  },
  "bytes_phone 360x780 @2.625x (mid-range Android)": {
   "firstScreen": {
-   "total": 205758,
+   "total": 213731,
    "images": 108956,
    "fonts": 39924,
    "list": [
-    "/ 54104",
-    "/assets/v2/hero/capture-786.webp 40620",
-    "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 62077",
+    "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/favicon.svg 2774"
    ]
   },
   "wholePage": {
-   "total": 361350,
+   "total": 369323,
    "images": 264548,
    "fonts": 39924,
    "requests": 13,
    "list": [
-    "/ 54104",
-    "/assets/v2/hero/capture-786.webp 40620",
-    "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 62077",
+    "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/hero/record-card-967.webp 27714",
+    "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/v2/problem/car-edited-785.webp 18274",
+    "/assets/v2/problem/car-real-785.webp 19574",
     "/assets/favicon.svg 2774",
     "/assets/v2/proof/check-record-724.webp 36180",
-    "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/blue-marble-760.webp 50994"
    ]
   },
   "vitals_local_unthrottled": {
    "lcp": {
-    "t": 92,
+    "t": 36,
     "el": "IMG",
     "url": "capture-786.webp"
    },
    "cls": 0,
-   "domContentLoaded": 22,
-   "load": 43
+   "domContentLoaded": 19,
+   "load": 24
   }
  },
  "bytes_phone 360x780 @1x": {
   "firstScreen": {
-   "total": 154316,
+   "total": 162289,
    "images": 57514,
    "fonts": 39924,
    "list": [
-    "/ 54104",
-    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 62077",
     "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-real-400.webp 7452",
+    "/assets/favicon.svg 2774",
     "/assets/v2/problem/car-edited-400.webp 7112",
-    "/assets/favicon.svg 2774"
+    "/assets/v2/problem/car-real-400.webp 7452"
    ]
   },
   "wholePage": {
-   "total": 289790,
+   "total": 297763,
    "images": 192988,
    "fonts": 39924,
    "requests": 13,
    "list": [
-    "/ 54104",
-    "/assets/v2/icons/rialiti-mark.svg 2774",
+    "/ 62077",
     "/assets/v2/hero/capture-560.webp 24884",
+    "/assets/v2/icons/rialiti-mark.svg 2774",
     "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
-    "/assets/v2/problem/car-real-400.webp 7452",
-    "/assets/v2/problem/car-edited-400.webp 7112",
     "/assets/favicon.svg 2774",
+    "/assets/v2/problem/car-edited-400.webp 7112",
+    "/assets/v2/problem/car-real-400.webp 7452",
     "/assets/v2/proof/check-record-362.webp 16062",
-    "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/turn-681.webp 31202",
+    "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/blue-marble-760.webp 50994"
    ]
   },
@@ -1045,18 +1087,18 @@
     "url": "capture-560.webp"
    },
    "cls": 0,
-   "domContentLoaded": 18,
-   "load": 26
+   "domContentLoaded": 17,
+   "load": 21
   }
  },
  "bytes_desktop 1440x900 @1x": {
   "firstScreen": {
-   "total": 177600,
+   "total": 185573,
    "images": 80798,
    "fonts": 39924,
    "list": [
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/ 54104",
+    "/ 62077",
     "/assets/v2/hero/capture-560.webp 24884",
     "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
@@ -1067,13 +1109,13 @@
    ]
   },
   "wholePage": {
-   "total": 313074,
+   "total": 321047,
    "images": 216272,
    "fonts": 39924,
    "requests": 13,
    "list": [
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/ 54104",
+    "/ 62077",
     "/assets/v2/hero/capture-560.webp 24884",
     "/assets/v2/hero/record-card-640.webp 15292",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
@@ -1089,47 +1131,47 @@
   },
   "vitals_local_unthrottled": {
    "lcp": {
-    "t": 32,
+    "t": 44,
     "el": "IMG",
     "url": "capture-560.webp"
    },
    "cls": 0,
-   "domContentLoaded": 17,
-   "load": 21
+   "domContentLoaded": 24,
+   "load": 30
   }
  },
  "bytes_desktop 1440x900 @2x": {
   "firstScreen": {
-   "total": 205758,
+   "total": 213731,
    "images": 108956,
    "fonts": 39924,
    "list": [
+    "/ 62077",
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/ 54104",
     "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/hero/record-card-967.webp 27714",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
     "/assets/v2/problem/car-edited-785.webp 18274",
-    "/assets/v2/problem/car-real-785.webp 19574",
-    "/assets/favicon.svg 2774"
+    "/assets/v2/problem/car-real-785.webp 19574"
    ]
   },
   "wholePage": {
-   "total": 416692,
+   "total": 424665,
    "images": 319890,
    "fonts": 39924,
    "requests": 13,
    "list": [
+    "/ 62077",
     "/assets/v2/icons/rialiti-mark.svg 2774",
-    "/ 54104",
     "/assets/v2/hero/capture-786.webp 40620",
     "/assets/v2/hero/record-card-967.webp 27714",
     "/assets/v2/fonts/lexend-sub.woff2 23384",
     "/assets/v2/fonts/playfair-italic-sub.woff2 16540",
+    "/assets/favicon.svg 2774",
     "/assets/v2/problem/car-edited-785.webp 18274",
     "/assets/v2/problem/car-real-785.webp 19574",
-    "/assets/favicon.svg 2774",
     "/assets/v2/proof/check-record-724.webp 36180",
     "/assets/v2/story/first-steps-681.webp 37216",
     "/assets/v2/story/turn-681.webp 31202",
@@ -1143,17 +1185,17 @@
     "url": "capture-786.webp"
    },
    "cls": 0,
-   "domContentLoaded": 16,
-   "load": 20
+   "domContentLoaded": 18,
+   "load": 23
   }
  },
  "throttled_phone": {
   "conditions": "360x780 @2.625x, 150 ms RTT, 1.6 Mbps, CPU 4x, cache disabled, local server",
-  "fcp": 308,
-  "load": 1053,
+  "fcp": 316,
+  "load": 1052,
   "h1Font": true,
   "lcp": {
-   "t": 1060,
+   "t": 1068,
    "url": "capture-786.webp",
    "el": "IMG"
   }
@@ -1162,11 +1204,11 @@
   "headings": [
    {
     "l": 1,
-    "t": "Prove your photo is real."
+    "t": "Prove your photo is real. Not AI."
    },
    {
     "l": 2,
-    "t": "Photos used to be proof. Now anyone can make one."
+    "t": "Anyone can make a photo with AI now. Looking real proves nothing."
    },
    {
     "l": 2,
@@ -1202,11 +1244,27 @@
    },
    {
     "l": 2,
+    "t": "How do you tell if a photo is AI?"
+   },
+   {
+    "l": 3,
+    "t": "What RIALITI does"
+   },
+   {
+    "l": 3,
+    "t": "What it doesn’t"
+   },
+   {
+    "l": 2,
     "t": "Don’t trust us. Check it yourself."
    },
    {
     "l": 2,
     "t": "Why RIALITI exists"
+   },
+   {
+    "l": 2,
+    "t": "Questions about AI photos"
    },
    {
     "l": 2,
@@ -1217,15 +1275,15 @@
     "t": "Not on iPhone yet."
    }
   ],
-  "title": "Prove a photo is real | RIALITI Capture for Android",
-  "description": "Take a photo in the free RIALITI Capture app and anyone can check it’s real and unedited at check.rialiti.io, even after WhatsApp. Free on Android.",
+  "title": "Prove a photo is real, not AI | RIALITI Capture",
+  "description": "Anyone can edit or invent a photo with AI now. Take yours in the free RIALITI Capture app and anyone can check it is a real, unedited capture, not AI, even after WhatsApp.",
   "canonical": "https://www.rialiti.io/",
   "lang": "en",
   "og": {
    "og:type": "website",
    "og:site_name": "RIALITI",
-   "og:title": "Prove your photo is real.",
-   "og:description": "Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.",
+   "og:title": "Prove your photo is real. Not AI.",
+   "og:description": "AI can edit or invent any photo. Take yours in RIALITI Capture and anyone can check it is real, for free.",
    "og:url": "https://www.rialiti.io/",
    "og:image": "https://www.rialiti.io/assets/v2/og/og-1200x630.jpg",
    "og:image:type": "image/jpeg",
@@ -1233,8 +1291,8 @@
    "og:image:height": "630",
    "og:image:alt": "Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.",
    "twitter:card": "summary_large_image",
-   "twitter:title": "Prove your photo is real.",
-   "twitter:description": "Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.",
+   "twitter:title": "Prove your photo is real. Not AI.",
+   "twitter:description": "AI can edit or invent any photo. Take yours in RIALITI Capture and anyone can check it is real, for free.",
    "twitter:image": "https://www.rialiti.io/assets/v2/og/og-1200x630.jpg",
    "twitter:image:alt": "Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9."
   },
@@ -1255,7 +1313,7 @@
       "name": "RIALITI Capture",
       "operatingSystem": "Android",
       "applicationCategory": "MultimediaApplication",
-      "description": "Take photos that anyone can later check are real and unedited, for free at check.rialiti.io.",
+      "description": "Take photos that anyone can check are real, unedited captures and not AI, for free at check.rialiti.io.",
       "url": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
       "installUrl": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
       "offers": {
@@ -1265,6 +1323,44 @@
       },
       "publisher": {
        "@id": "https://www.rialiti.io/#org"
+      }
+     }
+    ]
+   },
+   {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+     {
+      "@type": "Question",
+      "name": "How can I tell if a photo is AI-generated?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Mostly, you can’t by looking. In a 2025 test, people told real photos from AI images at about the rate of a coin flip. Ask for a photo taken in RIALITI Capture and check it free at check.rialiti.io."
+      }
+     },
+     {
+      "@type": "Question",
+      "name": "Can RIALITI detect AI images?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "No. It proves real ones. Anything without a record, including AI images and AI-edited photos, cannot be proven, and the check says so."
+      }
+     },
+     {
+      "@type": "Question",
+      "name": "What if someone edits my photo with AI after I send it?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "The edited copy no longer matches your record, so it fails the check. Your original still proves real."
+      }
+     },
+     {
+      "@type": "Question",
+      "name": "Does it still work after WhatsApp or Instagram compression?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes. Resizing and compression keep the match; editing the content breaks it."
       }
      }
     ]
@@ -1281,6 +1377,12 @@
   {
    "href": "#how",
    "text": "How it works",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "#ai",
+   "text": "AI photos",
    "target": "",
    "rel": ""
   },
@@ -1321,6 +1423,12 @@
    "rel": ""
   },
   {
+   "href": "https://conjointly.com/blog/real-vs-ai-images-2025/",
+   "text": "a 2025 test",
+   "target": "",
+   "rel": ""
+  },
+  {
    "href": "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9",
    "text": "Open the car’s record",
    "target": "",
@@ -1335,6 +1443,12 @@
   {
    "href": "CREDITS.md",
    "text": "Photograph credits",
+   "target": "",
+   "rel": ""
+  },
+  {
+   "href": "https://conjointly.com/blog/real-vs-ai-images-2025/",
+   "text": "a 2025 test",
    "target": "",
    "rel": ""
   },
@@ -1376,7 +1490,7 @@
   }
  ],
  "contrast": {
-  "checked": 70,
+  "checked": 96,
   "min": 7.49,
   "failures": []
  },
@@ -1390,6 +1504,12 @@
   {
    "tag": "a",
    "text": "How it works",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
+   "text": "AI photos",
    "outline": true,
    "ring": false
   },
@@ -1431,6 +1551,12 @@
   },
   {
    "tag": "a",
+   "text": "a 2025 test",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "a",
    "text": "Open the car’s record",
    "outline": true,
    "ring": false
@@ -1444,6 +1570,30 @@
   {
    "tag": "a",
    "text": "Photograph credits",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "summary",
+   "text": "How can I tell if a photo is AI-generate",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "summary",
+   "text": "Can RIALITI detect AI images?",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "summary",
+   "text": "What if someone edits my photo with AI a",
+   "outline": true,
+   "ring": false
+  },
+  {
+   "tag": "summary",
+   "text": "Does it still work after WhatsApp or Ins",
    "outline": true,
    "ring": false
   },

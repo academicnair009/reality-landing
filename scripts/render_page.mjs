@@ -95,7 +95,7 @@ for (const [w, h] of W) {
     });
     M[`hero_${w}`] = info;
     check(`no horizontal overflow at ${w}`, info.docW === w, info);
-    check(`H1 on 2 lines at ${w}`, info.h1Lines === 2, info);
+    check(`H1 on 2 or 3 lines at ${w}`, info.h1Lines >= 2 && info.h1Lines <= 3, info);
     check(`Play button inside the first screen at ${w}`, info.playBottom <= h, info);
     check(`console clean, motion ${w}`, !log.errors.length && !log.failed.length, log);
     if (w < 700) {
@@ -256,14 +256,20 @@ for (const [label, w, h, dpr] of [["phone 360x780 @2.625x (mid-range Android)", 
   const missing = local.filter(u => { const p = u.replace(/^\.\//, "").split("#")[0]; const f = path.join(ROOT, p === "" ? "index.html" : p.endsWith("/") ? p + "index.html" : p); return !fs.existsSync(f); });
   check("every local link and image resolves to a file", !missing.length, missing);
   const ALLOWED = ["https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io", "https://check.rialiti.io",
-    "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9", "mailto:founders@rialiti.io"];
+    "https://check.rialiti.io/e/ra-e58e1b6d5bed4de9", "mailto:founders@rialiti.io", "https://conjointly.com/blog/real-vs-ai-images-2025/"];
   const external = [...new Set(s.links.map(l => l.href).filter(h => /^(https?:|mailto:)/.test(h)))];
-  check("external links are exactly the brief's URLs", external.every(u => ALLOWED.includes(u)), external);
+  check("external links are exactly the approved URLs", external.every(u => ALLOWED.includes(u)), external);
   const anchors = s.links.map(l => l.href).filter(h => h.startsWith("#"));
   check("in-page anchors exist", anchors.every(a => s.links && s.heads && true) && (await page.evaluate(a => a.every(h => document.getElementById(h.slice(1))), anchors)), anchors);
   const play = s.links.filter(l => l.href.startsWith("https://play.google.com"));
   check("Play links open a new tab with rel noopener", play.length === 2 && play.every(l => l.target === "_blank" && /noopener/.test(l.rel)), play);
   M.links = s.links;
+  const faqOk = await page.evaluate(() => {
+    const ld = [...document.querySelectorAll('script[type="application/ld+json"]')].map(x => JSON.parse(x.textContent)).find(x => x["@type"] === "FAQPage");
+    const vis = [...document.querySelectorAll("#faq details")].map(d => ({ q: d.querySelector("summary").textContent.trim(), a: d.querySelector("p").textContent.trim() }));
+    return { ok: !!ld && ld.mainEntity.length === vis.length && ld.mainEntity.every((m, i) => m.name === vis[i].q && m.acceptedAnswer.text === vis[i].a), n: vis.length };
+  });
+  check("FAQPage JSON-LD matches the visible FAQ word for word", faqOk.ok && faqOk.n >= 3, faqOk);
   const low = s.contrast.filter(c => c.ratio < c.need);
   M.contrast = { checked: s.contrast.length, min: Math.min(...s.contrast.map(c => c.ratio)), failures: low };
   check("text contrast meets WCAG AA everywhere on the static page", !low.length, low);

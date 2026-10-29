@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Prove a photo is real | RIALITI Capture for Android</title>
-<meta name="description" content="Take a photo in the free RIALITI Capture app and anyone can check it’s real and unedited at check.rialiti.io, even after WhatsApp. Free on Android.">
+<title>Prove a photo is real, not AI | RIALITI Capture</title>
+<meta name="description" content="Anyone can edit or invent a photo with AI now. Take yours in the free RIALITI Capture app and anyone can check it is a real, unedited capture, not AI, even after WhatsApp.">
 <link rel="canonical" href="https://www.rialiti.io/">
 <meta name="theme-color" content="#0C0D11">
 <meta name="color-scheme" content="dark">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RIALITI">
-<meta property="og:title" content="Prove your photo is real.">
-<meta property="og:description" content="Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.">
+<meta property="og:title" content="Prove your photo is real. Not AI.">
+<meta property="og:description" content="AI can edit or invent any photo. Take yours in RIALITI Capture and anyone can check it is real, for free.">
 <meta property="og:url" content="https://www.rialiti.io/">
 <meta property="og:image" content="https://www.rialiti.io/assets/v2/og/og-1200x630.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -20,8 +20,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Prove your photo is real.">
-<meta name="twitter:description" content="Shoot it in the free RIALITI Capture app. Anyone can check it, even after WhatsApp.">
+<meta name="twitter:title" content="Prove your photo is real. Not AI.">
+<meta name="twitter:description" content="AI can edit or invent any photo. Take yours in RIALITI Capture and anyone can check it is real, for free.">
 <meta name="twitter:image" content="https://www.rialiti.io/assets/v2/og/og-1200x630.jpg">
 <meta name="twitter:image:alt" content="Prove your photo is real. A toy car photographed in the RIALITI Capture app, with the app’s Verified capture panel showing record ra-e58e1b6d5bed4de9.">
 
@@ -47,11 +47,52 @@
       "name": "RIALITI Capture",
       "operatingSystem": "Android",
       "applicationCategory": "MultimediaApplication",
-      "description": "Take photos that anyone can later check are real and unedited, for free at check.rialiti.io.",
+      "description": "Take photos that anyone can check are real, unedited captures and not AI, for free at check.rialiti.io.",
       "url": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
       "installUrl": "https://play.google.com/store/apps/details?id=app.rialiti.capture&referrer=utm_source%3Drialiti.io",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "publisher": { "@id": "https://www.rialiti.io/#org" }
+    }
+  ]
+}
+</script>
+<!-- FAQPage: the answers must stay word for word the same as the visible FAQ (#faq). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I tell if a photo is AI-generated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mostly, you can’t by looking. In a 2025 test, people told real photos from AI images at about the rate of a coin flip. Ask for a photo taken in RIALITI Capture and check it free at check.rialiti.io."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can RIALITI detect AI images?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It proves real ones. Anything without a record, including AI images and AI-edited photos, cannot be proven, and the check says so."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if someone edits my photo with AI after I send it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The edited copy no longer matches your record, so it fails the check. Your original still proves real."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it still work after WhatsApp or Instagram compression?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Resizing and compression keep the match; editing the content breaks it."
+      }
     }
   ]
 }
@@ -166,6 +207,7 @@ a { color: inherit; }
 
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 28px 0 96px; }
+.hero h1 .h1-line { display: block; }   /* "Not AI." always starts its own line: the sentence above stays whole */
 .hero h1 { font-weight: 600; font-size: var(--t-display); line-height: 1; letter-spacing: -.035em; max-width: 9.5em; text-wrap: balance; }
 .lead { margin-top: 20px; font-size: var(--t-lead); line-height: 1.5; color: var(--muted); max-width: 27em; text-wrap: pretty; }
 .actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
@@ -286,6 +328,29 @@ h2 { font-weight: 600; font-size: var(--t-h2); line-height: 1.08; letter-spacing
 .anim .story-b img { width: min(100%, 74vh, 760px); width: min(100%, 74svh, 760px); }
 .anim .story-b .mission, .anim .story-b .cap { opacity: 0; }
 
+/* ---------- AI: how to tell, and what RIALITI does and doesn't ---------- */
+.ai-copy .body + .body { margin-top: 16px; }
+.scope { margin-top: 48px; display: grid; gap: 36px; }
+.scope h3 { font-weight: 500; font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.012em; }
+.scope-list { list-style: none; margin-top: 16px; display: grid; gap: 12px; }
+.scope-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink); font-weight: 400; max-width: 30em; }
+.scope-list svg { width: 14px; height: 14px; flex: none; margin-top: .42em; color: var(--muted); }
+.scope-list.doesnt li { color: var(--muted); }
+
+/* ---------- FAQ: native details, no script ---------- */
+.faq-list { margin-top: 40px; max-width: 46em; border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { cursor: pointer; list-style: none; position: relative; padding: 20px 40px 20px 0;
+  font-weight: 500; font-size: 1.125rem; line-height: 1.4; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  font-weight: 300; font-size: 1.5rem; line-height: 1; color: var(--muted); }
+.faq-list details[open] summary::after { content: "\2212"; }
+.faq-list summary:hover::after { color: var(--ink); }
+.nw { white-space: nowrap; }
+.faq-list details p { padding: 0 40px 24px 0; color: var(--muted); max-width: 40em; text-wrap: pretty; }
+.faq + .close { padding-top: var(--section); }
+
 /* ---------- close ---------- */
 .close { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; padding-block: var(--section) 96px; }
 .close .body { margin-bottom: 32px; }
@@ -349,6 +414,7 @@ textarea.field { resize: vertical; min-height: 84px; }
   .hero-fig figcaption { margin-left: 12.5%; }
   .submit { width: 100%; justify-self: stretch; }
 }
+@media (min-width: 700px) and (max-width: 1023px) { .scope { grid-template-columns: 1fr 1fr; } }
 
 /* ---------- desktop grid (1024 and up) ---------- */
 @media (min-width: 1024px) {
@@ -369,6 +435,10 @@ textarea.field { resize: vertical; min-height: 84px; }
   .how h2 { grid-column: 1 / span 6; }
   .how .steps { grid-column: 1 / span 10; margin-top: 64px; gap: 36px; max-width: 27em; }
   .how-note { grid-column: 1 / span 7; }
+
+  .ai { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .ai-copy { grid-column: 1 / span 7; }
+  .scope { grid-column: 1 / span 10; grid-template-columns: 1fr 1fr; gap: var(--gutter); margin-top: 64px; }
 
   .proof-in { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: center; }
   .proof-copy { grid-column: 1 / span 6; }
@@ -423,6 +493,7 @@ textarea.field { resize: vertical; min-height: 84px; }
   </a>
   <nav aria-label="Main">
     <a class="nav-how" href="#how">How it works</a>
+    <a class="nav-how" href="#ai">AI photos</a>
     <a href="https://check.rialiti.io">Check a photo</a>
   </nav>
 </header>
@@ -430,8 +501,8 @@ textarea.field { resize: vertical; min-height: 84px; }
 <main>
 <section class="hero wrap" aria-labelledby="hero-h">
   <div class="hero-copy">
-    <h1 id="hero-h">Prove your photo is real.</h1>
-    <p class="lead">Take it in the free RIALITI&nbsp;Capture app. Anyone can check it, even after WhatsApp.</p>
+    <h1 id="hero-h">Prove your photo is real. <span class="h1-line">Not&nbsp;AI.</span></h1>
+    <p class="lead">AI can edit or invent any photo now. Take yours in the free RIALITI&nbsp;Capture app and anyone can check it is a real, unedited capture, even after WhatsApp.</p>
     <div class="actions">
       <a class="play" href="https://play.google.com/store/apps/details?id=app.rialiti.capture&amp;referrer=utm_source%3Drialiti.io" target="_blank" rel="noopener">Get it on Google Play</a>
       <a class="textlink" href="https://check.rialiti.io">Check a photo for free</a>
@@ -459,8 +530,8 @@ textarea.field { resize: vertical; min-height: 84px; }
 
 <section class="sec problem wrap" aria-labelledby="problem-h">
   <div class="problem-copy">
-    <h2 id="problem-h">Photos used to be proof. Now anyone can make one.</h2>
-    <p class="body">A listing photo. A damage photo. A photo of the watch you’re about to pay for. Looking real no longer means it is.</p>
+    <h2 id="problem-h">Anyone can make a photo with AI now. Looking real proves nothing.</h2>
+    <p class="body">A listing photo. A damage photo. A photo of the watch you’re about to pay for. AI can erase the dent, change the mileage or invent the whole scene in seconds, and nobody can tell by looking. Proof has to come from somewhere else.</p>
   </div>
   <figure class="pair">
     <div>
@@ -472,7 +543,7 @@ textarea.field { resize: vertical; min-height: 84px; }
       </picture>
       <div class="pair-meta">
         <p class="tag tag-edited"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Edited</p>
-        <p class="pc">Made by us, by hand, from the original below.</p>
+        <p class="pc">Made by us, by hand, from the original. AI does this in seconds.</p>
       </div>
     </div>
     <div>
@@ -517,7 +588,34 @@ textarea.field { resize: vertical; min-height: 84px; }
     <li>Send it anywhere. WhatsApp, a listing, an email.</li>
     <li>Anyone checks it free at <a href="https://check.rialiti.io">check.rialiti.io</a>.</li>
   </ol>
-  <p class="how-note">An edited photo or an AI image traces back to nothing.</p>
+  <p class="how-note">An AI image, or a real photo edited with AI, traces back to nothing.</p>
+</section>
+
+<section class="sec ai wrap" id="ai" aria-labelledby="ai-h">
+  <div class="ai-copy">
+    <h2 id="ai-h">How do you tell if a photo is AI?</h2>
+    <p class="body">Mostly, you can’t. In <a class="inline-link" href="https://conjointly.com/blog/real-vs-ai-images-2025/">a 2025 test</a>, people told real photos from AI images at about the rate of a coin flip: 49 percent right on real images, 52 percent on AI ones.</p>
+    <p class="body">RIALITI doesn’t guess. A photo taken in the app carries a public record of the moment it was captured, and anyone can check it free. An AI image has no record. A real photo edited with AI no longer matches its record. Either way the check finds nothing to match, and that is the difference between looking real and being real.</p>
+  </div>
+  <div class="scope">
+    <div>
+      <h3>What RIALITI does</h3>
+      <ul class="scope-list does">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Proves a photo is a real, unedited capture</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Shows when it was taken</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Works on any copy, even after WhatsApp</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Free to check</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>What it doesn’t</h3>
+      <ul class="scope-list doesnt">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Guess whether a random image is&nbsp;AI</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Grade the car, the watch or the seller</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Prove who owns the thing in the photo</span></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section class="proof" id="proof" aria-labelledby="proof-h">
@@ -631,6 +729,28 @@ textarea.field { resize: vertical; min-height: 84px; }
   <div class="story-end wrap">
     <p class="coda">Real moments deserve proof.</p>
     <p class="ethos">Every photograph on this page is real. The two we altered say so. <a href="CREDITS.md">Photograph credits</a></p>
+  </div>
+</section>
+
+<section class="sec faq wrap" id="faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">Questions about AI photos</h2>
+  <div class="faq-list">
+    <details>
+      <summary>How can I tell if a photo is <span class="nw">AI-generated</span>?</summary>
+      <p>Mostly, you can’t by looking. In <a class="inline-link" href="https://conjointly.com/blog/real-vs-ai-images-2025/">a 2025 test</a>, people told real photos from AI images at about the rate of a coin flip. Ask for a photo taken in RIALITI Capture and check it free at check.rialiti.io.</p>
+    </details>
+    <details>
+      <summary>Can RIALITI detect AI images?</summary>
+      <p>No. It proves real ones. Anything without a record, including AI images and AI-edited photos, cannot be proven, and the check says so.</p>
+    </details>
+    <details>
+      <summary>What if someone edits my photo with AI after I send it?</summary>
+      <p>The edited copy no longer matches your record, so it fails the check. Your original still proves real.</p>
+    </details>
+    <details>
+      <summary>Does it still work after WhatsApp or Instagram compression?</summary>
+      <p>Yes. Resizing and compression keep the match; editing the content breaks it.</p>
+    </details>
   </div>
 </section>
 

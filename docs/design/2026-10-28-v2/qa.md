@@ -12,7 +12,7 @@ Date 2026-10-28. Covers the design deliverables (`design.md`, `copy.md`, assets 
 | "Three steps. No account." | Privacy page and Play listing: "No accounts, no sign-in" | True |
 | "Anyone checks it free at check.rialiti.io." / "Verification will always be free." | Brief (canonical line) | True |
 | "An edited photo or an AI image traces back to nothing." | Brief, verbatim product truth | True. It says what a check finds, not that RIALITI detects anything. |
-| "Videos work the same way." | Play listing: "takes photos and videos"; check page: "Check a photo or video" | True. Founder may cut it if video is not a launch message. |
+| "Videos work the same way." | Play listing: "takes photos and videos"; check page: "Check a photo or video" | Removed from the page 2026-10-28 (founder: unverified claim, decide later). |
 | "A toy car, shot in RIALITI Capture on 21 September 2026." | Live record, re-checked 2026-10-28: Captured 2026-09-21T04:20:31Z, "Verified attested capture", Tier 1, match 100.0% | True (UTC date) |
 | "The toy car at the top of this page has a public record." | Same record, public at `check.rialiti.io/e/ra-e58e1b6d5bed4de9`; brief allows this record on the page | True |
 | "RIALITI Check, opened on 28 October 2026." | Screenshot taken by me that day; source kept in `src/sources/` | True |
@@ -127,7 +127,7 @@ For the founder:
 2. **Demo files.** The demo stays off until you supply a real capture and the real WhatsApp copy (and optionally an AI recreation). Confirm the verdict lines on check.rialiti.io before it ships.
 3. **Waitlist promise.** "We won't use it for anything else." is a commitment. Keep it or cut it.
 4. **Deploy the Apps Script** (three steps at the top of `waitlist-apps-script.gs`) and send the `/exec` URL. Until then the form shows the honest preview message.
-5. **"Videos work the same way."** Keep or cut, depending on whether video is part of the launch story.
+5. **"Videos work the same way."** Removed 2026-10-28 by founder instruction; re-add only after the founder decides.
 6. **Low-RAM phone test** of the new story (required by the compositor rule).
 
 For the engineer:

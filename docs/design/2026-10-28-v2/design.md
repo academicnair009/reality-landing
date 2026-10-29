@@ -236,7 +236,7 @@ Job: make it feel simple. A real sequence, so numbers are right here.
    RIALITI Capture app.   22 px       3  Anyone checks it free at check.rialiti.io.
  2 Send it anywhere. ...
  3 Anyone checks it free at ...       An edited photo or an AI image traces back to nothing.  22 ink
- An edited photo or an AI image ...   Videos work the same way.  14 muted
+ An edited photo or an AI image ...   (video line removed 2026-10-28)
 ```
 - `<ol>` with CSS counters; numeral in muted Lexend 300, `padding-left: 1.6em`, numeral absolutely at left 0. Gap 28 px (36 desktop). Note 48 px below.
 - Motion: none.

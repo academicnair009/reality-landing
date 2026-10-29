@@ -13,7 +13,7 @@ REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 A = os.path.join(REPO, "assets")
 OUT = os.path.join(A, "v2")
 SRC = os.path.join(HERE, "sources")
-CANON_MARK = "/Users/ashishnair/claude_ws/reality/branding/rialiti-logo-vector.svg"
+CANON_MARK = os.environ.get("RIALITI_MARK", os.path.expanduser("~/claude_ws/reality/branding/rialiti-logo-vector.svg"))
 
 def out(*p):
     path = os.path.join(OUT, *p)

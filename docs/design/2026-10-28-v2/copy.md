@@ -88,7 +88,7 @@ Reserved guide paths (not linked until the guide exists): `/guides/used-cars/`, 
 | Step 2 | Send it anywhere. WhatsApp, a listing, an email. |
 | Step 3 | Anyone checks it free at check.rialiti.io. (link text: "check.rialiti.io") |
 | Note | An edited photo or an AI image traces back to nothing. |
-| Small | Videos work the same way. |
+| Small | (removed 2026-10-28 by the founder's instruction: the video line is an unverified claim; the founder decides later) |
 
 ## 5. Proof (`id="proof"`)
 

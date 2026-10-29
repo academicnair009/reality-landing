@@ -1,5 +1,7 @@
 // OG image + 404 reference renders. Usage: node render_extra.mjs
-import { chromium } from '/Users/ashishnair/.npm/_npx/da7caeae9db9c589/node_modules/playwright-core/index.mjs';
+import os from 'node:os'; import fsx from 'node:fs'; import pathx from 'node:path'; import { pathToFileURL } from 'node:url';
+const PW = process.env.PLAYWRIGHT_CORE || (() => { const d = pathx.join(os.homedir(), '.npm', '_npx'); for (const x of fsx.readdirSync(d)) { const p = pathx.join(d, x, 'node_modules', 'playwright-core', 'index.mjs'); if (fsx.existsSync(p)) return p; } })();
+const { chromium } = await import(pathToFileURL(PW).href);
 import path from 'node:path'; import fs from 'node:fs';
 const here = path.dirname(new URL(import.meta.url).pathname);
 const assets = path.join(here, '..', '..', '..', '..', 'assets', 'v2');

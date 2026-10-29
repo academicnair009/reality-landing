@@ -149,6 +149,10 @@ success (fields hidden, focus to the status), error, and **preview**: while
 `WAITLIST_URL` is `""`, a valid submit sends nothing and says "The waitlist
 isn't connected yet, so nothing was sent." Backend:
 `docs/design/2026-10-28-v2/waitlist-apps-script.gs` (deploy steps at its top).
+When `WAITLIST_URL` is set the script also sets the form's `action` to it, and
+a fetch that fails before any response arrives (network error, the 12 s
+timeout, an unreadable cross-origin reply) falls back to a plain form post
+(`reply=html`), which can add a duplicate row if the first request did land.
 
 To go live, grep `WAITLIST (` in `index.html`; there are three marked spots:
 (1) delete the `<noscript>` block in the head that hides the form without JS,
@@ -185,7 +189,7 @@ WhatsApp copy.
 
 HTML about 53 KB raw, 15 KB gzip. First screen on a 360px phone at 2.6x:
 about 205 KB including HTML, both fonts and the hero images. Whole page about
-415 KB at 2.6x. CLS 0. LCP element: the hero photograph.
+360 KB at 2.6x. CLS 0. LCP element: the hero photograph.
 
 ## Editing rules
 

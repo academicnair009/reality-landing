@@ -92,3 +92,16 @@ node scripts/render_page.mjs
 node scripts/validate_html.mjs
 python3 scripts/subset_fonts.py        # only if the source fonts change
 ```
+
+## Review fixes (2026-10-28, after review "Approve with fixes")
+
+1. **Privacy page.** `privacy/index.html` gains a "The iPhone waitlist" section: it collects the email, the optional note, the page it was sent from and the browser's user agent string; stored in a Google Sheet only we can open; used only to say when the iPhone app exists; removal by email to founders@rialiti.io. The Google Fonts link and preconnects are replaced by the self-hosted `lexend-sub.woff2`. Nothing else on the page changed. Two things for the founder: the page's "Changes" section promises a new effective date when the policy changes, and the date still reads 22 September 2026; the page title still contains an em dash (pre-existing, left as instructed).
+2. **v1 images.** Deleted `assets/beat2-earthrise.jpg`, `beat3-embrace.jpg`, `beat4-portrait.jpg`, `beat6-proof.jpg`, `assets/mosaic.jpg` and `scripts/build_mosaic.py` (no page referenced them; git history keeps them). Their credits moved to a dated "No longer on the page (removed 2026-10-28)" section of `CREDITS.md`. `beat1`, `beat5` and `beat7` are the sources of the story images the page serves from `assets/v2/story/`, so they moved to `docs/design/2026-10-28-v2/src/sources/`; `build_assets.py` and the `make_turn_image.py` usage line point there, and their credits sit under "Source photographs of the story". The page never loaded them, so served bytes are unchanged.
+3. **Waitlist action.** With `WAITLIST_URL` set, the script sets the form's `action` to it, and a fetch that fails before any response (network error, 12 s timeout, unreadable cross-origin reply) falls back to a plain form post with `reply=html`, adding `user_agent` and `page` as hidden fields. An HTTP error or `{ok:false}` still shows the error message (that is a real answer). With the URL empty the form has no action and nothing is sent. Trade-off: if a first request reached the Sheet but its reply was unreadable, the fallback can add a duplicate row.
+4. **Touch targets.** On phones `.textlink` and the footer links get padding with equal negative margins: measured hit heights at 360 are 45.2 px (text links), 44.4 px (footer), 44 px (header "Check a photo"). Page heights are identical to before (8582 / 10358 / 8789 px at 360 / 768 / 1440), so the visual rhythm did not move.
+5. **Debug HUD** kept for the phone test; CLAUDE.md says it may be removed after the test passes and which three pieces to remove.
+
+Results after the fixes:
+- `node scripts/render_page.mjs`: **ALL CHECKS PASS, 67 of 67** (new: phone hit areas at least 44 px; form-post fallback when the fetch fails, checked at 360 and 1440 with a stubbed endpoint that drops the fetch and accepts the form post; no `action` while the URL is empty). Throttled phone: FCP 0.31 s, LCP 1.06 s (hero photograph).
+- `node scripts/validate_html.mjs`: **0 problems** in `index.html`, `404.html`, `privacy/index.html`.
+- `node scripts/verify_story.mjs --browser`: **MODEL PASS, PAGE PASS**. Purity in both scroll directions on the three geometries, the mutated model fails 111 checks, DOM equals the model at 170 stops each way at 360x740 and 1440x900, at most 2 large promoted layers on screen.

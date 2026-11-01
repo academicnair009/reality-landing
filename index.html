@@ -108,10 +108,6 @@
   } catch (e) {}
 })(document.documentElement);
 </script>
-<!-- WAITLIST (1 of 3): while WAITLIST_URL is empty, a visitor without JavaScript sees
-     "The iPhone waitlist opens soon." instead of a form that could not send anything.
-     Delete this noscript block once the Apps Script is deployed. -->
-<noscript><style>#wl { display: none; }</style></noscript>
 
 <style>
 /* ===================================================================
@@ -385,7 +381,6 @@ textarea.field { resize: vertical; min-height: 84px; }
 .status.preview { color: var(--ink); }
 .waitlist.done .row { display: none; }
 .waitlist.done .status { margin-top: 0; }
-.nojs { margin-top: 20px; color: var(--ink); font-weight: 400; }
 .sign { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); line-height: 1.3; color: var(--story-ink); padding-top: 8px; }
 
 /* ---------- footer ---------- */
@@ -762,9 +757,8 @@ textarea.field { resize: vertical; min-height: 84px; }
   <div class="waitlist" id="iphone">
     <h3 id="iphone-h">Not on iPhone yet.</h3>
     <p>Leave your email and we’ll tell you when it is. We won’t use it for anything else.</p>
-    <!-- WAITLIST (2 of 3): once the Apps Script is deployed, add action="<the /exec URL>" here so
-         the form also works without JavaScript (the script answers reply=html with a small page). -->
-    <form id="wl" method="post" novalidate aria-labelledby="iphone-h">
+    <!-- Without JavaScript the form posts straight to the Apps Script, which answers reply=html with a small page. -->
+    <form id="wl" method="post" action="https://script.google.com/macros/s/AKfycbyv2nHkVPohYYX2jX5k9d81qNrLKBpfcBsa-T5MT8qXr7R2KgPexpxLEfpalfU-PNyqqA/exec" novalidate aria-labelledby="iphone-h">
       <div class="row">
         <label for="wl-email">Email</label>
         <input class="field" id="wl-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" spellcheck="false" aria-describedby="wl-status">
@@ -777,7 +771,6 @@ textarea.field { resize: vertical; min-height: 84px; }
       </div>
       <p class="status" id="wl-status" role="status" aria-live="polite" tabindex="-1"></p>
     </form>
-    <noscript><p class="nojs">The iPhone waitlist opens soon.</p></noscript>
   </div>
   <p class="sign">To Protect What’s Human</p>
 </section>
@@ -796,10 +789,9 @@ textarea.field { resize: vertical; min-height: 84px; }
 </footer>
 
 <script>
-/* WAITLIST (3 of 3): paste the Apps Script /exec URL between the quotes
-   (docs/design/2026-10-28-v2/waitlist-apps-script.gs has the deploy steps).
-   Empty means preview mode: the form validates, then says honestly that nothing was sent. */
-var WAITLIST_URL = "";
+/* Apps Script web app backing the iPhone waitlist (deployed 2026-10-31; source and redeploy
+   steps in docs/design/2026-10-28-v2/waitlist-apps-script.gs). Empty would mean preview mode. */
+var WAITLIST_URL = "https://script.google.com/macros/s/AKfycbyv2nHkVPohYYX2jX5k9d81qNrLKBpfcBsa-T5MT8qXr7R2KgPexpxLEfpalfU-PNyqqA/exec";
 
 /* ============================== PURE SCROLL MODEL ==============================
    Every animated value is a pure function of (scrollY, layout). No observers, no
